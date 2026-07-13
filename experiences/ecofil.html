@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ECOFIL — Turning Plastic Waste into 3D-Printer Filament — Jasper Buntinx</title>
+  <meta name="description" content="Every makerspace generates buckets of failed prints and scrap plastic. ECOFIL is a startup I co-founded to close that loop: a three-stage machine line">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="nav" id="top">
+  <div class="nav-inner">
+    <a class="nav-name" href="../index.html">Jasper&nbsp;Buntinx</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="../index.html">Home</a>
+      <a href="../resume.html">Résumé</a>
+      <a href="../experiences.html" class="active">Experiences</a>
+      <a href="../certifications.html">Certifications</a>
+      <a href="../index.html#contact">Contact</a>
+      <a class="btn btn-small" href="../assets/docs/Jasper_Buntinx_Resume.pdf" download>Résumé&nbsp;↓</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="pdetail-hero">
+    <div class="container">
+      <p class="crumb"><a href="../experiences.html">← All experiences</a></p>
+      <h1>ECOFIL — Turning Plastic Waste into 3D-Printer Filament</h1>
+      <div class="pdetail-meta">
+        <span><strong>Co-founder & Mechanical Engineer</strong></span><span>ECOFIL (Startup)</span><span>Aug 2025 – Present</span><span>College Station, TX</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="pbody">
+    <div class="container">
+      <p class="lead">Every makerspace generates buckets of failed prints and scrap plastic. ECOFIL is a startup I co-founded to close that loop: a three-stage machine line that shreds waste plastic, dries it, and extrudes it back into usable 3D-printer filament. I lead the mechanical design — every assembly modeled in SolidWorks with GD&T for precise component mating.</p>
+
+      <h2>Phase 1 — Plastic shredder</h2>
+      <p>The shredder reduces failed prints to uniform flake. I designed the cutter stack and frame in SolidWorks, then fabricated the prototype with CNC milling (SolidWorks CAM), laser cutting (Lightburn), and MIG welding.</p>
+      <div class="figrow">
+        <figure><img class="zoomable" src="../assets/img/ecofil-shredder-cad.jpg" alt="Shredder exploded view (SolidWorks)" loading="lazy"><figcaption>Shredder exploded view (SolidWorks)</figcaption></figure>
+        <figure><img class="zoomable" src="../assets/img/ecofil-shredder-frame.jpg" alt="Fabricated shredder frame" loading="lazy"><figcaption>Fabricated shredder frame</figcaption></figure>
+      </div>
+
+      <h2>Phase 2 — Filament dehydrator</h2>
+      <p>Moisture ruins extrusion quality, so shredded flake passes through a heated dehydrator before it ever meets the extruder. I ran thermal analysis in SolidWorks Simulation to optimize the drying process, and the prototype uses PTC heating elements, thermistors, fans, and hygrometers for closed-loop humidity control.</p>
+      <div class="figrow">
+        <figure><img class="zoomable" src="../assets/img/ecofil-dehydrator-cad.jpg" alt="Dehydrator CAD model" loading="lazy"><figcaption>Dehydrator CAD model</figcaption></figure>
+        <figure><img class="zoomable" src="../assets/img/ecofil-dehydrator-build.jpg" alt="Dehydrator prototype with control electronics" loading="lazy"><figcaption>Dehydrator prototype with control electronics</figcaption></figure>
+      </div>
+
+      <h2>Phase 3 — Filament extruder</h2>
+      <p>The extruder melts dried flake and draws it into spooled filament at consistent diameter. The design combines a high-voltage AC drive motor, stepper-driven spooling, and linear Hall-effect sensing for real-time diameter monitoring.</p>
+      <div class="figrow">
+        <figure><img class="zoomable" src="../assets/img/ecofil-extruder-cad.jpg" alt="Extruder assembly (SolidWorks)" loading="lazy"><figcaption>Extruder assembly (SolidWorks)</figcaption></figure>
+        <figure><img class="zoomable" src="../assets/img/ecofil-extruder-exploded.jpg" alt="Extruder exploded view" loading="lazy"><figcaption>Extruder exploded view</figcaption></figure>
+      </div>
+
+      <h2>Electronics & controls</h2>
+      <p>All three stages run on Arduino controllers tied to a common sensing layer — Hall-effect sensors, MOSFETs, thermistors, and hygrometers — for real-time monitoring and control of the full recycling process.</p>
+      <div class="figrow">
+        <figure><img class="zoomable" src="../assets/img/ecofil-electronics-schematic.jpg" alt="Control-system electrical schematic" loading="lazy"><figcaption>Control-system electrical schematic</figcaption></figure>
+      </div>
+
+      <h2>Funding & operations</h2>
+      <p>ECOFIL secured incubator funding and material donations from <strong>Aggies Create</strong>, <strong>Tyrex</strong>, and the <strong>TAMU Meloy program</strong>. I manage project finances and materials through detailed BOMs, and we completed the filament recycler within budget and resource constraints.</p>
+
+      <div class="stat-row">
+        <div class="stat"><span class="stat-num">3</span><span class="stat-label">machine stages: shred, dry, extrude</span></div>
+        <div class="stat"><span class="stat-num">3</span><span class="stat-label">funding & material partners</span></div>
+        <div class="stat"><span class="stat-num">100%</span><span class="stat-label">designed, built, and tested in-house</span></div>
+      </div>
+
+      <div class="pskills">
+        <h2>Top skills utilized</h2>
+        <div class="tags tags-lg"><span>SolidWorks</span><span>GD&T</span><span>Arduino</span><span>CNC Milling</span><span>Laser Cutting</span><span>3D Printing</span><span>MIG Welding</span><span>Thermal FEA</span></div>
+      </div>
+
+      <div class="pnav"><a href="rochester-sensors.html">← Sensor Manufacturing Engineering</a><a href="cfd-optimization.html">GPU-Accelerated CFD Optimization →</a></div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <span>© 2026 Jasper Buntinx</span>
+    <span><a href="mailto:jasper_buntinx@tamu.edu">jasper_buntinx@tamu.edu</a> · <a href="https://www.linkedin.com/in/jasper-buntinx/" target="_blank" rel="noopener">LinkedIn</a></span>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lb-close" id="lbClose" aria-label="Close gallery">×</button>
+  <button class="lb-prev" id="lbPrev" aria-label="Previous image">‹</button>
+  <figure>
+    <img id="lbImg" src="" alt="">
+    <figcaption id="lbCaption"></figcaption>
+  </figure>
+  <button class="lb-next" id="lbNext" aria-label="Next image">›</button>
+</div>
+
+<script src="../script.js"></script>
+</body>
+</html>

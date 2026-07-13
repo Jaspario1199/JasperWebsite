@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GPU-Accelerated CFD Optimization at Petrobras — Jasper Buntinx</title>
+  <meta name="description" content="Petrobras runs lattice-Boltzmann (LBM) computational fluid dynamics simulations on NVIDIA GPUs to model complex flows. My internship: make the solver ">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="nav" id="top">
+  <div class="nav-inner">
+    <a class="nav-name" href="../index.html">Jasper&nbsp;Buntinx</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="../index.html">Home</a>
+      <a href="../resume.html">Résumé</a>
+      <a href="../experiences.html" class="active">Experiences</a>
+      <a href="../certifications.html">Certifications</a>
+      <a href="../index.html#contact">Contact</a>
+      <a class="btn btn-small" href="../assets/docs/Jasper_Buntinx_Resume.pdf" download>Résumé&nbsp;↓</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="pdetail-hero">
+    <div class="container">
+      <p class="crumb"><a href="../experiences.html">← All experiences</a></p>
+      <h1>GPU-Accelerated CFD Optimization at Petrobras</h1>
+      <div class="pdetail-meta">
+        <span><strong>Mechanical Engineering Intern</strong></span><span>Petrobras</span><span>Jun 2025 – Aug 2025</span><span>Florianópolis, Brazil</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="pbody">
+    <div class="container">
+      <p class="lead">Petrobras runs lattice-Boltzmann (LBM) computational fluid dynamics simulations on NVIDIA GPUs to model complex flows. My internship: make the solver faster. Using AI-assisted, kernel-level profiling in NVIDIA Nsight Compute, I attacked the code's memory and precision bottlenecks one by one — and the result was one of the fastest LBM implementations reported anywhere.</p>
+
+      <h2>Precision migration — the 400% win</h2>
+      <p>The solver ran everything in FP64 double precision. I led a validated FP64→FP32 migration — proving accuracy stayed within simulation tolerances at every step — which unlocked <strong>400%+ gains in MLUPs</strong> (million lattice updates per second), the standard LBM throughput metric.</p>
+
+      <h2>Memory-access surgery</h2>
+      <p>Nsight Compute memory-workload reports revealed severely uncoalesced global memory access. Restructuring the thread-to-data mapping delivered a <strong>60% warp-efficiency improvement</strong>. I also identified redundant data staging in shared memory and enabled aggressive reuse across thread blocks, cutting peak shared memory 35% (56&nbsp;KB → 36&nbsp;KB) and improving occupancy.</p>
+
+      <h2>Smarter meshes in Python</h2>
+      <p>I authored a Python geometry-generation script for optimized fine-coarse mesh interfaces, lifting the peak simulated Reynolds number <strong>33%</strong> without degrading throughput — more turbulent, more realistic flows for the same compute budget.</p>
+
+      <div class="stat-row">
+        <div class="stat"><span class="stat-num">400%+</span><span class="stat-label">MLUPs throughput gain</span></div>
+        <div class="stat"><span class="stat-num">60%</span><span class="stat-label">warp-efficiency improvement</span></div>
+        <div class="stat"><span class="stat-num">+33%</span><span class="stat-label">peak Reynolds number</span></div>
+        <div class="stat"><span class="stat-num">−35%</span><span class="stat-label">peak shared memory (56→36 KB)</span></div>
+      </div>
+
+      <div class="pskills">
+        <h2>Top skills utilized</h2>
+        <div class="tags tags-lg"><span>CUDA</span><span>C++</span><span>Python</span><span>NVIDIA Nsight Compute</span><span>LBM / CFD</span><span>ParaView</span><span>AI-assisted Development</span></div>
+      </div>
+
+      <div class="pnav"><a href="ecofil.html">← ECOFIL</a><a href="creek-show.html">Giant Illuminated Dragonflies →</a></div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <span>© 2026 Jasper Buntinx</span>
+    <span><a href="mailto:jasper_buntinx@tamu.edu">jasper_buntinx@tamu.edu</a> · <a href="https://www.linkedin.com/in/jasper-buntinx/" target="_blank" rel="noopener">LinkedIn</a></span>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lb-close" id="lbClose" aria-label="Close gallery">×</button>
+  <button class="lb-prev" id="lbPrev" aria-label="Previous image">‹</button>
+  <figure>
+    <img id="lbImg" src="" alt="">
+    <figcaption id="lbCaption"></figcaption>
+  </figure>
+  <button class="lb-next" id="lbNext" aria-label="Next image">›</button>
+</div>
+
+<script src="../script.js"></script>
+</body>
+</html>
