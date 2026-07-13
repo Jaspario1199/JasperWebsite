@@ -3,89 +3,93 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>GPU-Accelerated CFD Optimization at Petrobras — Jasper Buntinx</title>
-  <meta name="description" content="Petrobras runs lattice-Boltzmann (LBM) computational fluid dynamics simulations on NVIDIA GPUs to model complex flows. My internship: make the solver ">
+  <title>CUDA CFD Research Internship - Jasper Buntinx</title>
+  <meta name="description" content="I spent the summer at the Geoenergia Lab in Santa Catarina State University's petroleum engineering department, working on Petrobras-sponsored researc">
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
 
-<header class="nav" id="top">
-  <div class="nav-inner">
-    <a class="nav-name" href="../index.html">Jasper&nbsp;Buntinx</a>
-    <nav class="nav-links" id="navLinks">
+<header class="site-header">
+  <div class="header-inner">
+    <a class="site-title" href="../index.html">Jasper Buntinx</a>
+    <nav class="site-nav" id="siteNav">
       <a href="../index.html">Home</a>
-      <a href="../resume.html">Résumé</a>
+      <a href="../resume.html">Resume</a>
       <a href="../experiences.html" class="active">Experiences</a>
       <a href="../certifications.html">Certifications</a>
       <a href="../index.html#contact">Contact</a>
-      <a class="btn btn-small" href="../assets/docs/Jasper_Buntinx_Resume.pdf" download>Résumé&nbsp;↓</a>
     </nav>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
 </header>
 
 <main>
-  <section class="pdetail-hero">
-    <div class="container">
-      <p class="crumb"><a href="../experiences.html">← All experiences</a></p>
-      <h1>GPU-Accelerated CFD Optimization at Petrobras</h1>
-      <div class="pdetail-meta">
-        <span><strong>Mechanical Engineering Intern</strong></span><span>Petrobras</span><span>Jun 2025 – Aug 2025</span><span>Florianópolis, Brazil</span>
-      </div>
+  <div class="container-narrow">
+    <div class="page-header">
+      <p class="crumb"><a href="../experiences.html">&larr; All Experiences</a></p>
+      <h1>CUDA CFD Research Internship</h1>
+      <p class="detail-meta"><strong>Mechanical Engineering Intern</strong> &nbsp;|&nbsp; Petrobras · Geoenergia Lab, UDESC &nbsp;|&nbsp; Jun 2025 – Aug 2025 &nbsp;|&nbsp; Santa Catarina, Brazil</p>
     </div>
-  </section>
 
-  <section class="pbody">
-    <div class="container">
-      <p class="lead">Petrobras runs lattice-Boltzmann (LBM) computational fluid dynamics simulations on NVIDIA GPUs to model complex flows. My internship: make the solver faster. Using AI-assisted, kernel-level profiling in NVIDIA Nsight Compute, I attacked the code's memory and precision bottlenecks one by one — and the result was one of the fastest LBM implementations reported anywhere.</p>
+    <div class="detail-body">
+      <p>I spent the summer at the Geoenergia Lab in Santa Catarina State University's petroleum engineering department, working on Petrobras-sponsored research. The lab runs lattice Boltzmann (LBM) fluid simulations on NVIDIA GPUs, and my job was to make the solver faster.</p>
 
-      <h2>Precision migration — the 400% win</h2>
-      <p>The solver ran everything in FP64 double precision. I led a validated FP64→FP32 migration — proving accuracy stayed within simulation tolerances at every step — which unlocked <strong>400%+ gains in MLUPs</strong> (million lattice updates per second), the standard LBM throughput metric.</p>
-
-      <h2>Memory-access surgery</h2>
-      <p>Nsight Compute memory-workload reports revealed severely uncoalesced global memory access. Restructuring the thread-to-data mapping delivered a <strong>60% warp-efficiency improvement</strong>. I also identified redundant data staging in shared memory and enabled aggressive reuse across thread blocks, cutting peak shared memory 35% (56&nbsp;KB → 36&nbsp;KB) and improving occupancy.</p>
-
-      <h2>Smarter meshes in Python</h2>
-      <p>I authored a Python geometry-generation script for optimized fine-coarse mesh interfaces, lifting the peak simulated Reynolds number <strong>33%</strong> without degrading throughput — more turbulent, more realistic flows for the same compute budget.</p>
-
-      <div class="stat-row">
-        <div class="stat"><span class="stat-num">400%+</span><span class="stat-label">MLUPs throughput gain</span></div>
-        <div class="stat"><span class="stat-num">60%</span><span class="stat-label">warp-efficiency improvement</span></div>
-        <div class="stat"><span class="stat-num">+33%</span><span class="stat-label">peak Reynolds number</span></div>
-        <div class="stat"><span class="stat-num">−35%</span><span class="stat-label">peak shared memory (56→36 KB)</span></div>
+      <h2>The Lattice Boltzmann Method, Briefly</h2>
+      <p>Instead of solving the Navier-Stokes equations directly, LBM tracks particle distribution functions on a lattice through alternating collision and streaming steps. Each lattice site updates independently, which is exactly the kind of problem a GPU is built for.</p>
+      <div class="figrow">
+        <figure><img class="zoomable" src="../assets/img/cfd-d3q19-lattice.jpg" alt="The D3Q19 lattice configuration used by the solver" loading="lazy"><figcaption>The D3Q19 lattice configuration used by the solver</figcaption></figure>
+        <figure><img class="zoomable" src="../assets/img/cfd-cuda-architecture.jpg" alt="CUDA grid, block, and thread hierarchy" loading="lazy"><figcaption>CUDA grid, block, and thread hierarchy</figcaption></figure>
+        <figure><img class="zoomable" src="../assets/img/cfd-paraview-sim.jpg" alt="Channel-flow simulation post-processed in ParaView" loading="lazy"><figcaption>Channel-flow simulation post-processed in ParaView</figcaption></figure>
       </div>
 
-      <div class="pskills">
-        <h2>Top skills utilized</h2>
-        <div class="tags tags-lg"><span>CUDA</span><span>C++</span><span>Python</span><span>NVIDIA Nsight Compute</span><span>LBM / CFD</span><span>ParaView</span><span>AI-assisted Development</span></div>
+      <h2>Finding the Bottleneck</h2>
+      <p>The lab's higher-order physics code was running about 10x slower than expected, and neither refactoring nor manual timers explained why. The breakthrough came from kernel-level profiling in NVIDIA Nsight Compute: the source view revealed lingering double-precision FMA instructions in hot loops. Removing them and completing a validated FP64 to FP32 migration (accuracy checked against simulation tolerances at every step) produced 400%+ gains in MLUPs, the standard LBM throughput metric, with the higher-order kernels improving by roughly 500%.</p>
+      <div class="figrow">
+        <figure><img class="zoomable" src="../assets/img/cfd-nsight-systems.jpg" alt="Timeline profiling in NVIDIA Nsight Systems" loading="lazy"><figcaption>Timeline profiling in NVIDIA Nsight Systems</figcaption></figure>
+        <figure><img class="zoomable" src="../assets/img/cfd-nsight-compute.jpg" alt="Kernel source view in Nsight Compute" loading="lazy"><figcaption>Kernel source view in Nsight Compute</figcaption></figure>
       </div>
 
-      <div class="pnav"><a href="ecofil.html">← ECOFIL</a><a href="creek-show.html">Giant Illuminated Dragonflies →</a></div>
+      <h2>Memory Work</h2>
+      <p>Nsight's memory workload reports also showed severely uncoalesced global memory access causing long scoreboard stalls. Restructuring the thread-to-data mapping improved warp efficiency by 60%. Enabling aggressive data reuse across thread blocks cut peak shared memory from 56 KB to 36 KB, which raised occupancy on the same hardware.</p>
+
+      <h2>Grid Refinement</h2>
+      <p>Flows near boundary conditions were producing unstable results, so we moved to a multiresolution grid: fine lattice at the boundaries, coarse in the middle. I wrote the Python script that generates optimized fine-coarse interface geometries, which lifted the peak simulated Reynolds number by 33% without hurting throughput.</p>
+      <div class="figrow">
+        <figure><img class="zoomable" src="../assets/img/cfd-mesh-refinement.jpg" alt="Fine boundary lattice (red) around a coarse interior (black)" loading="lazy"><figcaption>Fine boundary lattice (red) around a coarse interior (black)</figcaption></figure>
+      </div>
+
+      <h2>Passing It On</h2>
+      <p>Profiling knowledge shouldn't leave with the intern, so I wrote an Nsight Compute manual and recorded an instructional video for the lab covering setup, best practices, and common commands. I also built ParaView post-processing scripts and prototyped a stair-step curved boundary method for extending 2D cylinder flows to 3D spheres.</p>
+
+      <h2>Top Skills Utilized</h2>
+      <ul class="skills-list"><li>CUDA</li><li>C++</li><li>Python</li><li>NVIDIA Nsight Compute</li><li>NVIDIA Nsight Systems</li><li>LBM / CFD</li><li>ParaView</li></ul>
+
+      <div class="detail-nav"><a href="ecofil.html">&larr; ECOFIL</a><a href="creek-show.html">Creek Show Dragonflies &rarr;</a></div>
     </div>
-  </section>
+  </div>
 </main>
 
-<footer class="footer">
+<footer class="site-footer">
   <div class="container">
-    <span>© 2026 Jasper Buntinx</span>
-    <span><a href="mailto:jasper_buntinx@tamu.edu">jasper_buntinx@tamu.edu</a> · <a href="https://www.linkedin.com/in/jasper-buntinx/" target="_blank" rel="noopener">LinkedIn</a></span>
+    <span>Copyright © 2026 Jasper Buntinx</span>
+    <span><a href="https://www.linkedin.com/in/jasper-buntinx/" target="_blank" rel="noopener">LinkedIn</a> &nbsp;|&nbsp; Email: <a href="mailto:jasper_buntinx@tamu.edu">jasper_buntinx@tamu.edu</a></span>
   </div>
 </footer>
 
 <div class="lightbox" id="lightbox" aria-hidden="true">
-  <button class="lb-close" id="lbClose" aria-label="Close gallery">×</button>
-  <button class="lb-prev" id="lbPrev" aria-label="Previous image">‹</button>
+  <button class="lb-close" id="lbClose" aria-label="Close">&times;</button>
+  <button class="lb-prev" id="lbPrev" aria-label="Previous image">&lsaquo;</button>
   <figure>
     <img id="lbImg" src="" alt="">
     <figcaption id="lbCaption"></figcaption>
   </figure>
-  <button class="lb-next" id="lbNext" aria-label="Next image">›</button>
+  <button class="lb-next" id="lbNext" aria-label="Next image">&rsaquo;</button>
 </div>
 
 <script src="../script.js"></script>

@@ -3,162 +3,101 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Experiences — Jasper Buntinx</title>
-  <meta name="description" content="Internships, startup work, student teams, and personal projects by Jasper Buntinx — mechanical engineering at Texas A&M University.">
+  <title>Experiences - Jasper Buntinx</title>
+  <meta name="description" content="Internships, startup work, student teams, and personal projects by Jasper Buntinx.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<header class="nav" id="top">
-  <div class="nav-inner">
-    <a class="nav-name" href="index.html">Jasper&nbsp;Buntinx</a>
-    <nav class="nav-links" id="navLinks">
+<header class="site-header">
+  <div class="header-inner">
+    <a class="site-title" href="index.html">Jasper Buntinx</a>
+    <nav class="site-nav" id="siteNav">
       <a href="index.html">Home</a>
-      <a href="resume.html">Résumé</a>
+      <a href="resume.html">Resume</a>
       <a href="experiences.html" class="active">Experiences</a>
       <a href="certifications.html">Certifications</a>
       <a href="index.html#contact">Contact</a>
-      <a class="btn btn-small" href="assets/docs/Jasper_Buntinx_Resume.pdf" download>Résumé&nbsp;↓</a>
     </nav>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
 </header>
 
 <main>
-
-  <section class="pdetail-hero">
-    <div class="container">
+  <div class="container">
+    <div class="page-header">
       <h1>Experiences</h1>
-      <p class="section-sub">Every internship, startup build, student team, and garage project —
-        click any box to see the full story and photos.</p>
-      <div class="filters" role="tablist" aria-label="Filter experiences">
-        <button class="filter-btn active" data-filter="all">All</button>
+      <p>Internships, startup work, student teams, and the projects in between. Click any box for the full story and photos.</p>
+    </div>
+
+    <div class="section" style="padding-top: 24px">
+      <div class="filter-bar">
+        <button class="filter-btn item-active" data-filter="all">All</button>
         <button class="filter-btn" data-filter="internships">Internships</button>
         <button class="filter-btn" data-filter="startup">Startup</button>
         <button class="filter-btn" data-filter="teams">Student Teams</button>
         <button class="filter-btn" data-filter="personal">Personal</button>
       </div>
-    </div>
-  </section>
 
-  <section class="pbody">
-    <div class="container">
-      <div class="project-grid">
+      <div class="tile-grid">
 
-        <a class="card reveal" data-cat="internships" href="experiences/rochester-sensors.html">
-          <div class="card-img card-img-rs" aria-hidden="true"><span>⚙</span></div>
-          <div class="card-body">
-            <div class="card-top"><h3>Rochester Sensors (Amphenol)</h3><span class="card-date">May 2026 – Present</span></div>
-            <p class="card-role">Mechanical Engineering Intern · Dallas, TX</p>
-            <p>CNC toolpath optimization in CamWorks (18% cycle-time cut), FEA ahead of physical testing, and
-              environmental qualification — thermal cycling, salt spray, and vibration — on sensor assemblies.</p>
-            <div class="tags"><span>CamWorks</span><span>SolidWorks</span><span>FEA</span><span>GD&amp;T</span></div>
-            <span class="card-more">Read the full story →</span>
-          </div>
+        <a class="tile" data-cat="internships" href="experiences/rochester-sensors.html">
+          <span class="tile-fill">Rochester<br>Sensors</span>
+          <span class="tile-info"><span class="tile-title">Rochester Sensors Internship</span><span class="tile-cat">Internships</span></span>
         </a>
 
-        <a class="card reveal" data-cat="startup" href="experiences/ecofil.html">
-          <div class="card-img"><img src="assets/img/ecofil-dehydrator-build.jpg" alt="ECOFIL dehydrator prototype with control electronics" loading="lazy"></div>
-          <div class="card-body">
-            <div class="card-top"><h3>ECOFIL — Filament Recycling System</h3><span class="card-date">Aug 2025 – Present</span></div>
-            <p class="card-role">Co-founder &amp; Mechanical Engineer · Startup</p>
-            <p>A three-stage machine line — shredder, dehydrator, extruder — that turns plastic waste into
-              3D-printer filament. Incubator-funded by Aggies Create, Tyrex, and the TAMU Meloy program.</p>
-            <div class="tags"><span>SolidWorks</span><span>GD&amp;T</span><span>Arduino</span><span>CNC</span></div>
-            <span class="card-more">Read the full story →</span>
-          </div>
+        <a class="tile" data-cat="startup" href="experiences/ecofil.html">
+          <img src="assets/img/ecofil-dehydrator-build.jpg" alt="ECOFIL Filament Recycler" loading="lazy">
+          <span class="tile-info"><span class="tile-title">ECOFIL Filament Recycler</span><span class="tile-cat">Startup</span></span>
         </a>
 
-        <a class="card reveal" data-cat="internships" href="experiences/cfd-optimization.html">
-          <div class="card-img card-img-cfd" aria-hidden="true"><span>∇·u = 0</span></div>
-          <div class="card-body">
-            <div class="card-top"><h3>GPU-Accelerated CFD at Petrobras</h3><span class="card-date">Jun – Aug 2025</span></div>
-            <p class="card-role">Mechanical Engineering Intern · Florianópolis, Brazil</p>
-            <p>Kernel-level optimization of a CUDA lattice-Boltzmann CFD solver: 400%+ throughput gains,
-              60% better warp efficiency, 35% less shared memory, and a 33% higher peak Reynolds number.</p>
-            <div class="tags"><span>CUDA</span><span>C++</span><span>Python</span><span>Nsight Compute</span></div>
-            <span class="card-more">Read the full story →</span>
-          </div>
+        <a class="tile" data-cat="internships" href="experiences/cfd-optimization.html">
+          <img src="assets/img/cfd-paraview-sim.jpg" alt="CUDA CFD Research Internship" loading="lazy">
+          <span class="tile-info"><span class="tile-title">CUDA CFD Research Internship</span><span class="tile-cat">Internships</span></span>
         </a>
 
-        <a class="card reveal" data-cat="internships" href="experiences/creek-show.html">
-          <div class="card-img"><img src="assets/img/creekshow-night.jpg" alt="Illuminated metal dragonfly sculptures over Waller Creek at night" loading="lazy"></div>
-          <div class="card-body">
-            <div class="card-top"><h3>Giant Metal Dragonflies — Austin Creek Show</h3><span class="card-date">May 2022 – Jan 2023</span></div>
-            <p class="card-role">ME Intern · Waterloo Greenway Conservancy</p>
-            <p>Four illuminated dragonfly sculptures with 14-ft+ wingspans installed over Waller Creek —
-              SolidWorks design from artist sketches, laser-cut wings, 200+ welds, and flood-resilient FEA.</p>
-            <div class="tags"><span>SolidWorks</span><span>ANSYS</span><span>Welding</span><span>Fusion 360 CAM</span></div>
-            <span class="card-more">Read the full story →</span>
-          </div>
+        <a class="tile" data-cat="internships" href="experiences/creek-show.html">
+          <img src="assets/img/creekshow-night.jpg" alt="Austin Creek Show Dragonflies" loading="lazy">
+          <span class="tile-info"><span class="tile-title">Austin Creek Show Dragonflies</span><span class="tile-cat">Internships</span></span>
         </a>
 
-        <a class="card reveal" data-cat="teams" href="experiences/vex-robotics.html">
-          <div class="card-img card-img-vex" aria-hidden="true"><span>🏆</span></div>
-          <div class="card-body">
-            <div class="card-top"><h3>VEX U Competition Robots</h3><span class="card-date">Aug 2023 – May 2024</span></div>
-            <p class="card-role">Aggie Robotics · Team WHOOP5</p>
-            <p>AutoCAD schematic redesign and an extendable friction launcher that could retain, launch, or
-              push game objects. <strong>1st place, 2024 VEX U State Championship</strong> + a World Championship placement.</p>
-            <div class="tags"><span>AutoCAD</span><span>Mechanism Design</span><span>Rapid Iteration</span></div>
-            <span class="card-more">Read the full story →</span>
-          </div>
+        <a class="tile" data-cat="teams" href="experiences/vex-robotics.html">
+          <span class="tile-fill">VEX U<br>Robotics</span>
+          <span class="tile-info"><span class="tile-title">VEX U Competition Robots</span><span class="tile-cat">Student Teams</span></span>
         </a>
 
-        <a class="card reveal" data-cat="personal" href="experiences/bike-lock.html">
-          <div class="card-img"><img src="assets/img/bikelock-prototype.jpg" alt="RFID bike lock prototype with display" loading="lazy"></div>
-          <div class="card-body">
-            <div class="card-top"><h3>Automatic Retractable RFID Bike Lock</h3><span class="card-date">Dec 2025 – Present</span></div>
-            <p class="card-role">Personal Project</p>
-            <p>Tap an RFID fob and the lock retracts itself — Arduino Nano, solenoids, and LED/audio feedback
-              in a custom 3D-printed enclosure.</p>
-            <div class="tags"><span>Arduino</span><span>RFID</span><span>Solenoids</span><span>3D Printing</span></div>
-            <span class="card-more">Read the full story →</span>
-          </div>
+        <a class="tile" data-cat="personal" href="experiences/bike-lock.html">
+          <img src="assets/img/bikelock-prototype.jpg" alt="Automatic RFID Bike Lock" loading="lazy">
+          <span class="tile-info"><span class="tile-title">Automatic RFID Bike Lock</span><span class="tile-cat">Personal</span></span>
         </a>
 
-        <a class="card reveal" data-cat="personal" href="experiences/soccer-shots.html">
-          <div class="card-img"><img src="assets/img/soccershots-cad.jpg" alt="Soccer Shots toy CAD assembly" loading="lazy"></div>
-          <div class="card-body">
-            <div class="card-top"><h3>Soccer Shots — Toy Prototype</h3><span class="card-date">Jan – Apr 2025</span></div>
-            <p class="card-role">Design Project</p>
-            <p>A spring-powered ball launcher versus a sliding goalie — designed in SolidWorks and
-              manufactured as a playable 3D-printed prototype.</p>
-            <div class="tags"><span>SolidWorks</span><span>3D Printing</span><span>DFM</span></div>
-            <span class="card-more">Read the full story →</span>
-          </div>
+        <a class="tile" data-cat="personal" href="experiences/soccer-shots.html">
+          <img src="assets/img/soccershots-cad.jpg" alt="Soccer Shots Toy Prototype" loading="lazy">
+          <span class="tile-info"><span class="tile-title">Soccer Shots Toy Prototype</span><span class="tile-cat">Personal</span></span>
         </a>
 
-        <a class="card reveal" data-cat="personal" href="experiences/tractor.html">
-          <div class="card-img"><img src="assets/img/tractor-chassis.jpg" alt="Tractor chassis during electric conversion" loading="lazy"></div>
-          <div class="card-body">
-            <div class="card-top"><h3>Gas-to-Electric Tractor Conversion</h3><span class="card-date">Side Project</span></div>
-            <p class="card-role">Personal Project</p>
-            <p>Full drivetrain swap on an old gas tractor: engine out, electric transaxle welded in, and a
-              battery system in place of the fuel tank.</p>
-            <div class="tags"><span>Welding</span><span>Drivetrain</span><span>Electrical</span></div>
-            <span class="card-more">Read the full story →</span>
-          </div>
+        <a class="tile" data-cat="personal" href="experiences/tractor.html">
+          <img src="assets/img/tractor-chassis.jpg" alt="Gas-to-Electric Tractor Conversion" loading="lazy">
+          <span class="tile-info"><span class="tile-title">Electric Tractor Conversion</span><span class="tile-cat">Personal</span></span>
         </a>
 
       </div>
 
-      <p class="reveal center-note">Want it all in one file? <a href="assets/docs/Jasper_Buntinx_Project_Portfolio.pdf" download>Download the complete project portfolio (PDF)</a>.</p>
+      <p style="margin-top: 36px">Prefer one file? <a href="assets/docs/Jasper_Buntinx_Project_Portfolio.pdf" download>Download the complete project portfolio (PDF)</a>.</p>
     </div>
-  </section>
-
+  </div>
 </main>
 
-<footer class="footer">
+<footer class="site-footer">
   <div class="container">
-    <span>© 2026 Jasper Buntinx</span>
-    <span><a href="mailto:jasper_buntinx@tamu.edu">jasper_buntinx@tamu.edu</a> · <a href="https://www.linkedin.com/in/jasper-buntinx/" target="_blank" rel="noopener">LinkedIn</a></span>
+    <span>Copyright © 2026 Jasper Buntinx</span>
+    <span><a href="https://www.linkedin.com/in/jasper-buntinx/" target="_blank" rel="noopener">LinkedIn</a> &nbsp;|&nbsp; Email: <a href="mailto:jasper_buntinx@tamu.edu">jasper_buntinx@tamu.edu</a></span>
   </div>
 </footer>
 

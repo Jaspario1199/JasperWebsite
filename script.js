@@ -1,42 +1,28 @@
-// ---------- mobile nav ----------
+// mobile nav
 const navToggle = document.getElementById('navToggle');
-const navLinks = document.getElementById('navLinks');
+const siteNav = document.getElementById('siteNav');
 
-if (navToggle && navLinks) {
+if (navToggle && siteNav) {
   navToggle.addEventListener('click', () => {
-    const open = navLinks.classList.toggle('open');
+    const open = siteNav.classList.toggle('open');
     navToggle.setAttribute('aria-expanded', open);
-  });
-  navLinks.addEventListener('click', (e) => {
-    if (e.target.tagName === 'A') navLinks.classList.remove('open');
   });
 }
 
-// ---------- scroll reveal ----------
-const observer = new IntersectionObserver((entries) => {
-  for (const entry of entries) {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('in');
-      observer.unobserve(entry.target);
-    }
-  }
-}, { threshold: 0.12 });
-document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-
-// ---------- experience filters ----------
+// portfolio filters
 const filterBtns = document.querySelectorAll('.filter-btn');
 filterBtns.forEach((btn) => {
   btn.addEventListener('click', () => {
-    filterBtns.forEach((b) => b.classList.remove('active'));
-    btn.classList.add('active');
+    filterBtns.forEach((b) => b.classList.remove('item-active'));
+    btn.classList.add('item-active');
     const cat = btn.dataset.filter;
-    document.querySelectorAll('.project-grid .card').forEach((card) => {
-      card.classList.toggle('hide', cat !== 'all' && card.dataset.cat !== cat);
+    document.querySelectorAll('.tile-grid .tile').forEach((tile) => {
+      tile.classList.toggle('hide', cat !== 'all' && tile.dataset.cat !== cat);
     });
   });
 });
 
-// ---------- lightbox (zoomable images on detail/cert pages) ----------
+// lightbox for zoomable images
 const lightbox = document.getElementById('lightbox');
 const zoomables = Array.from(document.querySelectorAll('img.zoomable'));
 
@@ -50,7 +36,7 @@ if (lightbox && zoomables.length) {
     const img = zoomables[index];
     lbImg.src = img.src;
     lbImg.alt = img.alt;
-    lbCaption.textContent = zoomables.length > 1 ? `${img.alt}  ·  ${index + 1}/${zoomables.length}` : img.alt;
+    lbCaption.textContent = zoomables.length > 1 ? `${img.alt} (${index + 1}/${zoomables.length})` : img.alt;
   };
 
   const openLightbox = (i) => {

@@ -3,48 +3,44 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Certifications — Jasper Buntinx</title>
+  <title>Certifications - Jasper Buntinx</title>
   <meta name="description" content="Software and engineering certifications earned by Jasper Buntinx.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<header class="nav" id="top">
-  <div class="nav-inner">
-    <a class="nav-name" href="index.html">Jasper&nbsp;Buntinx</a>
-    <nav class="nav-links" id="navLinks">
+<header class="site-header">
+  <div class="header-inner">
+    <a class="site-title" href="index.html">Jasper Buntinx</a>
+    <nav class="site-nav" id="siteNav">
       <a href="index.html">Home</a>
-      <a href="resume.html">Résumé</a>
+      <a href="resume.html">Resume</a>
       <a href="experiences.html">Experiences</a>
       <a href="certifications.html" class="active">Certifications</a>
       <a href="index.html#contact">Contact</a>
-      <a class="btn btn-small" href="assets/docs/Jasper_Buntinx_Resume.pdf" download>Résumé&nbsp;↓</a>
     </nav>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
 </header>
 
 <main>
-
-  <section class="pdetail-hero">
-    <div class="container">
+  <div class="container">
+    <div class="page-header">
       <h1>Certifications</h1>
-      <p class="section-sub">Software and engineering certifications — click any certificate to zoom in.</p>
+      <p>Software and engineering certifications. Click a certificate to zoom in.</p>
     </div>
-  </section>
 
-  <section class="pbody">
-    <div class="container">
+    <div class="section" style="padding-top: 24px">
       <div class="cert-grid">
 
-        <figure class="cert-card reveal">
-          <div class="cert-img cert-placeholder"><span>CSWA</span></div>
+        <figure class="cert-item">
+          <div class="cert-frame"><div class="cert-fill">CSWA</div></div>
           <figcaption>
             <strong>Certified SolidWorks Associate (CSWA)</strong>
             <span>Dassault Systèmes · Mechanical Design</span>
@@ -54,10 +50,10 @@
         <!-- ==================================================================
              TO ADD A CERTIFICATION:
              1. Drop the certificate image into assets/certs/  (jpg or png)
-             2. Copy the block below, un-comment it, and update the paths/names.
+             2. Copy this block, un-comment it, and update the paths/names.
 
-        <figure class="cert-card reveal">
-          <div class="cert-img"><img class="zoomable" src="assets/certs/my-cert.jpg" alt="Certificate name" loading="lazy"></div>
+        <figure class="cert-item">
+          <div class="cert-frame"><img class="zoomable" src="assets/certs/my-cert.jpg" alt="Certificate name" loading="lazy"></div>
           <figcaption>
             <strong>Certificate Name</strong>
             <span>Issuing Organization · Year</span>
@@ -66,28 +62,25 @@
         =================================================================== -->
 
       </div>
-
-      <p class="reveal center-note">More on the way — this page grows as I do.</p>
     </div>
-  </section>
-
+  </div>
 </main>
 
-<footer class="footer">
+<footer class="site-footer">
   <div class="container">
-    <span>© 2026 Jasper Buntinx</span>
-    <span><a href="mailto:jasper_buntinx@tamu.edu">jasper_buntinx@tamu.edu</a> · <a href="https://www.linkedin.com/in/jasper-buntinx/" target="_blank" rel="noopener">LinkedIn</a></span>
+    <span>Copyright © 2026 Jasper Buntinx</span>
+    <span><a href="https://www.linkedin.com/in/jasper-buntinx/" target="_blank" rel="noopener">LinkedIn</a> &nbsp;|&nbsp; Email: <a href="mailto:jasper_buntinx@tamu.edu">jasper_buntinx@tamu.edu</a></span>
   </div>
 </footer>
 
 <div class="lightbox" id="lightbox" aria-hidden="true">
-  <button class="lb-close" id="lbClose" aria-label="Close gallery">×</button>
-  <button class="lb-prev" id="lbPrev" aria-label="Previous image">‹</button>
+  <button class="lb-close" id="lbClose" aria-label="Close">&times;</button>
+  <button class="lb-prev" id="lbPrev" aria-label="Previous image">&lsaquo;</button>
   <figure>
     <img id="lbImg" src="" alt="">
     <figcaption id="lbCaption"></figcaption>
   </figure>
-  <button class="lb-next" id="lbNext" aria-label="Next image">›</button>
+  <button class="lb-next" id="lbNext" aria-label="Next image">&rsaquo;</button>
 </div>
 
 <script src="script.js"></script>

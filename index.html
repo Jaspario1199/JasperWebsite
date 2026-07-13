@@ -3,32 +3,31 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Jasper Buntinx — Mechanical Engineer</title>
-  <meta name="description" content="Portfolio of Jasper Buntinx, mechanical engineering student at Texas A&M University — CAD design, manufacturing, simulation, and GPU-accelerated CFD.">
-  <meta property="og:title" content="Jasper Buntinx — Mechanical Engineer">
+  <title>Jasper Buntinx - Mechanical Engineering Portfolio</title>
+  <meta name="description" content="Mechanical engineering portfolio of Jasper Buntinx, Texas A&M University. CAD design, manufacturing, simulation, and GPU-accelerated CFD.">
+  <meta property="og:title" content="Jasper Buntinx - Mechanical Engineering Portfolio">
   <meta property="og:description" content="CAD design, manufacturing, simulation, and GPU-accelerated CFD. Mechanical engineering at Texas A&M University.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="assets/img/creekshow-night.jpg">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<header class="nav" id="top">
-  <div class="nav-inner">
-    <a class="nav-name" href="index.html">Jasper&nbsp;Buntinx</a>
-    <nav class="nav-links" id="navLinks">
+<header class="site-header">
+  <div class="header-inner">
+    <a class="site-title" href="index.html">Jasper Buntinx</a>
+    <nav class="site-nav" id="siteNav">
       <a href="index.html" class="active">Home</a>
-      <a href="resume.html">Résumé</a>
+      <a href="resume.html">Resume</a>
       <a href="experiences.html">Experiences</a>
       <a href="certifications.html">Certifications</a>
       <a href="#contact">Contact</a>
-      <a class="btn btn-small" href="assets/docs/Jasper_Buntinx_Resume.pdf" download>Résumé&nbsp;↓</a>
     </nav>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -36,126 +35,167 @@
 
 <main>
 
-  <!-- ============ HERO ============ -->
   <section class="hero">
     <div class="container">
-      <p class="eyebrow reveal">Mechanical Engineering · Texas A&amp;M University</p>
-      <h1 class="reveal">I design, build, and optimize <span class="accent">real machines.</span></h1>
-      <p class="hero-sub reveal">From CNC toolpaths and FEA-validated sensor assemblies to a filament-recycling
-        startup and record-setting GPU-accelerated CFD — I take engineering problems from CAD model to
-        working hardware.</p>
-      <div class="hero-actions reveal">
-        <a class="btn btn-primary" href="experiences.html">View My Work</a>
-        <a class="btn" href="assets/docs/Jasper_Buntinx_Resume.pdf" download>Download Résumé</a>
-      </div>
-      <div class="hero-meta reveal">
-        <span>📍 College Station / Austin, TX</span>
-        <span>🎓 B.S. May 2027</span>
-        <span>🛠️ CSWA Certified</span>
-      </div>
+      <p class="kicker">Mechanical Engineering Portfolio</p>
+      <h1>Jasper Buntinx</h1>
+      <p class="tagline">Texas A&amp;M University · B.S. Mechanical Engineering &amp; Mathematics, May 2027</p>
     </div>
   </section>
 
-  <!-- ============ ABOUT ============ -->
-  <section class="section" id="about">
+  <section class="section">
     <div class="container">
-      <h2 class="reveal">About</h2>
-      <div class="about-grid">
-        <div class="about-text reveal">
-          <p>Thanks for checking out my portfolio! Whether you're a recruiter, a fellow engineer, or just
-            poking around — welcome. Here's the short version:</p>
-          <p>I'm a mechanical engineering student at <strong>Texas A&amp;M University</strong> (B.S. Mechanical
-            Engineering &amp; Mathematics, May 2027), currently interning at
-            <strong>Rochester Sensors</strong>, an Amphenol subsidiary, where I optimize CNC machining
-            workflows and run FEA and environmental qualification testing on sensor assemblies.</p>
-          <p>Outside of class and work I co-founded <strong>ECOFIL</strong>, a startup building a multi-stage
-            3D-printer filament recycling system, and I've shipped everything from 14-foot illuminated metal
-            sculptures installed in an Austin creek to CUDA fluid-dynamics kernels profiled down to the warp
-            level. I'm happiest when a project spans the whole stack: CAD → simulation → fabrication → testing.</p>
-          <p>I'm actively seeking <strong>mechanical engineering internship and full-time opportunities</strong> —
-            if my work looks useful to your team, <a href="#contact">let's talk</a>.</p>
+      <h2>Summary</h2>
+      <p>Howdy, and thanks for checking out my portfolio! Whether you're a recruiter, a fellow engineer,
+        or just clicked the wrong link, I hope you enjoy looking around. I like taking machines from a
+        napkin sketch all the way to working hardware, and this site is the paper trail.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="two-col">
+        <div>
+          <h2>Strengths:</h2>
+          <ul>
+            <li>Addicted to CAD and the machine shop.</li>
+            <li>Will weld anything that holds still long enough.</li>
+            <li>Like to design, build, and test everything myself.</li>
+          </ul>
         </div>
-        <aside class="about-facts reveal">
-          <div class="fact"><span class="fact-num">18%</span><span class="fact-label">cycle-time cut from a CNC tooling redesign at Rochester Sensors</span></div>
-          <div class="fact"><span class="fact-num">400%+</span><span class="fact-label">throughput gain on a CUDA LBM CFD solver at Petrobras</span></div>
-          <div class="fact"><span class="fact-num">200+</span><span class="fact-label">welded joints on four 14-ft public-art dragonfly structures</span></div>
-          <div class="fact"><span class="fact-num">1st</span><span class="fact-label">place, 2024 VEX U State Championship (Team WHOOP5)</span></div>
-        </aside>
+        <div>
+          <h2>Weaknesses:</h2>
+          <ul>
+            <li>Addicted to CAD and the machine shop.</li>
+            <li>Keep adopting broken machines "to fix later."</li>
+            <li>My 3D printer gets less sleep than I do, and I get little.</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ FEATURED ============ -->
-  <section class="section section-alt" id="featured">
+  <section class="section">
     <div class="container">
-      <h2 class="reveal">Featured Work</h2>
-      <p class="section-sub reveal">Three favorites — click any of them for the full story and photos.</p>
+      <h2>Experience</h2>
+      <div class="timeline">
 
-      <div class="project-grid">
-
-        <a class="card reveal" href="experiences/ecofil.html">
-          <div class="card-img"><img src="assets/img/ecofil-dehydrator-build.jpg" alt="ECOFIL dehydrator prototype with control electronics" loading="lazy"></div>
-          <div class="card-body">
-            <div class="card-top"><h3>ECOFIL — Filament Recycling System</h3><span class="card-date">2025 – Present</span></div>
-            <p class="card-role">Co-founder &amp; Mechanical Engineer · Startup</p>
-            <p>A three-stage machine line — shredder, dehydrator, extruder — that turns plastic waste into
-              3D-printer filament. Incubator-funded, designed in SolidWorks, built in-house.</p>
-            <div class="tags"><span>SolidWorks</span><span>Arduino</span><span>CNC</span><span>Thermal FEA</span></div>
-            <span class="card-more">Read the full story →</span>
+        <div class="tl-item">
+          <div class="tl-meta"><span class="tl-dates">May 2026 - Present</span>Dallas, TX</div>
+          <div class="tl-dot"></div>
+          <div class="tl-body">
+            <h3>Rochester Sensors - Mechanical Engineering Intern</h3>
+            <p>CNC toolpath optimization, FEA, and environmental qualification testing on sensor assemblies at an Amphenol subsidiary.</p>
+            <a class="read-more" href="experiences/rochester-sensors.html">Read More</a>
           </div>
-        </a>
+        </div>
 
-        <a class="card reveal" href="experiences/creek-show.html">
-          <div class="card-img"><img src="assets/img/creekshow-night.jpg" alt="Illuminated metal dragonfly sculptures over Waller Creek at night" loading="lazy"></div>
-          <div class="card-body">
-            <div class="card-top"><h3>Giant Metal Dragonflies</h3><span class="card-date">2022 – 2023</span></div>
-            <p class="card-role">ME Intern · Waterloo Greenway Conservancy</p>
-            <p>Four illuminated dragonfly sculptures with 14-ft+ wingspans installed over Waller Creek for
-              Austin's Creek Show — designed in SolidWorks, laser-cut, and welded with 200+ joints.</p>
-            <div class="tags"><span>SolidWorks</span><span>ANSYS</span><span>Welding</span></div>
-            <span class="card-more">Read the full story →</span>
+        <div class="tl-item">
+          <div class="tl-meta"><span class="tl-dates">Aug 2025 - Present</span>College Station, TX</div>
+          <div class="tl-dot"></div>
+          <div class="tl-body">
+            <h3>ECOFIL - Co-founder / Mechanical Engineer</h3>
+            <p>Startup building a shredder, dehydrator, and extruder line that recycles plastic waste into 3D-printer filament.</p>
+            <a class="read-more" href="experiences/ecofil.html">Read More</a>
           </div>
-        </a>
+        </div>
 
-        <a class="card reveal" href="experiences/cfd-optimization.html">
-          <div class="card-img card-img-cfd" aria-hidden="true"><span>∇·u = 0</span></div>
-          <div class="card-body">
-            <div class="card-top"><h3>GPU-Accelerated CFD Optimization</h3><span class="card-date">Summer 2025</span></div>
-            <p class="card-role">ME Intern · Petrobras, Brazil</p>
-            <p>Kernel-level optimization of a CUDA lattice-Boltzmann CFD solver: 400%+ throughput gains,
-              60% better warp efficiency, and a 33% higher peak Reynolds number.</p>
-            <div class="tags"><span>CUDA</span><span>C++</span><span>Nsight Compute</span></div>
-            <span class="card-more">Read the full story →</span>
+        <div class="tl-item">
+          <div class="tl-meta"><span class="tl-dates">Jun - Aug 2025</span>Santa Catarina, Brazil</div>
+          <div class="tl-dot"></div>
+          <div class="tl-body">
+            <h3>Petrobras / UDESC Geoenergia Lab - Engineering Intern</h3>
+            <p>Kernel-level optimization of a CUDA lattice Boltzmann CFD solver, including a 400%+ throughput gain.</p>
+            <a class="read-more" href="experiences/cfd-optimization.html">Read More</a>
           </div>
-        </a>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-meta"><span class="tl-dates">May 2022 - Jan 2023</span>Austin, TX</div>
+          <div class="tl-dot"></div>
+          <div class="tl-body">
+            <h3>Waterloo Greenway - Mechanical Engineering Intern</h3>
+            <p>Designed and fabricated four illuminated 14-ft metal dragonfly sculptures installed over Waller Creek for the Austin Creek Show.</p>
+            <a class="read-more" href="experiences/creek-show.html">Read More</a>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-meta"><span class="tl-dates">Aug 2023 - May 2027</span>College Station, TX</div>
+          <div class="tl-dot"></div>
+          <div class="tl-body">
+            <h3>Texas A&amp;M University - B.S. Mechanical Engineering &amp; Mathematics</h3>
+            <p>GPA 3.31. CSWA certified. Build Logistics Chair for One Army, previously Service Chair for Freshmen Leaders in Progress.</p>
+          </div>
+        </div>
 
       </div>
-
-      <p class="reveal center-note"><a class="btn" href="experiences.html">See all experiences →</a></p>
     </div>
   </section>
 
-  <!-- ============ CONTACT ============ -->
-  <section class="section" id="contact">
-    <div class="container contact-wrap">
-      <h2 class="reveal">Let's build something.</h2>
-      <p class="section-sub reveal">I'm seeking mechanical engineering internship and full-time roles.
-        The fastest way to reach me is email.</p>
-      <div class="contact-actions reveal">
-        <a class="btn btn-primary" href="mailto:jasper_buntinx@tamu.edu">jasper_buntinx@tamu.edu</a>
-        <a class="btn" href="https://www.linkedin.com/in/jasper-buntinx/" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="btn" href="tel:+17372478938">(737) 247-8938</a>
-        <a class="btn" href="assets/docs/Jasper_Buntinx_Resume.pdf" download>Résumé (PDF)</a>
+  <section class="section">
+    <div class="container">
+      <h2>Projects</h2>
+      <div class="tile-grid">
+
+        <a class="tile" href="experiences/ecofil.html">
+          <img src="assets/img/ecofil-dehydrator-build.jpg" alt="ECOFIL Filament Recycler" loading="lazy">
+          <span class="tile-info"><span class="tile-title">ECOFIL Filament Recycler</span><span class="tile-cat">Startup</span></span>
+        </a>
+
+        <a class="tile" href="experiences/creek-show.html">
+          <img src="assets/img/creekshow-night.jpg" alt="Austin Creek Show Dragonflies" loading="lazy">
+          <span class="tile-info"><span class="tile-title">Austin Creek Show Dragonflies</span><span class="tile-cat">Internships</span></span>
+        </a>
+
+        <a class="tile" href="experiences/cfd-optimization.html">
+          <img src="assets/img/cfd-paraview-sim.jpg" alt="CUDA CFD Research Internship" loading="lazy">
+          <span class="tile-info"><span class="tile-title">CUDA CFD Research Internship</span><span class="tile-cat">Internships</span></span>
+        </a>
+
+        <a class="tile" href="experiences/bike-lock.html">
+          <img src="assets/img/bikelock-prototype.jpg" alt="Automatic RFID Bike Lock" loading="lazy">
+          <span class="tile-info"><span class="tile-title">Automatic RFID Bike Lock</span><span class="tile-cat">Personal</span></span>
+        </a>
+
+        <a class="tile" href="experiences/vex-robotics.html">
+          <span class="tile-fill">VEX U<br>Robotics</span>
+          <span class="tile-info"><span class="tile-title">VEX U Competition Robots</span><span class="tile-cat">Student Teams</span></span>
+        </a>
+
+        <a class="tile" href="experiences/tractor.html">
+          <img src="assets/img/tractor-chassis.jpg" alt="Gas-to-Electric Tractor Conversion" loading="lazy">
+          <span class="tile-info"><span class="tile-title">Electric Tractor Conversion</span><span class="tile-cat">Personal</span></span>
+        </a>
+
       </div>
+
+      <div class="section-buttons">
+        <a class="btn" href="experiences.html">Experiences Page</a>
+        <a class="btn btn-outline" href="resume.html">Resume</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="container">
+      <h2>Contact</h2>
+      <p>I'm looking for mechanical engineering internship and full-time roles. Email is the fastest way to reach me.</p>
+      <ul class="contact-list">
+        <li>Email: <a href="mailto:jasper_buntinx@tamu.edu">jasper_buntinx@tamu.edu</a></li>
+        <li>Phone: <a href="tel:+17372478938">(737) 247-8938</a></li>
+        <li>LinkedIn: <a href="https://www.linkedin.com/in/jasper-buntinx/" target="_blank" rel="noopener">linkedin.com/in/jasper-buntinx</a></li>
+        <li>Resume: <a href="assets/docs/Jasper_Buntinx_Resume.pdf" download>PDF download</a></li>
+      </ul>
     </div>
   </section>
 
 </main>
 
-<footer class="footer">
+<footer class="site-footer">
   <div class="container">
-    <span>© 2026 Jasper Buntinx</span>
-    <span><a href="mailto:jasper_buntinx@tamu.edu">jasper_buntinx@tamu.edu</a> · <a href="https://www.linkedin.com/in/jasper-buntinx/" target="_blank" rel="noopener">LinkedIn</a></span>
+    <span>Copyright © 2026 Jasper Buntinx</span>
+    <span><a href="https://www.linkedin.com/in/jasper-buntinx/" target="_blank" rel="noopener">LinkedIn</a> &nbsp;|&nbsp; Email: <a href="mailto:jasper_buntinx@tamu.edu">jasper_buntinx@tamu.edu</a></span>
   </div>
 </footer>
 

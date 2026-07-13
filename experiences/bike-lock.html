@@ -3,83 +3,76 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Automatic Retractable RFID Bike Lock — Jasper Buntinx</title>
-  <meta name="description" content="Fumbling with a key or combination every time you park a bike is friction that shouldn't exist. This project is an automatic lock: tap an RFID fob and">
+  <title>Automatic RFID Bike Lock - Jasper Buntinx</title>
+  <meta name="description" content="Fumbling with a key or combination every time you park a bike is friction that doesn't need to exist. This project is an automatic lock: tap an RFID f">
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
 
-<header class="nav" id="top">
-  <div class="nav-inner">
-    <a class="nav-name" href="../index.html">Jasper&nbsp;Buntinx</a>
-    <nav class="nav-links" id="navLinks">
+<header class="site-header">
+  <div class="header-inner">
+    <a class="site-title" href="../index.html">Jasper Buntinx</a>
+    <nav class="site-nav" id="siteNav">
       <a href="../index.html">Home</a>
-      <a href="../resume.html">Résumé</a>
+      <a href="../resume.html">Resume</a>
       <a href="../experiences.html" class="active">Experiences</a>
       <a href="../certifications.html">Certifications</a>
       <a href="../index.html#contact">Contact</a>
-      <a class="btn btn-small" href="../assets/docs/Jasper_Buntinx_Resume.pdf" download>Résumé&nbsp;↓</a>
     </nav>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
 </header>
 
 <main>
-  <section class="pdetail-hero">
-    <div class="container">
-      <p class="crumb"><a href="../experiences.html">← All experiences</a></p>
-      <h1>Automatic Retractable RFID Bike Lock</h1>
-      <div class="pdetail-meta">
-        <span><strong>Personal Project</strong></span><span>Independent</span><span>Dec 2025 – Present</span><span>College Station, TX</span>
-      </div>
+  <div class="container-narrow">
+    <div class="page-header">
+      <p class="crumb"><a href="../experiences.html">&larr; All Experiences</a></p>
+      <h1>Automatic RFID Bike Lock</h1>
+      <p class="detail-meta"><strong>Personal Project</strong> &nbsp;|&nbsp; Independent &nbsp;|&nbsp; Dec 2025 – Present &nbsp;|&nbsp; College Station, TX</p>
     </div>
-  </section>
 
-  <section class="pbody">
-    <div class="container">
-      <p class="lead">Fumbling with a key or combination every time you park a bike is friction that shouldn't exist. This project is an automatic lock: tap an RFID fob and a solenoid-driven mechanism retracts the lock, with LED and audio feedback confirming the state — no keys, no dials.</p>
+    <div class="detail-body">
+      <p>Fumbling with a key or combination every time you park a bike is friction that doesn't need to exist. This project is an automatic lock: tap an RFID fob and a solenoid-driven mechanism retracts the lock, with LED and audio feedback confirming the state.</p>
 
-      <h2>How it works</h2>
+      <h2>How It Works</h2>
       <p>An Arduino Nano reads the RFID scanner and drives solenoids for the locking mechanism, with LEDs and audio feedback for state confirmation. The enclosure is a custom SolidWorks design, 3D-printed with an integrated display window.</p>
       <div class="figrow">
         <figure><img class="zoomable" src="../assets/img/bikelock-prototype.jpg" alt="Working prototype with RFID scanner and display" loading="lazy"><figcaption>Working prototype with RFID scanner and display</figcaption></figure>
         <figure><img class="zoomable" src="../assets/img/bikelock-cad.jpg" alt="Enclosure CAD model" loading="lazy"><figcaption>Enclosure CAD model</figcaption></figure>
       </div>
 
-      <h2>Status & next steps</h2>
-      <p>The prototype authenticates, actuates, and reports state reliably. Current development focuses on the retraction drive and weatherproofing the enclosure for daily outdoor use.</p>
+      <h2>Status</h2>
+      <p>The prototype authenticates, actuates, and reports state reliably. Current work is on the retraction drive and weatherproofing the enclosure for daily outdoor use.</p>
 
-      <div class="pskills">
-        <h2>Top skills utilized</h2>
-        <div class="tags tags-lg"><span>Arduino</span><span>RFID</span><span>Solenoids</span><span>Circuit Design</span><span>3D Printing</span><span>SolidWorks</span></div>
-      </div>
+      <h2>Top Skills Utilized</h2>
+      <ul class="skills-list"><li>Arduino</li><li>RFID</li><li>Solenoids</li><li>Circuit Design</li><li>3D Printing</li><li>SolidWorks</li></ul>
 
-      <div class="pnav"><a href="vex-robotics.html">← VEX U Championship Robots</a><a href="soccer-shots.html">Soccer Shots →</a></div>
+      <div class="detail-nav"><a href="vex-robotics.html">&larr; VEX U Robots</a><a href="soccer-shots.html">Soccer Shots Toy &rarr;</a></div>
     </div>
-  </section>
+  </div>
 </main>
 
-<footer class="footer">
+<footer class="site-footer">
   <div class="container">
-    <span>© 2026 Jasper Buntinx</span>
-    <span><a href="mailto:jasper_buntinx@tamu.edu">jasper_buntinx@tamu.edu</a> · <a href="https://www.linkedin.com/in/jasper-buntinx/" target="_blank" rel="noopener">LinkedIn</a></span>
+    <span>Copyright © 2026 Jasper Buntinx</span>
+    <span><a href="https://www.linkedin.com/in/jasper-buntinx/" target="_blank" rel="noopener">LinkedIn</a> &nbsp;|&nbsp; Email: <a href="mailto:jasper_buntinx@tamu.edu">jasper_buntinx@tamu.edu</a></span>
   </div>
 </footer>
 
 <div class="lightbox" id="lightbox" aria-hidden="true">
-  <button class="lb-close" id="lbClose" aria-label="Close gallery">×</button>
-  <button class="lb-prev" id="lbPrev" aria-label="Previous image">‹</button>
+  <button class="lb-close" id="lbClose" aria-label="Close">&times;</button>
+  <button class="lb-prev" id="lbPrev" aria-label="Previous image">&lsaquo;</button>
   <figure>
     <img id="lbImg" src="" alt="">
     <figcaption id="lbCaption"></figcaption>
   </figure>
-  <button class="lb-next" id="lbNext" aria-label="Next image">›</button>
+  <button class="lb-next" id="lbNext" aria-label="Next image">&rsaquo;</button>
 </div>
 
 <script src="../script.js"></script>
