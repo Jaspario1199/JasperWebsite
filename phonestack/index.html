@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0b0f14">
+  <meta name="description" content="PhoneStack — stack your phones, lock in together. The social accountability timer.">
+  <title>PhoneStack — lock in together</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ============ SETUP ============ -->
+  <section id="screen-setup" class="screen active">
+    <header class="brand">
+      <div class="brand-mark" aria-hidden="true">
+        <span class="mini-phone"></span><span class="mini-phone"></span><span class="mini-phone"></span>
+      </div>
+      <h1>PhoneStack</h1>
+      <p class="tagline">"alright everyone, gimme your phones — we needa lock in."</p>
+    </header>
+
+    <div class="card">
+      <h2>Who's locking in?</h2>
+      <form id="add-person-form" class="add-row" autocomplete="off">
+        <input id="person-input" type="text" placeholder="add a name…" maxlength="20" enterkeyhint="done">
+        <button type="submit" class="btn btn-small" aria-label="Add person">+</button>
+      </form>
+      <div id="roster" class="roster" aria-live="polite"></div>
+    </div>
+
+    <div class="card">
+      <h2>How long?</h2>
+      <div class="chips" id="duration-chips">
+        <button class="chip" data-min="25">25m</button>
+        <button class="chip active" data-min="50">50m</button>
+        <button class="chip" data-min="90">90m</button>
+        <button class="chip" data-min="custom">custom</button>
+      </div>
+      <div id="custom-duration" class="custom-duration hidden">
+        <input id="custom-minutes" type="number" min="1" max="480" value="60" inputmode="numeric">
+        <span>minutes</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Stakes <span class="muted">(optional)</span></h2>
+      <input id="stakes-input" type="text" class="wide-input"
+             placeholder="e.g. first to fold buys Cane's" maxlength="60">
+    </div>
+
+    <button id="btn-to-stacking" class="btn btn-primary btn-big" disabled>Stack 'em 📱</button>
+    <button id="btn-leaderboard" class="btn btn-ghost">🏆 Leaderboard</button>
+  </section>
+
+  <!-- ============ STACKING ============ -->
+  <section id="screen-stacking" class="screen">
+    <h1 class="screen-title">Phones on the stack</h1>
+    <p class="subtitle">tap your name as your phone hits the pile</p>
+
+    <div id="stack-visual" class="stack-visual" aria-hidden="true"></div>
+
+    <div id="stack-buttons" class="stack-buttons"></div>
+
+    <button id="btn-lock-in" class="btn btn-primary btn-big" disabled>LOCK IN 🔒</button>
+    <button id="btn-back-setup" class="btn btn-ghost">← back</button>
+  </section>
+
+  <!-- ============ FOCUS ============ -->
+  <section id="screen-focus" class="screen">
+    <p id="focus-stakes" class="stakes-banner hidden"></p>
+
+    <div class="timer-wrap">
+      <svg class="ring" viewBox="0 0 200 200" aria-hidden="true">
+        <circle class="ring-bg" cx="100" cy="100" r="90"></circle>
+        <circle id="ring-fg" class="ring-fg" cx="100" cy="100" r="90"></circle>
+      </svg>
+      <div class="timer-center">
+        <div id="time-left" class="time-left">50:00</div>
+        <div class="time-label">locked in</div>
+      </div>
+    </div>
+
+    <div id="focus-people" class="focus-people" aria-live="polite"></div>
+
+    <div class="guard-row">
+      <label class="toggle">
+        <input type="checkbox" id="motion-guard">
+        <span class="toggle-track" aria-hidden="true"></span>
+        <span>Stack guard <small>(alarm if the stack moves)</small></span>
+      </label>
+      <div id="disturb-count" class="disturb hidden">stack disturbed ×<span>0</span></div>
+    </div>
+
+    <div class="focus-actions">
+      <button id="btn-fold" class="btn btn-warn">someone folded 😔</button>
+      <button id="btn-abort" class="btn btn-ghost">end early</button>
+    </div>
+  </section>
+
+  <!-- ============ RESULTS ============ -->
+  <section id="screen-results" class="screen">
+    <h1 id="results-title" class="screen-title big">LOCKED IN ✅</h1>
+    <p id="results-sub" class="subtitle"></p>
+
+    <div class="card">
+      <div id="results-stats" class="results-stats"></div>
+    </div>
+
+    <div class="card">
+      <h2>The stack</h2>
+      <div id="results-people" class="results-people"></div>
+    </div>
+
+    <button id="btn-again" class="btn btn-primary btn-big">Run it back 🔁</button>
+    <button id="btn-results-board" class="btn btn-ghost">🏆 Leaderboard</button>
+  </section>
+
+  <!-- ============ LEADERBOARD ============ -->
+  <section id="screen-board" class="screen">
+    <h1 class="screen-title">Leaderboard</h1>
+
+    <div class="card">
+      <h2>🏆 Wall of Fame</h2>
+      <div id="board-fame" class="board-list"></div>
+    </div>
+
+    <div class="card">
+      <h2>🤡 Wall of Shame</h2>
+      <p class="muted small">most folds — they know what they did</p>
+      <div id="board-shame" class="board-list"></div>
+    </div>
+
+    <div class="card">
+      <h2>📈 Crew totals</h2>
+      <div id="board-totals" class="board-list"></div>
+    </div>
+
+    <button id="btn-board-back" class="btn btn-primary btn-big">← back</button>
+    <button id="btn-wipe" class="btn btn-ghost danger">reset all stats</button>
+  </section>
+
+  <!-- fold picker modal -->
+  <div id="fold-modal" class="modal hidden" role="dialog" aria-modal="true" aria-label="Who folded?">
+    <div class="modal-card">
+      <h2>Who folded?</h2>
+      <div id="fold-options" class="fold-options"></div>
+      <button id="btn-fold-cancel" class="btn btn-ghost">nobody, false alarm</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -17,6 +17,10 @@ experiences/          # One detail page per internship/project
 Shared files: `styles.css` (design), `script.js` (mobile nav, filters, lightbox),
 `favicon.svg`, `assets/img/` (web-optimized photos), `assets/docs/` (resume + portfolio PDFs).
 
+Also in this repo: `phonestack/` — **PhoneStack**, a standalone social accountability
+timer app (stack your phones, lock in together). Self-contained PWA, no build step;
+see `phonestack/README.md`.
+
 ## Common edits
 
 - **Add an experience** — copy any card block in `experiences.html` (set its `data-cat` to
