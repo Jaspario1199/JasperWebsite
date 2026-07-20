@@ -22,19 +22,35 @@ filterBtns.forEach((btn) => {
   });
 });
 
-// expandable grouped sets (learning track, certificate groups)
-document.querySelectorAll('.track-toggle').forEach((toggle) => {
-  const target = document.getElementById(toggle.getAttribute('aria-controls'));
-  const label = toggle.querySelector('.toggle-label');
-  const showText = label ? label.textContent : '';
-  const hideText = toggle.dataset.hideText || 'Hide';
-  toggle.addEventListener('click', () => {
-    const expanded = toggle.getAttribute('aria-expanded') === 'true';
-    toggle.setAttribute('aria-expanded', String(!expanded));
-    toggle.classList.toggle('open', !expanded);
-    if (target) target.hidden = expanded;
-    if (label) label.textContent = expanded ? showText : hideText;
-  });
+// expandable grouped sets (learning track, certificate groups).
+// Any control with [aria-controls] pointing at a group toggles it; a group
+// can have several controls (e.g. a cover photo + a button) that stay in sync.
+const groupControls = document.querySelectorAll('.track-toggle, .group-cover-photo');
+const groups = {};
+groupControls.forEach((ctrl) => {
+  const id = ctrl.getAttribute('aria-controls');
+  if (!id) return;
+  (groups[id] = groups[id] || []).push(ctrl);
+});
+Object.keys(groups).forEach((id) => {
+  const target = document.getElementById(id);
+  const controls = groups[id];
+  const setState = (expanded) => {
+    if (target) target.hidden = !expanded;
+    controls.forEach((c) => {
+      c.setAttribute('aria-expanded', String(expanded));
+      c.classList.toggle('open', expanded);
+      const label = c.querySelector('.toggle-label');
+      if (label) {
+        if (!c.dataset.showText) c.dataset.showText = label.textContent;
+        label.textContent = expanded ? (c.dataset.hideText || 'Hide') : c.dataset.showText;
+      }
+    });
+  };
+  controls.forEach((c) => c.addEventListener('click', (e) => {
+    e.preventDefault();
+    setState(c.getAttribute('aria-expanded') !== 'true');
+  }));
 });
 
 // lightbox for zoomable images (only cycles through currently-visible ones)

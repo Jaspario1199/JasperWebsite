@@ -264,22 +264,30 @@ h3 { font-size: 1.15rem; }
   margin: 22px 0 18px;
 }
 
-/* branded cover panel for a grouped set (no single headline cert) */
-.group-cover {
-  display: flex; align-items: center; justify-content: center; text-align: center;
-  background: linear-gradient(150deg, #2f2822 0%, #4a3d33 100%);
-  color: #f0eee6; padding: 30px; border: 0;
+/* clickable cover photo for a grouped set */
+.group-cover-photo {
+  position: relative; display: block; padding: 0; cursor: pointer;
+  border: 1px solid var(--line); background: #fff; font: inherit; color: inherit;
+  overflow: hidden; width: 100%;
 }
-.group-cover .gc-eyebrow {
-  display: block; font-family: "Montserrat", sans-serif; font-weight: 700;
-  font-size: .72rem; letter-spacing: .2em; text-transform: uppercase;
-  color: #d4a27f; margin-bottom: 12px;
+.group-cover-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.group-cover-photo .cover-overlay {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: flex-end; gap: 4px; padding: 18px;
+  background: linear-gradient(to top, rgba(20,16,12,.72) 0%, rgba(20,16,12,.15) 45%, rgba(20,16,12,0) 70%);
+  color: #fff; text-align: center;
 }
-.group-cover .gc-title {
-  display: block; font-family: "Montserrat", sans-serif; font-weight: 700;
-  font-size: 1.7rem; line-height: 1.15;
+.group-cover-photo .cover-count {
+  font-family: "Montserrat", sans-serif; font-weight: 700; font-size: 1.05rem;
 }
-.group-cover .gc-count { display: block; margin-top: 14px; font-size: .9rem; opacity: .82; }
+.group-cover-photo .cover-cta {
+  font-family: "Montserrat", sans-serif; font-weight: 700; font-size: .78rem;
+  text-transform: uppercase; letter-spacing: .08em; opacity: .92;
+}
+.group-cover-photo:hover { box-shadow: 0 6px 18px rgba(0,0,0,.16); }
+.group-cover-photo:hover .cover-cta { text-decoration: underline; text-underline-offset: 3px; }
+.group-cover-photo .chev { display: inline-block; transition: transform .2s ease; }
+.group-cover-photo.open .chev { transform: rotate(180deg); }
 .cert-fill {
   width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
   background-color: #f4f2ee;

@@ -41,21 +41,30 @@
       <p>Fumbling with a key or combination every time you park a bike is friction that doesn't need to exist. This project is an automatic lock: tap an RFID fob and a solenoid-driven mechanism retracts the lock, with LED and audio feedback confirming the state.</p>
 
       <h2>How It Works</h2>
-      <p>An Arduino Nano reads the RFID scanner and drives solenoids for the locking mechanism, with LEDs and audio feedback for state confirmation. The enclosure is a custom SolidWorks design, 3D-printed with an integrated display window.</p>
+      <p>An Arduino Nano reads the RFID scanner and drives the locking mechanism, with LEDs and audio feedback confirming each state change: present a valid fob and the shackle retracts, present it again and it locks. Every part is designed in SolidWorks and 3D-printed, and the design has moved through several revisions as the mechanism and electronics packaging matured. Here is that progression.</p>
+
+      <h2>First Prototype</h2>
+      <p>The initial build proved out the core loop — scan, authenticate, actuate, and confirm with LED and audio feedback. It uses a simple wedge-shaped 3D-printed enclosure with the RFID scanner and status display set into the front face.</p>
       <div class="figrow">
-        <figure><img class="zoomable" src="../assets/img/bikelock-prototype.jpg" alt="Working prototype with RFID scanner and display" loading="lazy"><figcaption>Working prototype with RFID scanner and display</figcaption></figure>
-        <figure><img class="zoomable" src="../assets/img/bikelock-cad.jpg" alt="Enclosure CAD model" loading="lazy"><figcaption>Enclosure CAD model</figcaption></figure>
+        <figure><img class="zoomable" src="../assets/img/bikelock-prototype.jpg" alt="Working 3D-printed prototype with RFID scanner and status display" loading="lazy"><figcaption>Working 3D-printed prototype with the RFID scanner and status display.</figcaption></figure>
+        <figure><img class="zoomable" src="../assets/img/bikelock-cad.jpg" alt="SolidWorks enclosure model for the first prototype" loading="lazy"><figcaption>SolidWorks enclosure for the first prototype.</figcaption></figure>
       </div>
 
-      <h2>Latest CAD Revision (v.06)</h2>
-      <p>The current SolidWorks revision packages the whole mechanism into a compact housing: the retraction drive and spool, the RFID and control electronics, and the solenoid locking hardware, all behind bolt-on cover plates for serviceability.</p>
+      <h2>Revision v.06</h2>
+      <p>The first major redesign packaged the mechanism into a compact cylindrical housing: the retraction drive and spool, the RFID and control electronics, and the solenoid locking hardware, all behind bolt-on cover plates so the internals stay serviceable.</p>
       <div class="figrow">
-        <figure><img class="zoomable" src="../assets/img/bikelock-v06-exploded.jpg" alt="Exploded view of the v.06 bike lock assembly" loading="lazy"><figcaption>Exploded view — retraction drive, electronics bay, and cover plates.</figcaption></figure>
-        <figure><img class="zoomable" src="../assets/img/bikelock-v06-assembled.jpg" alt="Assembled v.06 bike lock" loading="lazy"><figcaption>Assembled v.06 housing.</figcaption></figure>
+        <figure><img class="zoomable" src="../assets/img/bikelock-v06-exploded.jpg" alt="Exploded view of the v.06 bike lock assembly" loading="lazy"><figcaption>v.06 exploded — retraction drive, electronics bay, and cover plates.</figcaption></figure>
+        <figure><img class="zoomable" src="../assets/img/bikelock-v06-assembled.jpg" alt="Assembled v.06 bike lock housing" loading="lazy"><figcaption>v.06 assembled housing.</figcaption></figure>
+      </div>
+
+      <h2>Revision v.08 &mdash; Latest</h2>
+      <p>The current revision integrates the control and RFID boards into a stacked electronics bay above the lock barrel, adds a bolt-down mounting foot for fixing the lock to a frame or rack, and refines the cylindrical locking body and drive shaft. It is shown exploded to reveal the PCB stack, the motor and spool, the drive shaft, and the top cover plate.</p>
+      <div class="figrow">
+        <figure><img class="zoomable" src="../assets/img/bikelock-v08-exploded.jpg" alt="Exploded view of the v.08 bike lock, showing the stacked electronics, motor, spool, drive shaft, and mounting foot" loading="lazy"><figcaption>v.08 exploded — stacked control/RFID electronics, motor and spool, drive shaft, and bolt-down mounting foot.</figcaption></figure>
       </div>
 
       <h2>Status</h2>
-      <p>The prototype authenticates, actuates, and reports state reliably. Current work is on the retraction drive and weatherproofing the enclosure for daily outdoor use.</p>
+      <p>The lock authenticates, actuates, and reports state reliably. Current work is on the retraction drive and weatherproofing the housing for daily outdoor use.</p>
 
       <h2>Top Skills Utilized</h2>
       <ul class="skills-list"><li>Arduino</li><li>RFID</li><li>Solenoids</li><li>Circuit Design</li><li>3D Printing</li><li>SolidWorks</li></ul>
