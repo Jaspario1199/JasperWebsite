@@ -22,25 +22,42 @@ filterBtns.forEach((btn) => {
   });
 });
 
-// lightbox for zoomable images
+// expandable learning track
+const trackToggle = document.querySelector('.track-toggle');
+if (trackToggle) {
+  const target = document.getElementById(trackToggle.getAttribute('aria-controls'));
+  const label = trackToggle.querySelector('.toggle-label');
+  trackToggle.addEventListener('click', () => {
+    const expanded = trackToggle.getAttribute('aria-expanded') === 'true';
+    trackToggle.setAttribute('aria-expanded', String(!expanded));
+    trackToggle.classList.toggle('open', !expanded);
+    if (target) target.hidden = expanded;
+    if (label) label.textContent = expanded ? 'Show the 6 courses in this track' : 'Hide the courses';
+  });
+}
+
+// lightbox for zoomable images (only cycles through currently-visible ones)
 const lightbox = document.getElementById('lightbox');
 const zoomables = Array.from(document.querySelectorAll('img.zoomable'));
 
 if (lightbox && zoomables.length) {
   const lbImg = document.getElementById('lbImg');
   const lbCaption = document.getElementById('lbCaption');
+  const isVisible = (el) => !!(el.offsetWidth || el.offsetHeight || el.getClientRects().length);
+  let active = zoomables;
   let index = 0;
 
   const show = (i) => {
-    index = (i + zoomables.length) % zoomables.length;
-    const img = zoomables[index];
+    index = (i + active.length) % active.length;
+    const img = active[index];
     lbImg.src = img.src;
     lbImg.alt = img.alt;
-    lbCaption.textContent = zoomables.length > 1 ? `${img.alt} (${index + 1}/${zoomables.length})` : img.alt;
+    lbCaption.textContent = active.length > 1 ? `${img.alt} (${index + 1}/${active.length})` : img.alt;
   };
 
-  const openLightbox = (i) => {
-    show(i);
+  const openLightbox = (img) => {
+    active = zoomables.filter(isVisible);
+    show(active.indexOf(img));
     lightbox.classList.add('open');
     lightbox.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
@@ -52,7 +69,7 @@ if (lightbox && zoomables.length) {
     document.body.style.overflow = '';
   };
 
-  zoomables.forEach((img, i) => img.addEventListener('click', () => openLightbox(i)));
+  zoomables.forEach((img) => img.addEventListener('click', () => openLightbox(img)));
   document.getElementById('lbClose').addEventListener('click', closeLightbox);
   document.getElementById('lbPrev').addEventListener('click', (e) => { e.stopPropagation(); show(index - 1); });
   document.getElementById('lbNext').addEventListener('click', (e) => { e.stopPropagation(); show(index + 1); });

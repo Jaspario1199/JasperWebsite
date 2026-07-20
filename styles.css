@@ -231,6 +231,38 @@ h3 { font-size: 1.15rem; }
 }
 .cert-item .cert-frame:hover { box-shadow: 0 6px 18px rgba(0,0,0,.14); transform: translateY(-2px); }
 .cert-item img { width: 100%; height: 100%; object-fit: contain; cursor: zoom-in; display: block; }
+
+/* ---------- learning track (expandable) ---------- */
+.track { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: #fff; }
+.track-main {
+  display: grid; grid-template-columns: 1.05fr 1fr; gap: 34px;
+  padding: 30px; align-items: center;
+}
+.track-cert { max-width: 100%; }
+.track-badge {
+  font-family: "Montserrat", sans-serif; font-weight: 700; font-size: .74rem;
+  text-transform: uppercase; letter-spacing: .12em; color: var(--accent);
+}
+.track-info h3 { font-size: 1.55rem; margin: 8px 0 10px; }
+.track-info p { color: var(--muted); font-size: .96rem; margin-bottom: 20px; }
+.track-toggle {
+  display: inline-flex; align-items: center; gap: 10px; cursor: pointer;
+  padding: 11px 22px; border: 2px solid var(--accent); border-radius: 4px;
+  background: none; color: var(--accent);
+  font-family: "Montserrat", sans-serif; font-weight: 700; font-size: .88rem;
+  transition: background .15s ease, color .15s ease;
+}
+.track-toggle:hover { background: var(--accent); color: #fff; }
+.track-toggle .chev { transition: transform .2s ease; font-size: .9rem; }
+.track-toggle.open .chev { transform: rotate(180deg); }
+
+.track-courses { padding: 4px 30px 30px; border-top: 1px solid var(--line); }
+.track-courses[hidden] { display: none; }
+.track-courses-label {
+  font-family: "Montserrat", sans-serif; font-weight: 700; font-size: .82rem;
+  text-transform: uppercase; letter-spacing: .1em; color: var(--muted);
+  margin: 22px 0 18px;
+}
 .cert-fill {
   width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
   background-color: #f4f2ee;
@@ -273,6 +305,9 @@ h3 { font-size: 1.15rem; }
 /* ---------- responsive ---------- */
 @media (max-width: 920px) {
   .tile-grid, .cert-grid { grid-template-columns: repeat(2, 1fr); }
+  .cert-grid.cols-3 { grid-template-columns: repeat(2, 1fr); }
+  .track-main { grid-template-columns: 1fr; gap: 22px; }
+  .track-cert { max-width: 480px; }
   .skills-list { columns: 2; }
 
   .timeline::before { left: 7px; }
