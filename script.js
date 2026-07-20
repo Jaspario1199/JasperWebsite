@@ -22,19 +22,20 @@ filterBtns.forEach((btn) => {
   });
 });
 
-// expandable learning track
-const trackToggle = document.querySelector('.track-toggle');
-if (trackToggle) {
-  const target = document.getElementById(trackToggle.getAttribute('aria-controls'));
-  const label = trackToggle.querySelector('.toggle-label');
-  trackToggle.addEventListener('click', () => {
-    const expanded = trackToggle.getAttribute('aria-expanded') === 'true';
-    trackToggle.setAttribute('aria-expanded', String(!expanded));
-    trackToggle.classList.toggle('open', !expanded);
+// expandable grouped sets (learning track, certificate groups)
+document.querySelectorAll('.track-toggle').forEach((toggle) => {
+  const target = document.getElementById(toggle.getAttribute('aria-controls'));
+  const label = toggle.querySelector('.toggle-label');
+  const showText = label ? label.textContent : '';
+  const hideText = toggle.dataset.hideText || 'Hide';
+  toggle.addEventListener('click', () => {
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!expanded));
+    toggle.classList.toggle('open', !expanded);
     if (target) target.hidden = expanded;
-    if (label) label.textContent = expanded ? 'Show the 6 courses in this track' : 'Hide the courses';
+    if (label) label.textContent = expanded ? showText : hideText;
   });
-}
+});
 
 // lightbox for zoomable images (only cycles through currently-visible ones)
 const lightbox = document.getElementById('lightbox');
