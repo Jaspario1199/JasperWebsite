@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Skills - Jasper Buntinx</title>
+  <meta name="description" content="Searchable skills of Jasper Buntinx — CAD, simulation, CNC and fabrication, programming, and electronics — linked to the projects that demonstrate each one.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20260720d">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="site-title" href="index.html">Jasper Buntinx</a>
+    <nav class="site-nav" id="siteNav">
+      <a href="index.html">Home</a>
+      <a href="resume.html">Resume</a>
+      <a href="experiences.html">Experiences</a>
+      <a href="skills.html" class="active">Skills</a>
+      <a href="certifications.html">Certifications</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <div class="page-header">
+      <h1>Skills</h1>
+      <p>Search my toolkit — type a tool or technique to see exactly where I've used it.</p>
+    </div>
+
+    <div class="section" style="padding-top: 22px">
+      <div class="skill-search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2a8 8 0 105.29 14.03l4.84 4.84 1.41-1.41-4.84-4.84A8 8 0 0010 2zm0 2a6 6 0 110 12 6 6 0 010-12z"/></svg>
+        <input id="skillSearch" type="search" autocomplete="off" spellcheck="false"
+               placeholder="Search skills — SolidWorks, CUDA, welding, FEA…" aria-label="Search skills">
+      </div>
+      <p id="skillNoResults" class="skill-noresults hide">No skills match that search. Try &ldquo;CAD&rdquo;, &ldquo;CNC&rdquo;, &ldquo;Python&rdquo;, or &ldquo;welding&rdquo;.</p>
+
+      <!-- ============ CAD & SIMULATION ============ -->
+      <div class="skill-group">
+        <h2 class="skill-group-title">CAD &amp; Simulation</h2>
+        <div class="skill-cards">
+          <div class="skill-card" data-alt="cad modeling assembly">
+            <span class="skill-name">SolidWorks</span>
+            <div class="skill-uses"><a href="experiences/ecofil.html">ECOFIL</a><a href="experiences/creek-show.html">Creek Show</a><a href="experiences/rochester-sensors.html">Rochester Sensors</a><a href="experiences/bike-lock.html">Bike Lock</a><a href="experiences/soccer-shots.html">Soccer Shots</a></div>
+          </div>
+          <div class="skill-card" data-alt="fea finite element analysis stress thermal">
+            <span class="skill-name">SolidWorks Simulation (FEA)</span>
+            <div class="skill-uses"><a href="experiences/rochester-sensors.html">Rochester Sensors</a><a href="experiences/ecofil.html">ECOFIL</a><a href="experiences/creek-show.html">Creek Show</a></div>
+          </div>
+          <div class="skill-card" data-alt="fea finite element analysis simulation">
+            <span class="skill-name">ANSYS</span>
+            <div class="skill-uses"><a href="experiences/creek-show.html">Creek Show</a></div>
+          </div>
+          <div class="skill-card" data-alt="gdt geometric dimensioning tolerancing">
+            <span class="skill-name">GD&amp;T</span>
+            <div class="skill-uses"><a href="experiences/rochester-sensors.html">Rochester Sensors</a><a href="experiences/ecofil.html">ECOFIL</a></div>
+          </div>
+          <div class="skill-card" data-alt="cad schematic drafting">
+            <span class="skill-name">AutoCAD</span>
+            <div class="skill-uses"><a href="experiences/vex-robotics.html">VEX U Robots</a></div>
+          </div>
+          <div class="skill-card" data-alt="cam toolpath">
+            <span class="skill-name">Fusion 360 CAM</span>
+            <div class="skill-uses"><a href="experiences/creek-show.html">Creek Show</a></div>
+          </div>
+          <div class="skill-card" data-alt="post processing visualization cfd">
+            <span class="skill-name">ParaView</span>
+            <div class="skill-uses"><a href="experiences/cfd-optimization.html">CUDA CFD</a></div>
+          </div>
+          <div class="skill-card" data-alt="cad certification">
+            <span class="skill-name">CSWA Certified</span>
+            <div class="skill-uses"><a href="certifications.html">Certifications</a></div>
+          </div>
+          <div class="skill-card" data-alt="cad modeling"><span class="skill-name">OnShape</span><div class="skill-uses"><span class="skill-use-muted">Coursework &amp; personal</span></div></div>
+          <div class="skill-card" data-alt="cad ptc"><span class="skill-name">Creo</span><div class="skill-uses"><span class="skill-use-muted">Coursework</span></div></div>
+          <div class="skill-card" data-alt="cad siemens unigraphics"><span class="skill-name">Siemens NX</span><div class="skill-uses"><span class="skill-use-muted">Coursework</span></div></div>
+          <div class="skill-card" data-alt="numerical computing matrix"><span class="skill-name">MATLAB</span><div class="skill-uses"><span class="skill-use-muted">Coursework</span></div></div>
+        </div>
+      </div>
+
+      <!-- ============ MANUFACTURING & FABRICATION ============ -->
+      <div class="skill-group">
+        <h2 class="skill-group-title">Manufacturing &amp; Fabrication</h2>
+        <div class="skill-cards">
+          <div class="skill-card" data-alt="cnc milling camworks solidworks cam machining toolpath">
+            <span class="skill-name">CNC Machining (CamWorks)</span>
+            <div class="skill-uses"><a href="experiences/rochester-sensors.html">Rochester Sensors</a><a href="experiences/ecofil.html">ECOFIL</a></div>
+          </div>
+          <div class="skill-card" data-alt="additive manufacturing fdm orcaslicer printing">
+            <span class="skill-name">3D Printing (OrcaSlicer)</span>
+            <div class="skill-uses"><a href="experiences/ecofil.html">ECOFIL</a><a href="experiences/bike-lock.html">Bike Lock</a><a href="experiences/soccer-shots.html">Soccer Shots</a></div>
+          </div>
+          <div class="skill-card" data-alt="laser cutting lightburn">
+            <span class="skill-name">Laser Cutting (Lightburn)</span>
+            <div class="skill-uses"><a href="experiences/ecofil.html">ECOFIL</a><a href="experiences/creek-show.html">Creek Show</a></div>
+          </div>
+          <div class="skill-card" data-alt="welding fabrication metal mig">
+            <span class="skill-name">MIG Welding</span>
+            <div class="skill-uses"><a href="experiences/creek-show.html">Creek Show</a><a href="experiences/ecofil.html">ECOFIL</a><a href="experiences/tractor.html">Electric Tractor</a></div>
+          </div>
+          <div class="skill-card" data-alt="metal fabrication">
+            <span class="skill-name">Metalworking</span>
+            <div class="skill-uses"><a href="experiences/creek-show.html">Creek Show</a><a href="experiences/tractor.html">Electric Tractor</a></div>
+          </div>
+          <div class="skill-card" data-alt="soldering electronics wiring">
+            <span class="skill-name">Soldering</span>
+            <div class="skill-uses"><a href="experiences/ecofil.html">ECOFIL</a><a href="experiences/creek-show.html">Creek Show</a></div>
+          </div>
+          <div class="skill-card" data-alt="testing thermal cycling salt spray vibration qualification">
+            <span class="skill-name">Environmental Testing</span>
+            <div class="skill-uses"><a href="experiences/rochester-sensors.html">Rochester Sensors</a></div>
+          </div>
+          <div class="skill-card" data-alt="molding plastics"><span class="skill-name">Injection Molding</span><div class="skill-uses"><span class="skill-use-muted">Coursework</span></div></div>
+          <div class="skill-card" data-alt="wood fabrication"><span class="skill-name">Woodworking</span><div class="skill-uses"><span class="skill-use-muted">Personal projects</span></div></div>
+        </div>
+      </div>
+
+      <!-- ============ PROGRAMMING & COMPUTING ============ -->
+      <div class="skill-group">
+        <h2 class="skill-group-title">Programming &amp; Computing</h2>
+        <div class="skill-cards">
+          <div class="skill-card" data-alt="gpu parallel computing kernel">
+            <span class="skill-name">CUDA</span>
+            <div class="skill-uses"><a href="experiences/cfd-optimization.html">CUDA CFD</a></div>
+          </div>
+          <div class="skill-card" data-alt="programming language">
+            <span class="skill-name">C++</span>
+            <div class="skill-uses"><a href="experiences/cfd-optimization.html">CUDA CFD</a></div>
+          </div>
+          <div class="skill-card" data-alt="scripting programming language">
+            <span class="skill-name">Python</span>
+            <div class="skill-uses"><a href="experiences/cfd-optimization.html">CUDA CFD</a></div>
+          </div>
+          <div class="skill-card" data-alt="gpu profiling nvidia">
+            <span class="skill-name">NVIDIA Nsight Compute</span>
+            <div class="skill-uses"><a href="experiences/cfd-optimization.html">CUDA CFD</a></div>
+          </div>
+          <div class="skill-card" data-alt="web markup">
+            <span class="skill-name">HTML</span>
+            <div class="skill-uses"><span class="skill-use-muted">This site</span></div>
+          </div>
+          <div class="skill-card" data-alt="programming language"><span class="skill-name">Java</span><div class="skill-uses"><span class="skill-use-muted">Coursework</span></div></div>
+        </div>
+      </div>
+
+      <!-- ============ ELECTRONICS & CONTROLS ============ -->
+      <div class="skill-group">
+        <h2 class="skill-group-title">Electronics &amp; Controls</h2>
+        <div class="skill-cards">
+          <div class="skill-card" data-alt="microcontroller nano embedded">
+            <span class="skill-name">Arduino</span>
+            <div class="skill-uses"><a href="experiences/ecofil.html">ECOFIL</a><a href="experiences/bike-lock.html">Bike Lock</a></div>
+          </div>
+          <div class="skill-card" data-alt="sensors hall effect thermistor hygrometer">
+            <span class="skill-name">Sensors &amp; Instrumentation</span>
+            <div class="skill-uses"><a href="experiences/ecofil.html">ECOFIL</a></div>
+          </div>
+          <div class="skill-card" data-alt="access control rfid scanner">
+            <span class="skill-name">RFID</span>
+            <div class="skill-uses"><a href="experiences/bike-lock.html">Bike Lock</a></div>
+          </div>
+          <div class="skill-card" data-alt="actuator solenoid">
+            <span class="skill-name">Solenoids &amp; Actuators</span>
+            <div class="skill-uses"><a href="experiences/bike-lock.html">Bike Lock</a></div>
+          </div>
+          <div class="skill-card" data-alt="mechanism linkage design">
+            <span class="skill-name">Mechanism Design</span>
+            <div class="skill-uses"><a href="experiences/vex-robotics.html">VEX U Robots</a><a href="experiences/soccer-shots.html">Soccer Shots</a></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <span>Copyright © 2026 Jasper Buntinx</span>
+    <span><a href="https://www.linkedin.com/in/jasper-buntinx/" target="_blank" rel="noopener">LinkedIn</a> &nbsp;|&nbsp; Email: <a href="mailto:jasper_buntinx@tamu.edu">jasper_buntinx@tamu.edu</a></span>
+  </div>
+</footer>
+
+<script src="script.js?v=20260720d"></script>
+</body>
+</html>

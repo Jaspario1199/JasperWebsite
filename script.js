@@ -53,6 +53,30 @@ Object.keys(groups).forEach((id) => {
   }));
 });
 
+// skills search
+const skillSearch = document.getElementById('skillSearch');
+if (skillSearch) {
+  const cards = Array.from(document.querySelectorAll('.skill-card'));
+  const groups = Array.from(document.querySelectorAll('.skill-group'));
+  const noRes = document.getElementById('skillNoResults');
+  const run = () => {
+    const q = skillSearch.value.trim().toLowerCase();
+    let anyVisible = false;
+    cards.forEach((c) => {
+      const hay = (c.textContent + ' ' + (c.dataset.alt || '')).toLowerCase();
+      const show = !q || hay.includes(q);
+      c.classList.toggle('hide', !show);
+      if (show) anyVisible = true;
+    });
+    groups.forEach((g) => {
+      const visible = g.querySelectorAll('.skill-card:not(.hide)').length;
+      g.classList.toggle('hide', visible === 0);
+    });
+    if (noRes) noRes.classList.toggle('hide', anyVisible);
+  };
+  skillSearch.addEventListener('input', run);
+}
+
 // lightbox for zoomable images (only cycles through currently-visible ones)
 const lightbox = document.getElementById('lightbox');
 const zoomables = Array.from(document.querySelectorAll('img.zoomable'));
