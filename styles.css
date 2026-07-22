@@ -138,7 +138,16 @@ p { text-wrap: pretty; }
   font-size: clamp(3rem, 8vw, 5.5rem); letter-spacing: -0.035em; line-height: 1.0;
   color: var(--text-strong);
 }
-.hero .tagline { margin-top: 22px; font-size: 1.12rem; color: var(--muted); max-width: 60ch; }
+.hero .tagline { margin-top: 22px; font-size: 1.12rem; color: var(--muted); max-width: 46ch; }
+
+.hero-inner { display: flex; align-items: center; justify-content: space-between; gap: 56px; }
+.hero-text { flex: 1; min-width: 0; }
+.hero-photo { flex-shrink: 0; }
+.hero-photo img {
+  width: 240px; height: 240px; border-radius: 50%; object-fit: cover;
+  border: 1px solid var(--border-strong);
+  box-shadow: 0 0 0 6px rgba(255,255,255,.03), 0 0 0 7px var(--accent-line), var(--shadow-lg);
+}
 
 /* ---------- strengths / weaknesses ---------- */
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
@@ -382,6 +391,11 @@ p { text-wrap: pretty; }
   .tl-dot { grid-column: 1; grid-row: 1; }
   .tl-dot::before { left: 0; }
   .tl-body { grid-column: 2; grid-row: 1; }
+}
+
+@media (max-width: 860px) {
+  .hero-inner { flex-direction: column-reverse; align-items: flex-start; gap: 30px; }
+  .hero-photo img { width: 132px; height: 132px; }
 }
 
 @media (max-width: 680px) {
