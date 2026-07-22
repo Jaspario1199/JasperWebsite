@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260720b">
+  <link rel="stylesheet" href="styles.css?v=20260720c">
 </head>
 <body>
 
@@ -25,7 +25,7 @@
       <a href="resume.html">Resume</a>
       <a href="experiences.html">Experiences</a>
       <a href="certifications.html">Certifications</a>
-      <a href="#contact">Contact</a>
+      <a href="contact.html">Contact</a>
     </nav>
     <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -43,14 +43,14 @@
         <p class="tagline">Texas A&amp;M University · B.S. Mechanical Engineering &amp; Mathematics, May 2027</p>
       </div>
       <div class="hero-photo">
-        <img src="assets/img/headshot.jpg?v=3" alt="Portrait of Jasper Buntinx" width="240" height="240">
+        <img src="assets/img/headshot.jpg?v=4" alt="Portrait of Jasper Buntinx" width="240" height="240">
       </div>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <h2>Experience</h2>
+      <h2>Timeline</h2>
       <div class="timeline">
 
         <div class="tl-item">
@@ -108,69 +108,40 @@
 
   <section class="section">
     <div class="container">
-      <h2>Projects</h2>
-      <div class="tile-grid">
+      <div class="nav-cards">
 
-        <a class="tile" href="experiences/ecofil.html">
-          <img src="assets/img/ecofil-dehydrator-build.jpg" alt="ECOFIL Filament Recycler" loading="lazy">
-          <span class="tile-info"><span class="tile-title">ECOFIL Filament Recycler</span><span class="tile-cat">Startup</span></span>
-        </a>
-
-        <a class="tile" href="experiences/creek-show.html">
-          <img src="assets/img/creekshow-night.jpg" alt="Austin Creek Show Dragonflies" loading="lazy">
-          <span class="tile-info"><span class="tile-title">Austin Creek Show Dragonflies</span><span class="tile-cat">Internships</span></span>
+        <a class="nav-card" href="experiences.html">
+          <img src="assets/img/creekshow-night.jpg" alt="" loading="lazy">
+          <span class="nav-card-overlay">
+            <span class="nav-card-title">Experiences</span>
+            <span class="nav-card-cta">Projects &amp; internships →</span>
+          </span>
         </a>
 
-        <a class="tile" href="experiences/cfd-optimization.html">
-          <img src="assets/img/cfd-paraview-sim.jpg" alt="CUDA CFD Research Internship" loading="lazy">
-          <span class="tile-info"><span class="tile-title">CUDA CFD Research Internship</span><span class="tile-cat">Internships</span></span>
+        <a class="nav-card" href="certifications.html">
+          <img src="assets/certs/ansys-track-stress-analysis.jpg" alt="" loading="lazy">
+          <span class="nav-card-overlay">
+            <span class="nav-card-title">Certifications</span>
+            <span class="nav-card-cta">Credentials &amp; training →</span>
+          </span>
         </a>
 
-        <a class="tile" href="experiences/bike-lock.html">
-          <img src="assets/img/bikelock-prototype.jpg" alt="Automatic RFID Bike Lock" loading="lazy">
-          <span class="tile-info"><span class="tile-title">Automatic RFID Bike Lock</span><span class="tile-cat">Personal</span></span>
+        <a class="nav-card" href="resume.html">
+          <img src="assets/img/resume-preview.png" alt="" loading="lazy" style="object-position: center top;">
+          <span class="nav-card-overlay">
+            <span class="nav-card-title">Résumé</span>
+            <span class="nav-card-cta">View &amp; download →</span>
+          </span>
         </a>
 
-        <a class="tile" href="experiences/vex-robotics.html">
-          <span class="tile-fill">VEX U<br>Robotics</span>
-          <span class="tile-info"><span class="tile-title">VEX U Competition Robots</span><span class="tile-cat">Student Teams</span></span>
+        <a class="nav-card" href="contact.html">
+          <img src="assets/img/headshot.jpg" alt="" loading="lazy" style="object-position: center 22%;">
+          <span class="nav-card-overlay">
+            <span class="nav-card-title">Contact</span>
+            <span class="nav-card-cta">Get in touch →</span>
+          </span>
         </a>
 
-        <a class="tile" href="experiences/tractor.html">
-          <img src="assets/img/tractor-chassis.jpg" alt="Gas-to-Electric Tractor Conversion" loading="lazy">
-          <span class="tile-info"><span class="tile-title">Electric Tractor Conversion</span><span class="tile-cat">Personal</span></span>
-        </a>
-
-      </div>
-
-      <div class="section-buttons">
-        <a class="btn" href="experiences.html">Experiences Page</a>
-        <a class="btn btn-outline" href="resume.html">Resume</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="contact">
-    <div class="container">
-      <h2>Contact</h2>
-      <p>I'm looking for mechanical engineering internship and full-time roles. Email is the fastest way to reach me.</p>
-      <div class="btn-row">
-        <a class="btn" href="mailto:jasper_buntinx@tamu.edu">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 2v.51l-8 5.33L4 6.51V6h16zM4 18V8.92l7.45 4.97a1 1 0 0 0 1.1 0L20 8.92V18H4z"/></svg>
-          jasper_buntinx@tamu.edu
-        </a>
-        <a class="btn btn-outline" href="https://www.linkedin.com/in/jasper-buntinx/" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.24 8.31h4.52V23H.24V8.31zM8.34 8.31h4.33v2h.06c.6-1.14 2.08-2.34 4.28-2.34 4.58 0 5.42 3.01 5.42 6.93V23h-4.51v-7.11c0-1.7-.03-3.88-2.37-3.88-2.37 0-2.73 1.85-2.73 3.76V23H8.34V8.31z"/></svg>
-          LinkedIn
-        </a>
-        <a class="btn btn-outline" href="tel:+17372478938">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2z"/></svg>
-          (737) 247-8938
-        </a>
-        <a class="btn btn-outline" href="assets/docs/Jasper_Buntinx_Resume.pdf" download>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16l-5-5h3V4h4v7h3l-5 5zm-7 2h14v2H5v-2z"/></svg>
-          Resume PDF
-        </a>
       </div>
     </div>
   </section>
@@ -184,6 +155,6 @@
   </div>
 </footer>
 
-<script src="script.js?v=20260720b"></script>
+<script src="script.js?v=20260720c"></script>
 </body>
 </html>
