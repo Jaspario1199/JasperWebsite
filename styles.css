@@ -140,9 +140,9 @@ p { text-wrap: pretty; }
 }
 .hero .tagline { margin-top: 22px; font-size: 1.12rem; color: var(--muted); max-width: 46ch; }
 
-.hero-inner { display: flex; align-items: center; justify-content: space-between; gap: 56px; }
+.hero-inner { display: flex; align-items: flex-start; justify-content: space-between; gap: 56px; }
 .hero-text { flex: 1; min-width: 0; }
-.hero-photo { flex-shrink: 0; }
+.hero-photo { flex-shrink: 0; margin-top: 40px; }
 .hero-photo img {
   width: 240px; height: 240px; border-radius: 50%; object-fit: cover;
   border: 1px solid var(--border-strong);
@@ -421,7 +421,7 @@ p { text-wrap: pretty; }
 .skill-use-muted { font-size: .78rem; color: var(--faint); font-style: italic; padding: 4px 2px; }
 
 /* ---------- home intro skill search (type-ahead) ---------- */
-.hero-search-wrap { max-width: 600px; margin-top: 42px; }
+.hero-search-wrap { max-width: 560px; margin-top: 32px; }
 .skill-ac {
   position: absolute; left: 0; right: 0; top: calc(100% + 6px); z-index: 30;
   background: var(--bg-elev); border: 1px solid var(--border-strong); border-radius: 10px;
@@ -440,12 +440,14 @@ p { text-wrap: pretty; }
   font-family: var(--font-head); font-size: .68rem; text-transform: uppercase;
   letter-spacing: .1em; color: var(--faint); flex-shrink: 0;
 }
+.skill-ac-all { border-bottom: 1px solid var(--border-strong); }
+.skill-ac-all span:first-child { color: var(--accent); font-weight: 600; }
 .hero-search-browse {
   display: inline-block; margin-top: 12px;
   font-family: var(--font-head); font-weight: 500; font-size: .84rem; color: var(--muted);
 }
 .hero-search-browse:hover { color: var(--accent); }
-.skill-results { margin-top: 20px; }
+.skill-results { margin-top: 20px; display: grid; gap: 12px; }
 .skill-results:empty { margin: 0; }
 .skill-result-card {
   background: var(--bg-elev); border: 1px solid var(--border-strong);

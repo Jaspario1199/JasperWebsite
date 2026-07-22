@@ -94,32 +94,45 @@ if (skillInput) {
   ];
   const ac = document.getElementById('skillAc');
   const results = document.getElementById('skillResults');
-  const hay = (s) => (s.n + ' ' + s.alt + ' ' + s.u.map((x) => x[0]).join(' ')).toLowerCase();
+  // category keywords make the search "smart": a query like "manufacturing",
+  // "fabrication", "design", "software", or "circuits" surfaces the whole area.
+  const CAT_KW = {
+    CAD: 'cad computer aided design simulation modeling drafting analysis geometry',
+    Manufacturing: 'manufacturing fabrication machining making shop build prototyping hands on',
+    Programming: 'programming computing software coding development scripting',
+    Electronics: 'electronics controls circuits hardware embedded wiring instrumentation mechatronics',
+  };
+  const hay = (s) => (s.n + ' ' + s.alt + ' ' + s.c + ' ' + (CAT_KW[s.c] || '') + ' ' + s.u.map((x) => x[0]).join(' ')).toLowerCase();
   let current = [], active = -1;
 
-  const showResult = (s) => {
-    ac.hidden = true;
+  const cardHtml = (s) => {
     const chips = s.u.map(([l, h]) => h ? `<a href="${h}">${esc(l)}</a>` : `<span class="skill-use-muted">${esc(l)}</span>`).join('');
-    results.innerHTML = `<div class="skill-result-card"><span class="skill-name">${esc(s.n)}</span><div class="skill-uses">${chips}</div></div>`;
+    return `<div class="skill-result-card"><span class="skill-name">${esc(s.n)}</span><div class="skill-uses">${chips}</div></div>`;
   };
+  const showResult = (s) => { ac.hidden = true; results.innerHTML = cardHtml(s); };
+  const showAll = (list) => { ac.hidden = true; results.innerHTML = list.map(cardHtml).join(''); };
+
   const renderAc = (q) => {
-    current = SKILLS.filter((s) => hay(s).includes(q)).slice(0, 8);
+    current = SKILLS.filter((s) => hay(s).includes(q));
     active = -1;
     if (!current.length) { ac.hidden = true; return; }
-    ac.innerHTML = current.map((s, i) =>
+    let html = '';
+    if (q && current.length > 1) {
+      html += `<button type="button" class="skill-ac-item skill-ac-all" data-all="1"><span>Show all ${current.length} matches</span><span class="ac-cat">${esc(q)}</span></button>`;
+    }
+    html += current.map((s, i) =>
       `<button type="button" class="skill-ac-item" data-i="${i}"><span>${esc(s.n)}</span><span class="ac-cat">${esc(s.c)}</span></button>`).join('');
+    ac.innerHTML = html;
     ac.hidden = false;
   };
 
-  skillInput.addEventListener('input', () => {
-    const q = skillInput.value.trim().toLowerCase();
-    results.innerHTML = '';
-    if (!q) { ac.hidden = true; return; }
-    renderAc(q);
-  });
+  const openAc = () => renderAc(skillInput.value.trim().toLowerCase());
+  skillInput.addEventListener('focus', openAc);
+  skillInput.addEventListener('input', () => { results.innerHTML = ''; openAc(); });
   ac.addEventListener('click', (e) => {
     const btn = e.target.closest('.skill-ac-item');
     if (!btn) return;
+    if (btn.dataset.all) { showAll(current); return; }
     const s = current[+btn.dataset.i];
     skillInput.value = s.n;
     showResult(s);
@@ -127,9 +140,10 @@ if (skillInput) {
   skillInput.addEventListener('keydown', (e) => {
     if (ac.hidden) return;
     const items = [...ac.querySelectorAll('.skill-ac-item')];
+    if (!items.length) return;
     if (e.key === 'ArrowDown') { e.preventDefault(); active = Math.min(active + 1, items.length - 1); }
     else if (e.key === 'ArrowUp') { e.preventDefault(); active = Math.max(active - 1, 0); }
-    else if (e.key === 'Enter') { e.preventDefault(); if (current.length) { const s = current[active < 0 ? 0 : active]; skillInput.value = s.n; showResult(s); } return; }
+    else if (e.key === 'Enter') { e.preventDefault(); (items[active] || items[0]).click(); return; }
     else if (e.key === 'Escape') { ac.hidden = true; return; }
     else return;
     items.forEach((it, i) => it.classList.toggle('active', i === active));

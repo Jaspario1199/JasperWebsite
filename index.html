@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260720e">
+  <link rel="stylesheet" href="styles.css?v=20260720h">
 </head>
 <body>
 
@@ -24,7 +24,6 @@
       <a href="index.html" class="active">Home</a>
       <a href="resume.html">Resume</a>
       <a href="experiences.html">Experiences</a>
-      <a href="skills.html">Skills</a>
       <a href="certifications.html">Certifications</a>
       <a href="contact.html">Contact</a>
     </nav>
@@ -42,19 +41,18 @@
         <p class="kicker">Mechanical Engineering Portfolio</p>
         <h1>Jasper Buntinx</h1>
         <p class="tagline">Texas A&amp;M University · B.S. Mechanical Engineering &amp; Mathematics, May 2027</p>
+        <div class="hero-search-wrap">
+          <div class="skill-search hero-search">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2a8 8 0 105.29 14.03l4.84 4.84 1.41-1.41-4.84-4.84A8 8 0 0010 2zm0 2a6 6 0 110 12 6 6 0 010-12z"/></svg>
+            <input id="skillSearchHome" type="search" autocomplete="off" spellcheck="false" placeholder="Search my skills — SolidWorks, CUDA, welding…" aria-label="Search my skills">
+            <div class="skill-ac" id="skillAc" hidden></div>
+          </div>
+          <div class="skill-results" id="skillResults"></div>
+        </div>
       </div>
       <div class="hero-photo">
         <img src="assets/img/headshot.jpg?v=4" alt="Portrait of Jasper Buntinx" width="240" height="240">
       </div>
-    </div>
-    <div class="container hero-search-wrap">
-      <div class="skill-search hero-search">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2a8 8 0 105.29 14.03l4.84 4.84 1.41-1.41-4.84-4.84A8 8 0 0010 2zm0 2a6 6 0 110 12 6 6 0 010-12z"/></svg>
-        <input id="skillSearchHome" type="search" autocomplete="off" spellcheck="false" placeholder="Search my skills — SolidWorks, CUDA, welding…" aria-label="Search my skills">
-        <div class="skill-ac" id="skillAc" hidden></div>
-      </div>
-      <a class="hero-search-browse" href="skills.html">Browse all skills →</a>
-      <div class="skill-results" id="skillResults"></div>
     </div>
   </section>
 
@@ -165,6 +163,6 @@
   </div>
 </footer>
 
-<script src="script.js?v=20260720e"></script>
+<script src="script.js?v=20260720h"></script>
 </body>
 </html>
