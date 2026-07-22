@@ -53,28 +53,88 @@ Object.keys(groups).forEach((id) => {
   }));
 });
 
-// skills search
-const skillSearch = document.getElementById('skillSearch');
-if (skillSearch) {
-  const cards = Array.from(document.querySelectorAll('.skill-card'));
-  const groups = Array.from(document.querySelectorAll('.skill-group'));
-  const noRes = document.getElementById('skillNoResults');
-  const run = () => {
-    const q = skillSearch.value.trim().toLowerCase();
-    let anyVisible = false;
-    cards.forEach((c) => {
-      const hay = (c.textContent + ' ' + (c.dataset.alt || '')).toLowerCase();
-      const show = !q || hay.includes(q);
-      c.classList.toggle('hide', !show);
-      if (show) anyVisible = true;
-    });
-    groups.forEach((g) => {
-      const visible = g.querySelectorAll('.skill-card:not(.hide)').length;
-      g.classList.toggle('hide', visible === 0);
-    });
-    if (noRes) noRes.classList.toggle('hide', anyVisible);
+// home skills search with type-ahead autocomplete
+const skillInput = document.getElementById('skillSearchHome');
+if (skillInput) {
+  const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+  const E = (l, h) => [l, h];
+  const SKILLS = [
+    { n: 'SolidWorks', c: 'CAD', alt: 'cad modeling assembly', u: [E('ECOFIL','experiences/ecofil.html'),E('Creek Show','experiences/creek-show.html'),E('Rochester Sensors','experiences/rochester-sensors.html'),E('Bike Lock','experiences/bike-lock.html'),E('Soccer Shots','experiences/soccer-shots.html')] },
+    { n: 'SolidWorks Simulation (FEA)', c: 'CAD', alt: 'fea finite element analysis stress thermal', u: [E('Rochester Sensors','experiences/rochester-sensors.html'),E('ECOFIL','experiences/ecofil.html'),E('Creek Show','experiences/creek-show.html')] },
+    { n: 'ANSYS', c: 'CAD', alt: 'fea finite element analysis simulation', u: [E('Creek Show','experiences/creek-show.html')] },
+    { n: 'GD&T', c: 'CAD', alt: 'geometric dimensioning tolerancing', u: [E('Rochester Sensors','experiences/rochester-sensors.html'),E('ECOFIL','experiences/ecofil.html')] },
+    { n: 'AutoCAD', c: 'CAD', alt: 'cad schematic drafting', u: [E('VEX U Robots','experiences/vex-robotics.html')] },
+    { n: 'Fusion 360 CAM', c: 'CAD', alt: 'cam toolpath', u: [E('Creek Show','experiences/creek-show.html')] },
+    { n: 'ParaView', c: 'CAD', alt: 'post processing visualization cfd', u: [E('CUDA CFD','experiences/cfd-optimization.html')] },
+    { n: 'CSWA Certified', c: 'CAD', alt: 'cad certification solidworks', u: [E('Certifications','certifications.html')] },
+    { n: 'OnShape', c: 'CAD', alt: 'cad modeling', u: [E('Coursework & personal',null)] },
+    { n: 'Creo', c: 'CAD', alt: 'cad ptc', u: [E('Coursework',null)] },
+    { n: 'Siemens NX', c: 'CAD', alt: 'cad unigraphics', u: [E('Coursework',null)] },
+    { n: 'MATLAB', c: 'CAD', alt: 'numerical computing matrix', u: [E('Coursework',null)] },
+    { n: 'CNC Machining (CamWorks)', c: 'Manufacturing', alt: 'cnc milling solidworks cam machining toolpath', u: [E('Rochester Sensors','experiences/rochester-sensors.html'),E('ECOFIL','experiences/ecofil.html')] },
+    { n: '3D Printing (OrcaSlicer)', c: 'Manufacturing', alt: 'additive manufacturing fdm printing', u: [E('ECOFIL','experiences/ecofil.html'),E('Bike Lock','experiences/bike-lock.html'),E('Soccer Shots','experiences/soccer-shots.html')] },
+    { n: 'Laser Cutting (Lightburn)', c: 'Manufacturing', alt: 'laser cutting', u: [E('ECOFIL','experiences/ecofil.html'),E('Creek Show','experiences/creek-show.html')] },
+    { n: 'MIG Welding', c: 'Manufacturing', alt: 'welding fabrication metal', u: [E('Creek Show','experiences/creek-show.html'),E('ECOFIL','experiences/ecofil.html'),E('Electric Tractor','experiences/tractor.html')] },
+    { n: 'Metalworking', c: 'Manufacturing', alt: 'metal fabrication', u: [E('Creek Show','experiences/creek-show.html'),E('Electric Tractor','experiences/tractor.html')] },
+    { n: 'Soldering', c: 'Manufacturing', alt: 'electronics wiring', u: [E('ECOFIL','experiences/ecofil.html'),E('Creek Show','experiences/creek-show.html')] },
+    { n: 'Environmental Testing', c: 'Manufacturing', alt: 'thermal cycling salt spray vibration qualification', u: [E('Rochester Sensors','experiences/rochester-sensors.html')] },
+    { n: 'Injection Molding', c: 'Manufacturing', alt: 'molding plastics', u: [E('Coursework',null)] },
+    { n: 'Woodworking', c: 'Manufacturing', alt: 'wood fabrication', u: [E('Personal projects',null)] },
+    { n: 'CUDA', c: 'Programming', alt: 'gpu parallel computing kernel', u: [E('CUDA CFD','experiences/cfd-optimization.html')] },
+    { n: 'C++', c: 'Programming', alt: 'programming language', u: [E('CUDA CFD','experiences/cfd-optimization.html')] },
+    { n: 'Python', c: 'Programming', alt: 'scripting programming language', u: [E('CUDA CFD','experiences/cfd-optimization.html')] },
+    { n: 'NVIDIA Nsight Compute', c: 'Programming', alt: 'gpu profiling nvidia', u: [E('CUDA CFD','experiences/cfd-optimization.html')] },
+    { n: 'HTML', c: 'Programming', alt: 'web markup', u: [E('This site',null)] },
+    { n: 'Java', c: 'Programming', alt: 'programming language', u: [E('Coursework',null)] },
+    { n: 'Arduino', c: 'Electronics', alt: 'microcontroller nano embedded', u: [E('ECOFIL','experiences/ecofil.html'),E('Bike Lock','experiences/bike-lock.html')] },
+    { n: 'Sensors & Instrumentation', c: 'Electronics', alt: 'hall effect thermistor hygrometer', u: [E('ECOFIL','experiences/ecofil.html')] },
+    { n: 'RFID', c: 'Electronics', alt: 'access control scanner', u: [E('Bike Lock','experiences/bike-lock.html')] },
+    { n: 'Solenoids & Actuators', c: 'Electronics', alt: 'actuator', u: [E('Bike Lock','experiences/bike-lock.html')] },
+    { n: 'Mechanism Design', c: 'Electronics', alt: 'linkage design', u: [E('VEX U Robots','experiences/vex-robotics.html'),E('Soccer Shots','experiences/soccer-shots.html')] },
+  ];
+  const ac = document.getElementById('skillAc');
+  const results = document.getElementById('skillResults');
+  const hay = (s) => (s.n + ' ' + s.alt + ' ' + s.u.map((x) => x[0]).join(' ')).toLowerCase();
+  let current = [], active = -1;
+
+  const showResult = (s) => {
+    ac.hidden = true;
+    const chips = s.u.map(([l, h]) => h ? `<a href="${h}">${esc(l)}</a>` : `<span class="skill-use-muted">${esc(l)}</span>`).join('');
+    results.innerHTML = `<div class="skill-result-card"><span class="skill-name">${esc(s.n)}</span><div class="skill-uses">${chips}</div></div>`;
   };
-  skillSearch.addEventListener('input', run);
+  const renderAc = (q) => {
+    current = SKILLS.filter((s) => hay(s).includes(q)).slice(0, 8);
+    active = -1;
+    if (!current.length) { ac.hidden = true; return; }
+    ac.innerHTML = current.map((s, i) =>
+      `<button type="button" class="skill-ac-item" data-i="${i}"><span>${esc(s.n)}</span><span class="ac-cat">${esc(s.c)}</span></button>`).join('');
+    ac.hidden = false;
+  };
+
+  skillInput.addEventListener('input', () => {
+    const q = skillInput.value.trim().toLowerCase();
+    results.innerHTML = '';
+    if (!q) { ac.hidden = true; return; }
+    renderAc(q);
+  });
+  ac.addEventListener('click', (e) => {
+    const btn = e.target.closest('.skill-ac-item');
+    if (!btn) return;
+    const s = current[+btn.dataset.i];
+    skillInput.value = s.n;
+    showResult(s);
+  });
+  skillInput.addEventListener('keydown', (e) => {
+    if (ac.hidden) return;
+    const items = [...ac.querySelectorAll('.skill-ac-item')];
+    if (e.key === 'ArrowDown') { e.preventDefault(); active = Math.min(active + 1, items.length - 1); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); active = Math.max(active - 1, 0); }
+    else if (e.key === 'Enter') { e.preventDefault(); if (current.length) { const s = current[active < 0 ? 0 : active]; skillInput.value = s.n; showResult(s); } return; }
+    else if (e.key === 'Escape') { ac.hidden = true; return; }
+    else return;
+    items.forEach((it, i) => it.classList.toggle('active', i === active));
+  });
+  document.addEventListener('click', (e) => { if (!e.target.closest('.hero-search')) ac.hidden = true; });
 }
 
 // lightbox for zoomable images (only cycles through currently-visible ones)
