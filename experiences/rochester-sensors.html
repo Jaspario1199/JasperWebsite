@@ -23,7 +23,7 @@
       <a href="../certifications.html">Certifications</a>
       <a href="../contact.html">Contact</a>
     </nav>
-    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+    <button type="button" class="nav-toggle" id="navToggle" aria-label="Menu" aria-controls="siteNav" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -65,7 +65,7 @@
       <p>On active-development products I diagnose and resolve design and manufacturing defects in SolidWorks to keep production on schedule. I also run FEA stress and thermal analyses in SolidWorks Simulation ahead of physical testing, which catches problems while they are still cheap to fix.</p>
 
       <h2>Top Skills Utilized</h2>
-      <ul class="skills-list"><li>CamWorks</li><li>SolidWorks</li><li>SolidWorks Simulation</li><li>GD&T</li><li>DFM</li><li>Environmental Testing</li></ul>
+      <ul class="skills-list"><li>CamWorks</li><li>SolidWorks</li><li>SolidWorks Simulation</li><li>GD&amp;T</li><li>DFM</li><li>Environmental Testing</li></ul>
 
       <div class="detail-nav"><a href="tractor.html">&larr; Electric Tractor</a><a href="ecofil.html">ECOFIL &rarr;</a></div>
     </div>
@@ -79,14 +79,14 @@
   </div>
 </footer>
 
-<div class="lightbox" id="lightbox" aria-hidden="true">
-  <button class="lb-close" id="lbClose" aria-label="Close">&times;</button>
-  <button class="lb-prev" id="lbPrev" aria-label="Previous image">&lsaquo;</button>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" hidden>
+  <button type="button" class="lb-close" id="lbClose" aria-label="Close">&times;</button>
+  <button type="button" class="lb-prev" id="lbPrev" aria-label="Previous image">&lsaquo;</button>
   <figure>
-    <img id="lbImg" src="" alt="">
-    <figcaption id="lbCaption"></figcaption>
+    <img id="lbImg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="">
+    <figcaption id="lbCaption" aria-live="polite"></figcaption>
   </figure>
-  <button class="lb-next" id="lbNext" aria-label="Next image">&rsaquo;</button>
+  <button type="button" class="lb-next" id="lbNext" aria-label="Next image">&rsaquo;</button>
 </div>
 
 <script src="../script.js?v=20260720k"></script>

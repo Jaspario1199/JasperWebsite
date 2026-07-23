@@ -23,7 +23,7 @@
       <a href="certifications.html">Certifications</a>
       <a href="contact.html">Contact</a>
     </nav>
-    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+    <button type="button" class="nav-toggle" id="navToggle" aria-label="Menu" aria-controls="siteNav" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -38,11 +38,11 @@
 
     <div class="section" style="padding-top: 24px">
       <div class="filter-bar">
-        <button class="filter-btn item-active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="internships">Internships</button>
-        <button class="filter-btn" data-filter="startup">Startup</button>
-        <button class="filter-btn" data-filter="teams">Student Teams</button>
-        <button class="filter-btn" data-filter="personal">Personal</button>
+        <button type="button" class="filter-btn item-active" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" class="filter-btn" data-filter="internships" aria-pressed="false">Internships</button>
+        <button type="button" class="filter-btn" data-filter="startup" aria-pressed="false">Startup</button>
+        <button type="button" class="filter-btn" data-filter="teams" aria-pressed="false">Student Teams</button>
+        <button type="button" class="filter-btn" data-filter="personal" aria-pressed="false">Personal</button>
       </div>
 
       <div class="tile-grid">

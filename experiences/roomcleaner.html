@@ -151,7 +151,7 @@
       <a href="../certifications.html">Certifications</a>
       <a href="../contact.html">Contact</a>
     </nav>
-    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+    <button type="button" class="nav-toggle" id="navToggle" aria-label="Menu" aria-controls="siteNav" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -193,8 +193,8 @@
       </div>
     </div>
     <div class="stage-foot">
-      <button class="btn" id="playbtn">❚❚ pause</button>
-      <button class="btn ghost" id="dropbtn">+ drop laundry</button>
+      <button type="button" class="btn" id="playbtn">❚❚ pause</button>
+      <button type="button" class="btn ghost" id="dropbtn">+ drop laundry</button>
       <span class="hint">— or click on the floor to add an item</span>
     </div>
   </div>
@@ -261,7 +261,7 @@ camera ▸ <span class="c">YOLO-World</span> ▸ floor (x,y) <span class="a">─
     <h3>Force explorer — solve the statics yourself</h3>
     <p class="cap">drag the claw or drive it with the sliders — the four cable tensions are solved live from the robot's equilibrium equations · dynamic load = m·(g + a)</p>
     <div class="force-grid">
-      <canvas id="fmap" width="640" height="440" aria-label="Interactive force map: drag to move the claw"></canvas>
+      <canvas id="fmap" width="640" height="440" role="img" aria-label="Interactive force map: drag to move the claw"></canvas>
       <div class="force-side">
         <label>payload <b id="fm-lbl">0.9 kg</b>
           <input type="range" id="fmass" min="0" max="5" step="0.1" value="0.9" aria-label="Payload mass"></label>
@@ -291,7 +291,7 @@ camera ▸ <span class="c">YOLO-World</span> ▸ floor (x,y) <span class="a">─
 <section id="gripper"><div class="wrap">
   <div class="sec-head"><span class="idx">03</span><h2>The gripper</h2></div>
   <div class="gripper">
-    <img class="zoomable" src="../assets/img/roomcleaner-gripper-cad.png" alt="CAD render of the tentacle gripper: a frame with five curling fingers"/>
+    <img class="zoomable" src="../assets/img/roomcleaner-gripper-cad.png" alt="CAD render of the tentacle gripper: a frame with five curling fingers">
     <div>
       <p class="lead">Grabbing flat, crumpled cloth off a hard floor is the classic failure point. The answer isn't a claw — it's a <b style="color:var(--bright)">ring of soft, tendon-driven tentacles</b> that curl inward and gather the laundry toward the center.</p>
       <ul class="clean">
@@ -306,58 +306,58 @@ camera ▸ <span class="c">YOLO-World</span> ▸ floor (x,y) <span class="a">─
 
 <section id="bom"><div class="wrap">
   <div class="sec-head"><span class="idx">04</span><h2>Bill of materials</h2>
-    <button class="btn ghost" id="pricebtn">show est. pricing</button></div>
+    <button type="button" class="btn ghost" id="pricebtn">show est. pricing</button></div>
   <p class="lead">Everything mechanical that could be printed, was — eight parametric parts modeled in code. The bought parts were each sized from the analysis above (motor torque from the tension map, line strength from peak load, supply wattage from total draw). Total build ≈ <b style="color:var(--bright)">$230</b>, reusing a computer for vision.</p>
 
   <details class="bom" open>
     <summary>Motion &amp; structure <span class="bsub">— the four corner winches and what holds them up</span></summary>
-    <div class="bom-body"><table>
+    <div class="bom-body"><table><tbody>
       <tr><th>Component</th><th>Purpose</th><th class="qty">Qty</th><th class="price">Est.</th></tr>
       <tr><td>NEMA 17 stepper, 42 N·cm</td><td>Ceiling winches — sized to 2.6× the worst-case cable tension</td><td class="qty">4 + 1 spare</td><td class="price">$33</td></tr>
       <tr><td>Winch spool · motor mount · corner guide</td><td>3D-printed drivetrain (parametric CadQuery, PETG)</td><td class="qty">4 each</td><td class="price">—</td></tr>
       <tr><td>UHMWPE (Dyneema) braided line, 50 lb</td><td>The cables — near-zero stretch keeps position accurate; ~15× load margin</td><td class="qty">150 m</td><td class="price">$8</td></tr>
       <tr><td>Stainless lag eye anchors, 700 lb, closed-eye</td><td>Into ceiling joists — the one part that must never be plastic</td><td class="qty">4</td><td class="price">$14</td></tr>
-    </table></div>
+    </tbody></table></div>
   </details>
 
   <details class="bom">
     <summary>Control &amp; power <span class="bsub">— one wired controller drives all four axes</span></summary>
-    <div class="bom-body"><table>
+    <div class="bom-body"><table><tbody>
       <tr><th>Component</th><th>Purpose</th><th class="qty">Qty</th><th class="price">Est.</th></tr>
       <tr><td>Arduino Uno + CNC Shield + 4× DRV8825</td><td>4-axis step/dir motor control; custom firmware speaks a simple serial protocol</td><td class="qty">1 kit</td><td class="price">$17</td></tr>
       <tr><td>Roller-lever limit switches</td><td>Homing — each winch finds its zero cable length at startup</td><td class="qty">4 + spares</td><td class="price">$6</td></tr>
       <tr><td>12 V 6 A supply + 7.5 A inline fuse</td><td>Motor rail, killed by a switched power strip; fuse protects the wiring</td><td class="qty">1</td><td class="price">$28</td></tr>
       <tr><td>Extensions, hookup wire, ceiling raceway</td><td>Corner runs hidden along the ceiling seams — no visible wiring</td><td class="qty">set</td><td class="price">$45</td></tr>
-    </table></div>
+    </tbody></table></div>
   </details>
 
   <details class="bom">
     <summary>Perception <span class="bsub">— one camera sees the whole floor</span></summary>
-    <div class="bom-body"><table>
+    <div class="bom-body"><table><tbody>
       <tr><th>Component</th><th>Purpose</th><th class="qty">Qty</th><th class="price">Est.</th></tr>
       <tr><td>1080p UVC board camera, 130° FOV</td><td>Ceiling-mounted; wide angle covers every floor corner (computed, not guessed)</td><td class="qty">1</td><td class="price">$19</td></tr>
       <tr><td>Vision compute</td><td>Reused PC runs YOLO-World open-vocabulary detection</td><td class="qty">—</td><td class="price">$0</td></tr>
-    </table></div>
+    </tbody></table></div>
   </details>
 
   <details class="bom">
     <summary>Wireless effector <span class="bsub">— only the four cables touch the claw</span></summary>
-    <div class="bom-body"><table>
+    <div class="bom-body"><table><tbody>
       <tr><th>Component</th><th>Purpose</th><th class="qty">Qty</th><th class="price">Est.</th></tr>
       <tr><td>MG996R servo (180° positional)</td><td>One servo curls all five tentacle tendons</td><td class="qty">1 + 3 spares</td><td class="price">$18</td></tr>
       <tr><td>ESP32 dev board</td><td>WiFi grip/release server riding on the claw</td><td class="qty">1 + 1 spare</td><td class="price">$13</td></tr>
       <tr><td>2S LiPo + charger + 6 V buck + switch</td><td>Self-contained power; dock-charging at the rest pose is the end-state</td><td class="qty">1 set</td><td class="price">$38</td></tr>
-    </table></div>
+    </tbody></table></div>
   </details>
 
   <details class="bom">
     <summary>Printed parts &amp; fasteners <span class="bsub">— eight parametric models, STEP + STL in the repo</span></summary>
-    <div class="bom-body"><table>
+    <div class="bom-body"><table><tbody>
       <tr><th>Component</th><th>Purpose</th><th class="qty">Qty</th><th class="price">Est.</th></tr>
       <tr><td>Tentacle fingers (TPU 95A)</td><td>Tendon-driven curling fingers — dorsal skin + ventral notches</td><td class="qty">5</td><td class="price">$22 filament</td></tr>
       <tr><td>Effector frame · tentacle hub · camera mounts</td><td>The claw assembly (PETG/PLA), heat-set-insert ready</td><td class="qty">4 parts</td><td class="price">—</td></tr>
       <tr><td>M3 stainless kit + brass heat-set inserts</td><td>Metal threads in plastic — the cheap upgrade that outlasts self-tapping</td><td class="qty">2 kits</td><td class="price">$19</td></tr>
-    </table></div>
+    </tbody></table></div>
   </details>
 </div></section>
 
@@ -366,7 +366,7 @@ camera ▸ <span class="c">YOLO-World</span> ▸ floor (x,y) <span class="a">─
   <p class="lead">Robotics, computer vision, controls, mechanical CAD, and embedded firmware — one coherent system.</p>
   <div class="chips">
     <span class="chip"><b>Python</b> · control + kinematics</span>
-    <span class="chip"><b>NumPy</b> / <b>SciPy</b> · statics & least-squares FK</span>
+    <span class="chip"><b>NumPy</b> / <b>SciPy</b> · statics &amp; least-squares FK</span>
     <span class="chip"><b>YOLO-World</b> · open-vocab detection</span>
     <span class="chip"><b>OpenCV</b> · camera + homography</span>
     <span class="chip"><b>CadQuery</b> · parametric CAD → STEP/STL</span>
@@ -390,14 +390,14 @@ camera ▸ <span class="c">YOLO-World</span> ▸ floor (x,y) <span class="a">─
   </div>
 </footer>
 
-<div class="lightbox" id="lightbox" aria-hidden="true">
-  <button class="lb-close" id="lbClose" aria-label="Close">&times;</button>
-  <button class="lb-prev" id="lbPrev" aria-label="Previous image">&lsaquo;</button>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" hidden>
+  <button type="button" class="lb-close" id="lbClose" aria-label="Close">&times;</button>
+  <button type="button" class="lb-prev" id="lbPrev" aria-label="Previous image">&lsaquo;</button>
   <figure>
-    <img id="lbImg" src="" alt="">
-    <figcaption id="lbCaption"></figcaption>
+    <img id="lbImg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="">
+    <figcaption id="lbCaption" aria-live="polite"></figcaption>
   </figure>
-  <button class="lb-next" id="lbNext" aria-label="Next image">&rsaquo;</button>
+  <button type="button" class="lb-next" id="lbNext" aria-label="Next image">&rsaquo;</button>
 </div>
 
 <script src="../script.js?v=20260720k"></script>

@@ -23,7 +23,7 @@
       <a href="../certifications.html">Certifications</a>
       <a href="../contact.html">Contact</a>
     </nav>
-    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+    <button type="button" class="nav-toggle" id="navToggle" aria-label="Menu" aria-controls="siteNav" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -38,7 +38,7 @@
     </div>
 
     <div class="detail-body">
-      <p>Every makerspace generates buckets of failed prints and scrap plastic. ECOFIL is a startup I co-founded to close that loop: a three-stage machine line that shreds waste plastic, dries it, and extrudes it back into usable 3D-printer filament. I lead the mechanical design, with every assembly modeled in SolidWorks using GD&T for precise component mating.</p>
+      <p>Every makerspace generates buckets of failed prints and scrap plastic. ECOFIL is a startup I co-founded to close that loop: a three-stage machine line that shreds waste plastic, dries it, and extrudes it back into usable 3D-printer filament. I lead the mechanical design, with every assembly modeled in SolidWorks using GD&amp;T for precise component mating.</p>
 
       <h2>Phase 1: Plastic Shredder</h2>
       <p>The shredder reduces failed prints to uniform flake. I designed the cutter stack and frame in SolidWorks, then built the prototype with CNC milling (SolidWorks CAM), laser cutting (Lightburn), and MIG welding.</p>
@@ -71,7 +71,7 @@
       <p>ECOFIL secured incubator funding and material donations from Aggies Create, Tyrex, and the TAMU Meloy program. I manage project finances and materials through detailed BOMs, and we completed the filament recycler within budget.</p>
 
       <h2>Top Skills Utilized</h2>
-      <ul class="skills-list"><li>SolidWorks</li><li>GD&T</li><li>Arduino</li><li>CNC Milling</li><li>Laser Cutting</li><li>3D Printing</li><li>MIG Welding</li><li>Thermal FEA</li></ul>
+      <ul class="skills-list"><li>SolidWorks</li><li>GD&amp;T</li><li>Arduino</li><li>CNC Milling</li><li>Laser Cutting</li><li>3D Printing</li><li>MIG Welding</li><li>Thermal FEA</li></ul>
 
       <div class="detail-nav"><a href="rochester-sensors.html">&larr; Rochester Sensors</a><a href="cfd-optimization.html">CUDA CFD Internship &rarr;</a></div>
     </div>
@@ -85,14 +85,14 @@
   </div>
 </footer>
 
-<div class="lightbox" id="lightbox" aria-hidden="true">
-  <button class="lb-close" id="lbClose" aria-label="Close">&times;</button>
-  <button class="lb-prev" id="lbPrev" aria-label="Previous image">&lsaquo;</button>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" hidden>
+  <button type="button" class="lb-close" id="lbClose" aria-label="Close">&times;</button>
+  <button type="button" class="lb-prev" id="lbPrev" aria-label="Previous image">&lsaquo;</button>
   <figure>
-    <img id="lbImg" src="" alt="">
-    <figcaption id="lbCaption"></figcaption>
+    <img id="lbImg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="">
+    <figcaption id="lbCaption" aria-live="polite"></figcaption>
   </figure>
-  <button class="lb-next" id="lbNext" aria-label="Next image">&rsaquo;</button>
+  <button type="button" class="lb-next" id="lbNext" aria-label="Next image">&rsaquo;</button>
 </div>
 
 <script src="../script.js?v=20260720k"></script>

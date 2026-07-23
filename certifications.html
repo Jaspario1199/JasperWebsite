@@ -23,7 +23,7 @@
       <a href="certifications.html" class="active">Certifications</a>
       <a href="contact.html">Contact</a>
     </nav>
-    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+    <button type="button" class="nav-toggle" id="navToggle" aria-label="Menu" aria-controls="siteNav" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -71,7 +71,7 @@
               <span class="track-badge">Ansys Learning Track</span>
               <h3>Stress Analysis Using Ansys Mechanical</h3>
               <p>Completed the full structural-mechanics learning track — six component courses covering geometry, connections, boundary conditions, solver accuracy, and results interpretation in Ansys Mechanical. Click the certificate to zoom in.</p>
-              <button class="track-toggle" aria-expanded="false" aria-controls="track-courses" data-hide-text="Hide the courses">
+              <button type="button" class="track-toggle" aria-expanded="false" aria-controls="track-courses" data-hide-text="Hide the courses">
                 <span class="toggle-label">Show the 6 courses in this track</span>
                 <span class="chev" aria-hidden="true">▾</span>
               </button>
@@ -147,7 +147,7 @@
               <span class="track-badge">Anthropic · AI Training</span>
               <h3>AI Fluency &amp; Claude Certificates</h3>
               <p>Six completion certificates from Anthropic's AI Fluency program and Claude product courses — spanning AI fluency foundations, applications for builders and small businesses, and hands-on Claude, Claude Platform, and Claude Code training.</p>
-              <button class="track-toggle" aria-expanded="false" aria-controls="claude-certs" data-hide-text="Hide certificates">
+              <button type="button" class="track-toggle" aria-expanded="false" aria-controls="claude-certs" data-hide-text="Hide certificates">
                 <span class="toggle-label">Show all 6 certificates</span>
                 <span class="chev" aria-hidden="true">▾</span>
               </button>
@@ -240,14 +240,14 @@
   </div>
 </footer>
 
-<div class="lightbox" id="lightbox" aria-hidden="true">
-  <button class="lb-close" id="lbClose" aria-label="Close">&times;</button>
-  <button class="lb-prev" id="lbPrev" aria-label="Previous image">&lsaquo;</button>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" hidden>
+  <button type="button" class="lb-close" id="lbClose" aria-label="Close">&times;</button>
+  <button type="button" class="lb-prev" id="lbPrev" aria-label="Previous image">&lsaquo;</button>
   <figure>
-    <img id="lbImg" src="" alt="">
-    <figcaption id="lbCaption"></figcaption>
+    <img id="lbImg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="">
+    <figcaption id="lbCaption" aria-live="polite"></figcaption>
   </figure>
-  <button class="lb-next" id="lbNext" aria-label="Next image">&rsaquo;</button>
+  <button type="button" class="lb-next" id="lbNext" aria-label="Next image">&rsaquo;</button>
 </div>
 
 <script src="script.js?v=20260720k"></script>

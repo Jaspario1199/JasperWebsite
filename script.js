@@ -3,9 +3,25 @@ const navToggle = document.getElementById('navToggle');
 const siteNav = document.getElementById('siteNav');
 
 if (navToggle && siteNav) {
+  const setNavOpen = (open) => {
+    siteNav.classList.toggle('open', open);
+    navToggle.setAttribute('aria-expanded', String(open));
+    navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Menu');
+  };
+
   navToggle.addEventListener('click', () => {
-    const open = siteNav.classList.toggle('open');
-    navToggle.setAttribute('aria-expanded', open);
+    setNavOpen(!siteNav.classList.contains('open'));
+  });
+
+  siteNav.addEventListener('click', (event) => {
+    if (event.target.closest('a')) setNavOpen(false);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && siteNav.classList.contains('open')) {
+      setNavOpen(false);
+      navToggle.focus();
+    }
   });
 }
 
@@ -13,8 +29,12 @@ if (navToggle && siteNav) {
 const filterBtns = document.querySelectorAll('.filter-btn');
 filterBtns.forEach((btn) => {
   btn.addEventListener('click', () => {
-    filterBtns.forEach((b) => b.classList.remove('item-active'));
+    filterBtns.forEach((b) => {
+      b.classList.remove('item-active');
+      b.setAttribute('aria-pressed', 'false');
+    });
     btn.classList.add('item-active');
+    btn.setAttribute('aria-pressed', 'true');
     const cat = btn.dataset.filter;
     document.querySelectorAll('.tile-grid .tile').forEach((tile) => {
       tile.classList.toggle('hide', cat !== 'all' && tile.dataset.cat !== cat);
@@ -158,9 +178,12 @@ const zoomables = Array.from(document.querySelectorAll('img.zoomable'));
 if (lightbox && zoomables.length) {
   const lbImg = document.getElementById('lbImg');
   const lbCaption = document.getElementById('lbCaption');
+  const closeButton = document.getElementById('lbClose');
+  const focusableSelector = 'button:not([disabled]), [href], [tabindex]:not([tabindex="-1"])';
   const isVisible = (el) => !!(el.offsetWidth || el.offsetHeight || el.getClientRects().length);
   let active = zoomables;
   let index = 0;
+  let opener = null;
 
   const show = (i) => {
     index = (i + active.length) % active.length;
@@ -173,27 +196,59 @@ if (lightbox && zoomables.length) {
   const openLightbox = (img) => {
     active = zoomables.filter(isVisible);
     show(active.indexOf(img));
+    opener = img;
+    lightbox.hidden = false;
     lightbox.classList.add('open');
-    lightbox.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+    closeButton.focus();
   };
 
   const closeLightbox = () => {
     lightbox.classList.remove('open');
-    lightbox.setAttribute('aria-hidden', 'true');
+    lightbox.hidden = true;
     document.body.style.overflow = '';
+    if (opener) opener.focus();
   };
 
-  zoomables.forEach((img) => img.addEventListener('click', () => openLightbox(img)));
-  document.getElementById('lbClose').addEventListener('click', closeLightbox);
+  zoomables.forEach((img) => {
+    img.tabIndex = 0;
+    img.setAttribute('role', 'button');
+    img.setAttribute('aria-label', `Open image viewer: ${img.alt || 'project image'}`);
+    img.addEventListener('click', () => openLightbox(img));
+    img.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openLightbox(img);
+      }
+    });
+  });
+  closeButton.addEventListener('click', closeLightbox);
   document.getElementById('lbPrev').addEventListener('click', (e) => { e.stopPropagation(); show(index - 1); });
   document.getElementById('lbNext').addEventListener('click', (e) => { e.stopPropagation(); show(index + 1); });
   lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
 
   document.addEventListener('keydown', (e) => {
     if (!lightbox.classList.contains('open')) return;
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowLeft') show(index - 1);
-    if (e.key === 'ArrowRight') show(index + 1);
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      closeLightbox();
+    } else if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      show(index - 1);
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      show(index + 1);
+    } else if (e.key === 'Tab') {
+      const focusable = Array.from(lightbox.querySelectorAll(focusableSelector)).filter(isVisible);
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
   });
 }
