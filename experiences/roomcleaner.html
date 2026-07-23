@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RoomCleaner Cable Robot - Jasper Buntinx</title>
+  <meta name="description" content="A ceiling-mounted cable robot that scans the floor with a camera, detects laundry, and drops it in the hamper. Kinematics, computer vision, parametric CAD, and firmware.">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css?v=20260720k">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="site-title" href="../index.html">Jasper Buntinx</a>
+    <nav class="site-nav" id="siteNav">
+      <a href="../index.html">Home</a>
+      <a href="../resume.html">Resume</a>
+      <a href="../experiences.html" class="active">Experiences</a>
+      <a href="../certifications.html">Certifications</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <div class="container-narrow">
+    <div class="page-header">
+      <p class="crumb"><a href="../experiences.html">&larr; All Experiences</a></p>
+      <h1>RoomCleaner &mdash; Autonomous Laundry-Picking Cable Robot</h1>
+      <p class="detail-meta"><strong>Personal Project</strong> &nbsp;|&nbsp; Independent &nbsp;|&nbsp; Jul 2026 &ndash; Present &nbsp;|&nbsp; College Station, TX</p>
+    </div>
+
+    <div class="detail-body">
+      <p>Four winch motors in the ceiling corners fly a claw around the room on cables &mdash; the same mechanism as a stadium SkyCam. An overhead camera scans the floor, a vision model spots the laundry, and the claw picks each item up and drops it in the hamper. I designed and built the whole stack: the kinematics and control software, the computer-vision pipeline, every 3D-printed part, and the motor firmware.</p>
+
+      <div class="btn-row">
+        <a class="btn" href="roomcleaner-showcase.html">Launch the interactive showcase</a>
+        <a class="btn btn-outline" href="https://github.com/Jaspario1199/RoomCleaner" target="_blank" rel="noopener">Source on GitHub</a>
+      </div>
+      <p style="margin-top:10px"><em>The showcase runs a live simulation of the control loop in your browser &mdash; drag the claw around, drop laundry on the floor, and explore the cable forces with real physics.</em></p>
+
+      <h2>How It Works</h2>
+      <p>A cable robot is beautifully simple: each cable's length is just the distance from its ceiling corner to the claw, so &ldquo;go to (x, y, z)&rdquo; converts directly into four spool lengths. The harder questions are where the robot <em>can't</em> go &mdash; cables can only pull, never push, so holding the claw anywhere means finding four non-negative tensions that cancel gravity. Solving that across the room gives the reachable workspace, the motor sizing, and a keep-out zone computed around the ceiling fan so no cable can ever touch it.</p>
+      <div class="figrow">
+        <figure><img class="zoomable" src="../assets/img/roomcleaner-sim-scene.png" alt="3D simulation of the room showing the four cables, the claw, laundry on the floor, and the ceiling-fan keep-out zone" loading="lazy"><figcaption>The simulator: four cables, the claw at its rest pose, laundry to collect, and the fan keep-out cylinder in red.</figcaption></figure>
+      </div>
+      <div class="figrow">
+        <figure><img class="zoomable" src="../assets/img/roomcleaner-tension-map.png" alt="Heatmap of peak cable tension across the floor" loading="lazy"><figcaption>Cable-tension cost map &mdash; worst case 12 N against a 40 N motor limit, computed before buying a single part.</figcaption></figure>
+      </div>
+
+      <h2>Seeing the Laundry</h2>
+      <p>An open-vocabulary detector (YOLO-World) finds clothes by name &mdash; &ldquo;sock&rdquo;, &ldquo;towel&rdquo;, &ldquo;jeans&rdquo; &mdash; with no training, and a calibrated overhead camera maps each detection to a floor coordinate. The same planner that runs the simulator consumes those detections unchanged, so the day the camera went live the robot brain already knew what to do with it.</p>
+
+      <h2>The Tentacle Gripper</h2>
+      <p>Grabbing flat, crumpled cloth off a hard floor is the classic failure point of projects like this &mdash; a rigid claw has nothing to pinch. My answer is a ring of five tendon-driven TPU &ldquo;tentacle&rdquo; fingers that curl inward and gather the laundry toward the center, all closed by a single servo. The whole end-effector is wireless: an ESP32 and a battery ride on the claw and take grip commands over WiFi, so only the four cables touch it. Every part is modeled parametrically in code (CadQuery) and exports STEP + STL.</p>
+      <div class="figrow">
+        <figure><img class="zoomable" src="../assets/img/roomcleaner-gripper-cad.png" alt="CAD render of the assembled tentacle gripper: frame, hub, and five curling fingers" loading="lazy"><figcaption>The end-effector assembled: cable frame, tendon hub, and five curling fingers.</figcaption></figure>
+      </div>
+
+      <h2>Engineering by Simulation</h2>
+      <p>Every purchased part was sized by analysis before ordering: motor torque from the worst-case tension map, line strength from peak load, supply wattage from total draw, and a calibration study showing the ceiling anchors need to be measured to about a centimeter for centimeter-level grab accuracy. The physics is closed-form, so the design validates itself &mdash; the full build lands around $230 by reusing a computer for vision and 3D-printing everything printable.</p>
+
+      <h2>Status</h2>
+      <p>The complete software stack is built and tested &mdash; kinematics, vision pipeline, pickup planner, Arduino stepper firmware, and the wireless gripper firmware, with 29 passing tests and end-to-end simulation. Parts are ordered; hardware bring-up is next.</p>
+
+      <h2>Top Skills Utilized</h2>
+      <ul class="skills-list"><li>Python</li><li>Computer Vision</li><li>Robot Kinematics</li><li>CadQuery CAD</li><li>Arduino / ESP32</li><li>3D Printing</li><li>Simulation</li></ul>
+
+      <div class="detail-nav"><a href="tractor.html">&larr; Electric Tractor</a><a href="rochester-sensors.html">Rochester Sensors &rarr;</a></div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <span>Copyright © 2026 Jasper Buntinx</span>
+    <span><a href="https://www.linkedin.com/in/jasper-buntinx/" target="_blank" rel="noopener">LinkedIn</a> &nbsp;|&nbsp; Email: <a href="mailto:jasper_buntinx@tamu.edu">jasper_buntinx@tamu.edu</a></span>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lb-close" id="lbClose" aria-label="Close">&times;</button>
+  <button class="lb-prev" id="lbPrev" aria-label="Previous image">&lsaquo;</button>
+  <figure>
+    <img id="lbImg" src="" alt="">
+    <figcaption id="lbCaption"></figcaption>
+  </figure>
+  <button class="lb-next" id="lbNext" aria-label="Next image">&rsaquo;</button>
+</div>
+
+<script src="../script.js?v=20260720k"></script>
+</body>
+</html>
