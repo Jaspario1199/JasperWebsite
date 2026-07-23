@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../styles.css?v=20260720k">
+  <link rel="stylesheet" href="../styles.css?v=20260723a">
 </head>
 <body>
 
@@ -29,48 +29,83 @@
   </div>
 </header>
 
-<main>
-  <div class="container-narrow">
-    <div class="page-header">
-      <p class="crumb"><a href="../experiences.html">&larr; All Experiences</a></p>
-      <h1>Automatic RFID Bike Lock</h1>
-      <p class="detail-meta"><strong>Personal Project</strong> &nbsp;|&nbsp; Independent &nbsp;|&nbsp; Dec 2025 – Present &nbsp;|&nbsp; College Station, TX</p>
+<main class="case-page">
+  <div class="case-shell">
+    <section class="case-hero">
+      <div class="case-hero-copy">
+        <p class="crumb"><a href="../experiences.html">&larr; All Experiences</a></p>
+        <span class="case-eyebrow">Mechatronics · Product Iteration · Prototyping</span>
+        <h1>Automatic RFID Bike Lock</h1>
+        <p class="case-deck">A tap-to-lock mechanism that combines RFID authentication, electromechanical actuation, state feedback, and serviceable 3D-printed packaging.</p>
+        <p class="case-role"><strong>Personal Project</strong> · Independent · Dec 2025–Present · College Station, TX</p>
+      </div>
+      <figure class="case-hero-visual">
+        <img class="zoomable" src="../assets/img/bikelock-v08-exploded.jpg" alt="Exploded view of the current RFID bike lock design">
+        <figcaption>Current v.08 architecture: electronics stack, motor, spool, shaft, and mounting foot.</figcaption>
+      </figure>
+    </section>
+
+    <div class="case-metrics" aria-label="Project summary">
+      <div class="case-metric"><strong>v.08</strong><span>Current design</span></div>
+      <div class="case-metric"><strong>4 steps</strong><span>Control sequence</span></div>
+      <div class="case-metric"><strong>RFID</strong><span>Keyless authentication</span></div>
+      <div class="case-metric"><strong>Outdoor</strong><span>Design target</span></div>
     </div>
 
-    <div class="detail-body">
-      <p>Fumbling with a key or combination every time you park a bike is friction that doesn't need to exist. This project is an automatic lock: tap an RFID fob and a solenoid-driven mechanism retracts the lock, with LED and audio feedback confirming the state.</p>
-
-      <h2>How It Works</h2>
-      <p>An Arduino Nano reads the RFID scanner and drives the locking mechanism, with LEDs and audio feedback confirming each state change: present a valid fob and the shackle retracts, present it again and it locks. Every part is designed in SolidWorks and 3D-printed, and the design has moved through several revisions as the mechanism and electronics packaging matured. Here is that progression.</p>
-
-      <h2>First Prototype</h2>
-      <p>The initial build proved out the core loop — scan, authenticate, actuate, and confirm with LED and audio feedback. It uses a simple wedge-shaped 3D-printed enclosure with the RFID scanner and status display set into the front face.</p>
-      <div class="figrow">
-        <figure><img class="zoomable" src="../assets/img/bikelock-prototype.jpg" alt="Working 3D-printed prototype with RFID scanner and status display" loading="lazy"><figcaption>Working 3D-printed prototype with the RFID scanner and status display.</figcaption></figure>
-        <figure><img class="zoomable" src="../assets/img/bikelock-cad.jpg" alt="SolidWorks enclosure model for the first prototype" loading="lazy"><figcaption>SolidWorks enclosure for the first prototype.</figcaption></figure>
+    <section class="case-section">
+      <div class="case-section-label"><span class="case-index">01</span><h2>System behavior</h2></div>
+      <div>
+        <p class="case-lead">The product has to make its state obvious and execute the same sequence reliably every time. An Arduino Nano coordinates identity, motion, and user feedback.</p>
+        <div class="case-flow">
+          <article class="case-flow-step"><strong>Authenticate</strong><p>Read the RFID fob and reject any credential that is not authorized.</p></article>
+          <article class="case-flow-step"><strong>Actuate</strong><p>Drive the solenoid and retraction mechanism to change the lock state.</p></article>
+          <article class="case-flow-step"><strong>Confirm</strong><p>Use LED and audio feedback so the user knows whether the lock is secure.</p></article>
+        </div>
+        <!-- Optional enhancement: add a short muted video or GIF showing one complete scan-actuate-confirm cycle. -->
       </div>
+    </section>
 
-      <h2>Revision v.06</h2>
-      <p>The first major redesign packaged the mechanism into a compact cylindrical housing: the retraction drive and spool, the RFID and control electronics, and the solenoid locking hardware, all behind bolt-on cover plates so the internals stay serviceable.</p>
-      <div class="figrow">
-        <figure><img class="zoomable" src="../assets/img/bikelock-v06-exploded.jpg" alt="Exploded view of the v.06 bike lock assembly" loading="lazy"><figcaption>v.06 exploded — retraction drive, electronics bay, and cover plates.</figcaption></figure>
-        <figure><img class="zoomable" src="../assets/img/bikelock-v06-assembled.jpg" alt="Assembled v.06 bike lock housing" loading="lazy"><figcaption>v.06 assembled housing.</figcaption></figure>
+    <section class="case-section">
+      <div class="case-section-label"><span class="case-index">02</span><h2>Prototype · Prove the loop</h2></div>
+      <div>
+        <p class="case-lead">The first prototype answered the highest-risk question first: could the electronics authenticate a fob, actuate the mechanism, and report the new state? Packaging was intentionally simple.</p>
+        <div class="case-figures">
+          <figure class="case-figure"><img class="zoomable" src="../assets/img/bikelock-prototype.jpg" alt="Working first prototype of the RFID bike lock" loading="lazy"><figcaption>Working prototype with RFID reader and status display.</figcaption></figure>
+          <figure class="case-figure"><img class="zoomable" src="../assets/img/bikelock-cad.jpg" alt="SolidWorks model of the first bike lock enclosure" loading="lazy"><figcaption>Simple first enclosure built around function, not final packaging.</figcaption></figure>
+        </div>
+        <div class="case-result"><strong>Core loop proven</strong><p>The prototype authenticated, actuated, and confirmed state reliably—clearing the way for mechanical integration and packaging iterations.</p></div>
       </div>
+    </section>
 
-      <h2>Revision v.08 &mdash; Latest</h2>
-      <p>The current revision integrates the control and RFID boards into a stacked electronics bay above the lock barrel, adds a bolt-down mounting foot for fixing the lock to a frame or rack, and refines the cylindrical locking body and drive shaft. It is shown exploded to reveal the PCB stack, the motor and spool, the drive shaft, and the top cover plate.</p>
-      <div class="figrow">
-        <figure><img class="zoomable" src="../assets/img/bikelock-v08-exploded.jpg" alt="Exploded view of the v.08 bike lock, showing the stacked electronics, motor, spool, drive shaft, and mounting foot" loading="lazy"><figcaption>v.08 exploded — stacked control/RFID electronics, motor and spool, drive shaft, and bolt-down mounting foot.</figcaption></figure>
+    <section class="case-section">
+      <div class="case-section-label"><span class="case-index">03</span><h2>v.06 · Package the mechanism</h2></div>
+      <div>
+        <p class="case-lead">The first major redesign moved the system into a compact cylindrical architecture and separated functional zones so the mechanism could still be assembled and serviced.</p>
+        <div class="case-grid cols-3">
+          <article class="case-card"><span class="case-card-kicker">Mechanical</span><h3>Retraction drive + spool</h3><p>Organized the motion hardware around the lock body instead of the original wedge enclosure.</p></article>
+          <article class="case-card"><span class="case-card-kicker">Electrical</span><h3>Dedicated electronics bay</h3><p>Separated RFID and control hardware from the locking and drive components.</p></article>
+          <article class="case-card"><span class="case-card-kicker">Service</span><h3>Bolt-on access panels</h3><p>Kept internal components reachable for testing, repair, and continued iteration.</p></article>
+        </div>
+        <div class="case-figures">
+          <figure class="case-figure"><img class="zoomable" src="../assets/img/bikelock-v06-exploded.jpg" alt="Exploded view of bike lock revision v.06" loading="lazy"><figcaption>v.06 subsystem packaging.</figcaption></figure>
+          <figure class="case-figure"><img class="zoomable" src="../assets/img/bikelock-v06-assembled.jpg" alt="Assembled bike lock revision v.06" loading="lazy"><figcaption>v.06 assembled cylindrical housing.</figcaption></figure>
+        </div>
       </div>
+    </section>
 
-      <h2>Status</h2>
-      <p>The lock authenticates, actuates, and reports state reliably. Current work is on the retraction drive and weatherproofing the housing for daily outdoor use.</p>
-
-      <h2>Top Skills Utilized</h2>
-      <ul class="skills-list"><li>Arduino</li><li>RFID</li><li>Solenoids</li><li>Circuit Design</li><li>3D Printing</li><li>SolidWorks</li></ul>
-
-      <div class="detail-nav"><a href="vex-robotics.html">&larr; VEX U Robots</a><a href="soccer-shots.html">Soccer Shots Toy &rarr;</a></div>
-    </div>
+    <section class="case-section">
+      <div class="case-section-label"><span class="case-index">04</span><h2>v.08 · Integrate for use</h2></div>
+      <div>
+        <p class="case-lead">The current revision stacks the control and RFID boards above the lock barrel, refines the drive shaft and cylindrical body, and adds a bolt-down foot for mounting to a frame or rack.</p>
+        <div class="case-figures">
+          <figure class="case-figure"><img class="zoomable" src="../assets/img/bikelock-v08-exploded.jpg" alt="Exploded view of bike lock revision v.08 showing internal subsystems" loading="lazy"><figcaption>v.08: integrated electronics, drive components, and mounting interface.</figcaption></figure>
+          <article class="case-card"><span class="case-card-kicker">Next validation</span><h3>Retraction + weather protection</h3><p>The lock currently authenticates, actuates, and reports state. Current work targets the retraction drive and weatherproofing for daily outdoor use.</p></article>
+        </div>
+        <!-- Optional enhancement: add a weather-ingress test photo and a measured actuation-cycle result once available. -->
+        <div class="case-tags"><span class="case-tag">SolidWorks</span><span class="case-tag">Arduino Nano</span><span class="case-tag">RFID</span><span class="case-tag">Solenoids</span><span class="case-tag">Circuit design</span><span class="case-tag">3D printing</span></div>
+        <div class="detail-nav"><a href="vex-robotics.html">&larr; VEX U Robots</a><a href="soccer-shots.html">Soccer Shots Toy &rarr;</a></div>
+      </div>
+    </section>
   </div>
 </main>
 
@@ -91,6 +126,6 @@
   <button type="button" class="lb-next" id="lbNext" aria-label="Next image">&rsaquo;</button>
 </div>
 
-<script src="../script.js?v=20260720k"></script>
+<script src="../script.js?v=20260723a"></script>
 </body>
 </html>

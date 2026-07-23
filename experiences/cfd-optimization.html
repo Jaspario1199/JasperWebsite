@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../styles.css?v=20260720k">
+  <link rel="stylesheet" href="../styles.css?v=20260723a">
 </head>
 <body>
 
@@ -29,49 +29,89 @@
   </div>
 </header>
 
-<main>
-  <div class="container-narrow">
-    <div class="page-header">
-      <p class="crumb"><a href="../experiences.html">&larr; All Experiences</a></p>
-      <h1>CUDA CFD Research Internship</h1>
-      <p class="detail-meta"><strong>Mechanical Engineering Intern</strong> &nbsp;|&nbsp; Petrobras · Geoenergia Lab, UDESC &nbsp;|&nbsp; Jun 2025 – Aug 2025 &nbsp;|&nbsp; Santa Catarina, Brazil</p>
+<main class="case-page">
+  <div class="case-shell">
+    <section class="case-hero">
+      <div class="case-hero-copy">
+        <p class="crumb"><a href="../experiences.html">&larr; All Experiences</a></p>
+        <span class="case-eyebrow">GPU Computing · CFD · Research</span>
+        <h1>CUDA CFD Optimization</h1>
+        <p class="case-deck">Profiled and reworked a lattice Boltzmann GPU solver to remove hidden compute and memory bottlenecks—then validated every speedup against the simulation's accuracy limits.</p>
+        <p class="case-role"><strong>Mechanical Engineering Intern</strong> · Petrobras / Geoenergia Lab, UDESC · Jun–Aug 2025 · Santa Catarina, Brazil</p>
+      </div>
+      <figure class="case-hero-visual">
+        <img class="zoomable" src="../assets/img/cfd-paraview-sim.jpg" alt="Channel-flow CFD simulation post-processed in ParaView">
+        <figcaption>Validated channel-flow output after the solver changes.</figcaption>
+      </figure>
+    </section>
+
+    <div class="case-metrics" aria-label="Project results">
+      <div class="case-metric"><strong>400%+</strong><span>MLUPs gain</span></div>
+      <div class="case-metric"><strong>+60%</strong><span>Warp efficiency</span></div>
+      <div class="case-metric"><strong>56 → 36 KB</strong><span>Shared memory</span></div>
+      <div class="case-metric"><strong>+33%</strong><span>Peak Reynolds number</span></div>
     </div>
 
-    <div class="detail-body">
-      <p>I spent the summer at the Geoenergia Lab in Santa Catarina State University's petroleum engineering department, working on Petrobras-sponsored research. The lab runs lattice Boltzmann (LBM) fluid simulations on NVIDIA GPUs, and my job was to make the solver faster.</p>
-
-      <h2>The Lattice Boltzmann Method, Briefly</h2>
-      <p>Instead of solving the Navier-Stokes equations directly, LBM tracks particle distribution functions on a lattice through alternating collision and streaming steps. Each lattice site updates independently, which is exactly the kind of problem a GPU is built for.</p>
-      <div class="figrow">
-        <figure><img class="zoomable" src="../assets/img/cfd-d3q19-lattice.jpg" alt="The D3Q19 lattice configuration used by the solver" loading="lazy"><figcaption>The D3Q19 lattice configuration used by the solver</figcaption></figure>
-        <figure><img class="zoomable" src="../assets/img/cfd-cuda-architecture.jpg" alt="CUDA grid, block, and thread hierarchy" loading="lazy"><figcaption>CUDA grid, block, and thread hierarchy</figcaption></figure>
-        <figure><img class="zoomable" src="../assets/img/cfd-paraview-sim.jpg" alt="Channel-flow simulation post-processed in ParaView" loading="lazy"><figcaption>Channel-flow simulation post-processed in ParaView</figcaption></figure>
+    <section class="case-section">
+      <div class="case-section-label"><span class="case-index">01</span><h2>The engineering problem</h2></div>
+      <div>
+        <p class="case-lead">The lab's higher-order physics kernels were running roughly 10× slower than expected. The task was not simply to make code faster—it was to find the actual limiting hardware behavior and preserve valid CFD results.</p>
+        <div class="case-grid cols-3">
+          <article class="case-card"><span class="case-card-kicker">System</span><h3>D3Q19 lattice solver</h3><p>Collision and streaming operations update independent lattice sites, making the method well suited to GPU parallelism.</p></article>
+          <article class="case-card"><span class="case-card-kicker">Constraint</span><h3>Accuracy had to hold</h3><p>Precision and grid changes were checked against established simulation tolerances at every step.</p></article>
+          <article class="case-card"><span class="case-card-kicker">My ownership</span><h3>Profile → change → validate</h3><p>I owned kernel profiling, targeted optimization, grid-generation tooling, and technical handoff to the lab.</p></article>
+        </div>
+        <div class="case-figures cols-3">
+          <figure class="case-figure"><img class="zoomable" src="../assets/img/cfd-d3q19-lattice.jpg" alt="D3Q19 lattice configuration used by the solver" loading="lazy"><figcaption>D3Q19 lattice model.</figcaption></figure>
+          <figure class="case-figure"><img class="zoomable" src="../assets/img/cfd-cuda-architecture.jpg" alt="CUDA grid block and thread hierarchy" loading="lazy"><figcaption>CUDA execution hierarchy.</figcaption></figure>
+          <figure class="case-figure"><img class="zoomable" src="../assets/img/cfd-curved-boundary.jpg" alt="Curved boundary representation for the CFD solver" loading="lazy"><figcaption>Boundary-method development.</figcaption></figure>
+        </div>
       </div>
+    </section>
 
-      <h2>Finding the Bottleneck</h2>
-      <p>The lab's higher-order physics code was running about 10x slower than expected, and neither refactoring nor manual timers explained why. The breakthrough came from kernel-level profiling in NVIDIA Nsight Compute: the source view revealed lingering double-precision FMA instructions in hot loops. Removing them and completing a validated FP64 to FP32 migration (accuracy checked against simulation tolerances at every step) produced 400%+ gains in MLUPs, the standard LBM throughput metric, with the higher-order kernels improving by roughly 500%.</p>
-      <div class="figrow">
-        <figure><img class="zoomable" src="../assets/img/cfd-nsight-systems.jpg" alt="Timeline profiling in NVIDIA Nsight Systems" loading="lazy"><figcaption>Timeline profiling in NVIDIA Nsight Systems</figcaption></figure>
-        <figure><img class="zoomable" src="../assets/img/cfd-nsight-compute.jpg" alt="Kernel source view in Nsight Compute" loading="lazy"><figcaption>Kernel source view in Nsight Compute</figcaption></figure>
+    <section class="case-section">
+      <div class="case-section-label"><span class="case-index">02</span><h2>Finding the bottleneck</h2></div>
+      <div>
+        <p class="case-lead">Manual timers and refactoring did not explain the slowdown. Hardware-level profiling did: Nsight Compute exposed lingering double-precision FMA instructions in the hottest loops and Nsight Systems showed where runtime accumulated.</p>
+        <div class="case-flow">
+          <article class="case-flow-step"><strong>Trace</strong><p>Locate expensive kernels and distinguish compute time from memory stalls.</p></article>
+          <article class="case-flow-step"><strong>Inspect</strong><p>Use source-correlated metrics to identify FP64 instructions and access patterns.</p></article>
+          <article class="case-flow-step"><strong>Validate</strong><p>Re-run benchmark cases and confirm the solution remains inside tolerance.</p></article>
+        </div>
+        <div class="case-figures">
+          <figure class="case-figure"><img class="zoomable" src="../assets/img/cfd-nsight-systems.jpg" alt="Timeline profiling in NVIDIA Nsight Systems" loading="lazy"><figcaption>System-level timeline: where runtime accumulated.</figcaption></figure>
+          <figure class="case-figure"><img class="zoomable" src="../assets/img/cfd-nsight-compute.jpg" alt="Kernel source view in NVIDIA Nsight Compute" loading="lazy"><figcaption>Kernel source view: the instruction-level evidence.</figcaption></figure>
+        </div>
       </div>
+    </section>
 
-      <h2>Memory Work</h2>
-      <p>Nsight's memory workload reports also showed severely uncoalesced global memory access causing long scoreboard stalls. Restructuring the thread-to-data mapping improved warp efficiency by 60%. Enabling aggressive data reuse across thread blocks cut peak shared memory from 56 KB to 36 KB, which raised occupancy on the same hardware.</p>
-
-      <h2>Grid Refinement</h2>
-      <p>Flows near boundary conditions were producing unstable results, so we moved to a multiresolution grid: fine lattice at the boundaries, coarse in the middle. I wrote the Python script that generates optimized fine-coarse interface geometries, which lifted the peak simulated Reynolds number by 33% without hurting throughput.</p>
-      <div class="figrow">
-        <figure><img class="zoomable" src="../assets/img/cfd-mesh-refinement.jpg" alt="Fine boundary lattice (red) around a coarse interior (black)" loading="lazy"><figcaption>Fine boundary lattice (red) around a coarse interior (black)</figcaption></figure>
+    <section class="case-section">
+      <div class="case-section-label"><span class="case-index">03</span><h2>Engineering changes</h2></div>
+      <div>
+        <div class="case-grid cols-3">
+          <article class="case-card"><span class="case-card-kicker">Precision</span><h3>Validated FP64 → FP32</h3><p>Removed unnecessary double-precision work from hot loops while checking error against simulation tolerances.</p></article>
+          <article class="case-card"><span class="case-card-kicker">Memory</span><h3>Coalesced data access</h3><p>Restructured thread-to-data mapping to reduce long scoreboard stalls and improve warp efficiency by 60%.</p></article>
+          <article class="case-card"><span class="case-card-kicker">Occupancy</span><h3>Reused shared data</h3><p>Cut peak shared-memory use from 56 KB to 36 KB, allowing more active work on the same hardware.</p></article>
+        </div>
+        <div class="case-result"><strong>400%+ MLUPs gain</strong><p>The precision and kernel changes produced the largest throughput improvement, with higher-order kernels improving by roughly 500% while remaining inside the lab's validation limits.</p></div>
+        <!-- Optional enhancement: add a before/after benchmark plot paired with a validation-error plot so speed and numerical accuracy are visible together. -->
       </div>
+    </section>
 
-      <h2>Passing It On</h2>
-      <p>Profiling knowledge shouldn't leave with the intern, so I wrote an Nsight Compute manual and recorded an instructional video for the lab covering setup, best practices, and common commands. I also built ParaView post-processing scripts and prototyped a stair-step curved boundary method for extending 2D cylinder flows to 3D spheres.</p>
-
-      <h2>Top Skills Utilized</h2>
-      <ul class="skills-list"><li>CUDA</li><li>C++</li><li>Python</li><li>NVIDIA Nsight Compute</li><li>NVIDIA Nsight Systems</li><li>LBM / CFD</li><li>ParaView</li></ul>
-
-      <div class="detail-nav"><a href="ecofil.html">&larr; ECOFIL</a><a href="creek-show.html">Creek Show Dragonflies &rarr;</a></div>
-    </div>
+    <section class="case-section">
+      <div class="case-section-label"><span class="case-index">04</span><h2>Extending the solver</h2></div>
+      <div>
+        <p class="case-lead">Boundary instability required a geometry change, not another low-level optimization. I generated multiresolution interfaces with a fine lattice near boundaries and a coarser interior.</p>
+        <div class="case-figures">
+          <figure class="case-figure"><img class="zoomable" src="../assets/img/cfd-mesh-refinement.jpg" alt="Fine boundary lattice in red surrounding a coarse interior lattice" loading="lazy"><figcaption>Python-generated fine/coarse interface geometry.</figcaption></figure>
+          <article class="case-card"><span class="case-card-kicker">Outcome</span><h3>Higher stable flow regime</h3><p>The grid tool increased peak simulated Reynolds number by 33% without reducing throughput. I also delivered ParaView scripts, an Nsight manual, and a training video so the lab could repeat the workflow.</p></article>
+        </div>
+        <div class="case-tags" aria-label="Skills demonstrated">
+          <span class="case-tag">CUDA</span><span class="case-tag">C++</span><span class="case-tag">Python</span><span class="case-tag">Nsight Compute</span><span class="case-tag">Nsight Systems</span><span class="case-tag">LBM / CFD</span><span class="case-tag">ParaView</span>
+        </div>
+        <div class="detail-nav"><a href="ecofil.html">&larr; ECOFIL</a><a href="creek-show.html">Creek Show Dragonflies &rarr;</a></div>
+      </div>
+    </section>
   </div>
 </main>
 
@@ -92,6 +132,6 @@
   <button type="button" class="lb-next" id="lbNext" aria-label="Next image">&rsaquo;</button>
 </div>
 
-<script src="../script.js?v=20260720k"></script>
+<script src="../script.js?v=20260723a"></script>
 </body>
 </html>

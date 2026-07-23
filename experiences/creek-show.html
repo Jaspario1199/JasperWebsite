@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../styles.css?v=20260720k">
+  <link rel="stylesheet" href="../styles.css?v=20260723a">
 </head>
 <body>
 
@@ -29,49 +29,87 @@
   </div>
 </header>
 
-<main>
-  <div class="container-narrow">
-    <div class="page-header">
-      <p class="crumb"><a href="../experiences.html">&larr; All Experiences</a></p>
-      <h1>Austin Creek Show Dragonflies</h1>
-      <p class="detail-meta"><strong>Mechanical Engineering Intern</strong> &nbsp;|&nbsp; Waterloo Greenway Conservancy &nbsp;|&nbsp; May 2022 – Jan 2023 &nbsp;|&nbsp; Austin, TX</p>
+<main class="case-page">
+  <div class="case-shell">
+    <section class="case-hero">
+      <div class="case-hero-copy">
+        <p class="crumb"><a href="../experiences.html">&larr; All Experiences</a></p>
+        <span class="case-eyebrow">Structural Design · Fabrication · Public Installation</span>
+        <h1>Creek Show Dragonflies</h1>
+        <p class="case-deck">Translated artist concepts into four illuminated steel sculptures engineered, fabricated, wired, and installed over a live urban creek.</p>
+        <p class="case-role"><strong>Mechanical Engineering Intern</strong> · Waterloo Greenway Conservancy · May 2022–Jan 2023 · Austin, TX</p>
+      </div>
+      <figure class="case-hero-visual">
+        <img class="zoomable" src="../assets/img/creekshow-night.jpg" alt="Four illuminated dragonfly sculptures installed over Waller Creek at night">
+        <figcaption>The completed installation during Austin Creek Show.</figcaption>
+      </figure>
+    </section>
+
+    <div class="case-metrics" aria-label="Project results">
+      <div class="case-metric"><strong>4</strong><span>Unique sculptures</span></div>
+      <div class="case-metric"><strong>14+ ft</strong><span>Wingspan</span></div>
+      <div class="case-metric"><strong>200+</strong><span>Welded joints</span></div>
+      <div class="case-metric"><strong>−30%</strong><span>Peak current force</span></div>
     </div>
 
-    <div class="detail-body">
-      <p>Every fall, Austin's Creek Show installs large-scale illuminated art over Waller Creek. I designed and led fabrication of four metal dragonfly sculptures with wingspans over 14 feet, taking them from artist sketches to engineered structures that stood in a live creek for a month of public display.</p>
-
-      <h2>From Artist Sketches to CAD</h2>
-      <p>Working from client and artist drawings, I designed four unique CAD assemblies in SolidWorks through extensive iteration and prototyping. Each dragonfly got its own wing geometry, mast, and creek-bed mounting structure.</p>
-      <div class="figrow">
-        <figure><img class="zoomable" src="../assets/img/creekshow-cad.jpg" alt="SolidWorks master assembly" loading="lazy"><figcaption>SolidWorks master assembly</figcaption></figure>
-        <figure><img class="zoomable" src="../assets/img/creekshow-assembled.jpg" alt="Assembled dragonfly before installation" loading="lazy"><figcaption>Assembled dragonfly before installation</figcaption></figure>
+    <section class="case-section">
+      <div class="case-section-label"><span class="case-index">01</span><h2>From artwork to structure</h2></div>
+      <div>
+        <p class="case-lead">The artwork had to retain the artist's visual intent while becoming a manufacturable structure with distinct wing geometry, internal masts, mounting interfaces, lighting, and serviceable electronics.</p>
+        <div class="case-flow">
+          <article class="case-flow-step"><strong>Interpret</strong><p>Translate client drawings and artistic proportions into engineering requirements.</p></article>
+          <article class="case-flow-step"><strong>Engineer</strong><p>Develop four complete SolidWorks assemblies and creek-bed mounting structures.</p></article>
+          <article class="case-flow-step"><strong>Prototype</strong><p>Iterate geometry and assembly details before committing to full-scale fabrication.</p></article>
+        </div>
+        <div class="case-figures">
+          <figure class="case-figure"><img class="zoomable" src="../assets/img/creekshow-cad.jpg" alt="SolidWorks master assembly for a Creek Show dragonfly" loading="lazy"><figcaption>Master CAD assembly: geometry, mast, and mounting structure.</figcaption></figure>
+          <figure class="case-figure"><img class="zoomable" src="../assets/img/creekshow-assembled.jpg" alt="Full-scale assembled dragonfly before installation" loading="lazy"><figcaption>Full-scale assembly before transport and installation.</figcaption></figure>
+        </div>
+        <!-- Optional enhancement: add the original artist sketch beside the CAD model for a direct concept-to-engineering comparison. -->
       </div>
+    </section>
 
-      <h2>Fabrication</h2>
-      <p>I led full-scale fabrication: eight unique wing designs laser-cut via Fusion 360 CAM, over 200 welded joints, soldered wiring for four LED display systems, and water-resistant electronics packaging that kept everything lit above the water.</p>
-      <div class="figrow">
-        <figure><img class="zoomable" src="../assets/img/creekshow-wings.jpg" alt="Laser-cut wing frames" loading="lazy"><figcaption>Laser-cut wing frames</figcaption></figure>
-        <figure><img class="zoomable" src="../assets/img/creekshow-mounting.jpg" alt="Mounting structures over the water" loading="lazy"><figcaption>Mounting structures over the water</figcaption></figure>
+    <section class="case-section">
+      <div class="case-section-label"><span class="case-index">02</span><h2>Fabrication ownership</h2></div>
+      <div>
+        <p class="case-lead">I led the transition from digital assemblies to four physical sculptures: toolpaths, cut parts, weldments, wiring, and water-resistant electronics packaging.</p>
+        <div class="case-grid cols-3">
+          <article class="case-card"><span class="case-card-kicker">Cut</span><h3>8 unique wings</h3><p>Prepared Fusion 360 CAM and laser-cut geometry for the individual wing-frame designs.</p></article>
+          <article class="case-card"><span class="case-card-kicker">Join</span><h3>200+ welds</h3><p>Fabricated the full-scale structures and maintained alignment across thin-frame geometry.</p></article>
+          <article class="case-card"><span class="case-card-kicker">Integrate</span><h3>4 LED systems</h3><p>Soldered, routed, and protected the lighting hardware for a month outdoors above water.</p></article>
+        </div>
+        <div class="case-figures">
+          <figure class="case-figure"><img class="zoomable" src="../assets/img/creekshow-wings.jpg" alt="Fabricated laser-cut dragonfly wing frames" loading="lazy"><figcaption>Cut and welded wing-frame geometry.</figcaption></figure>
+          <figure class="case-figure"><img class="zoomable" src="../assets/img/creekshow-mounting.jpg" alt="Creek Show dragonfly mounting structures over the water" loading="lazy"><figcaption>Structural mounts positioned over Waller Creek.</figcaption></figure>
+        </div>
       </div>
+    </section>
 
-      <h2>Engineering for Wind and Floods</h2>
-      <p>A sculpture standing in a creek has to survive flash floods. Using FEA in SolidWorks Simulation and ANSYS plus dimensional analysis, I reduced peak current-induced forces on the creek structures by 30%, which made the installation much more resilient to high wind and flooding.</p>
-      <div class="figrow">
-        <figure><img class="zoomable" src="../assets/img/creekshow-install.jpg" alt="Installation day in Waller Creek" loading="lazy"><figcaption>Installation day in Waller Creek</figcaption></figure>
+    <section class="case-section">
+      <div class="case-section-label"><span class="case-index">03</span><h2>Design for the environment</h2></div>
+      <div>
+        <p class="case-lead">A public sculpture in a creek has environmental load cases that a gallery object does not. Wind, water current, flash-flood conditions, mounting strength, and electronics exposure all affected the final design.</p>
+        <div class="case-grid cols-3">
+          <article class="case-card"><span class="case-card-kicker">Analyze</span><h3>FEA + dimensional analysis</h3><p>Used SolidWorks Simulation and ANSYS to assess structural response and compare design changes.</p></article>
+          <article class="case-card"><span class="case-card-kicker">Reduce</span><h3>30% lower peak force</h3><p>Changed the creek-facing structure to reduce peak current-induced loading.</p></article>
+          <article class="case-card"><span class="case-card-kicker">Protect</span><h3>Outdoor electronics</h3><p>Packaged and routed the LED systems for an exposed, water-adjacent installation.</p></article>
+        </div>
+        <div class="case-figures">
+          <figure class="case-figure"><img class="zoomable" src="../assets/img/creekshow-install.jpg" alt="Installation work in Waller Creek" loading="lazy"><figcaption>Installing and aligning the structures in the creek environment.</figcaption></figure>
+          <figure class="case-figure"><img class="zoomable" src="../assets/img/creekshow-lit-pink.jpg" alt="Illuminated dragonfly wing during Creek Show" loading="lazy"><figcaption>Integrated lighting operating during the public show.</figcaption></figure>
+        </div>
+        <!-- Optional enhancement: add one FEA result image showing the governing load case and design revision. -->
       </div>
+    </section>
 
-      <h2>The Final Show</h2>
-      <p>All four dragonflies flew for the full run of Creek Show, lighting up the creek for thousands of visitors every night.</p>
-      <div class="figrow">
-        <figure><img class="zoomable" src="../assets/img/creekshow-night.jpg" alt="Opening night over Waller Creek" loading="lazy"><figcaption>Opening night over Waller Creek</figcaption></figure>
-        <figure><img class="zoomable" src="../assets/img/creekshow-lit-pink.jpg" alt="LED wing display" loading="lazy"><figcaption>LED wing display</figcaption></figure>
+    <section class="case-section">
+      <div class="case-section-label"><span class="case-index">04</span><h2>Delivered result</h2></div>
+      <div>
+        <div class="case-result"><strong>Full show run completed</strong><p>All four dragonflies operated throughout Creek Show, turning a set of artistic concepts into reliable public infrastructure seen by thousands of visitors.</p></div>
+        <div class="case-tags"><span class="case-tag">SolidWorks</span><span class="case-tag">ANSYS</span><span class="case-tag">MIG welding</span><span class="case-tag">Fusion 360 CAM</span><span class="case-tag">Laser cutting</span><span class="case-tag">Electronics packaging</span></div>
+        <div class="detail-nav"><a href="cfd-optimization.html">&larr; CUDA CFD Internship</a><a href="vex-robotics.html">VEX U Robots &rarr;</a></div>
       </div>
-
-      <h2>Top Skills Utilized</h2>
-      <ul class="skills-list"><li>SolidWorks</li><li>ANSYS</li><li>MIG Welding</li><li>Fusion 360 CAM</li><li>Laser Cutting</li><li>Electronics Packaging</li></ul>
-
-      <div class="detail-nav"><a href="cfd-optimization.html">&larr; CUDA CFD Internship</a><a href="vex-robotics.html">VEX U Robots &rarr;</a></div>
-    </div>
+    </section>
   </div>
 </main>
 
@@ -92,6 +130,6 @@
   <button type="button" class="lb-next" id="lbNext" aria-label="Next image">&rsaquo;</button>
 </div>
 
-<script src="../script.js?v=20260720k"></script>
+<script src="../script.js?v=20260723a"></script>
 </body>
 </html>
