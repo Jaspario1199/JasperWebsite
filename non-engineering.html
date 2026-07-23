@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260720j">
+  <link rel="stylesheet" href="styles.css?v=20260720k">
 </head>
 <body>
 
@@ -35,56 +35,49 @@
     <div class="page-header">
       <p class="egg-eyebrow">You found the easter egg 🥚</p>
       <h1>Off the Clock</h1>
-      <p>Welcome to the non-engineering corner. This is who I am when I'm not in the shop or in front of
-        SolidWorks — the traveling, the hobbies, and a bit of personality. Thanks for being curious enough
-        to click.</p>
+      <p>A few things outside engineering I love to talk about. Click any photo to open it.</p>
     </div>
 
-    <div class="section" style="padding-top: 20px">
+    <div class="section" style="padding-top: 22px">
 
-      <!-- ============ HIGHLIGHTS ============ -->
-      <h2 class="cert-group-title">A Few Things About Me</h2>
-      <div class="egg-highlights">
-        <div class="egg-card">
-          <span class="egg-card-label">Endurance</span>
-          <h3>3 marathons &amp; a Half Ironman</h3>
-          <p>Currently training for <strong>Ironman Texas 2027</strong> — my first full-distance triathlon.</p>
-        </div>
-        <div class="egg-card">
-          <span class="egg-card-label">Content Creator</span>
-          <h3>@jmoonmovies · 170K+ followers</h3>
-          <p>I create and post movie content to an audience of over 170,000.</p>
-        </div>
-        <div class="egg-card">
-          <span class="egg-card-label">Community</span>
-          <h3>Build Logistics — Chilifest</h3>
-          <p>In my men's organization I head builds for large social events, including A&amp;M's Chilifest.</p>
-        </div>
-      </div>
+      <!-- =========================================================
+           TO FILL A TOPIC: drop the image in assets/personal/ and replace
+           the <span class="tile-fill">…</span> line inside a tile with:
+           <img class="zoomable" src="assets/personal/topic.jpg" alt="Topic name" loading="lazy">
+           Copy a whole <figure class="tile phototile"> block to add a topic.
+           ========================================================= -->
+      <div class="tile-grid">
 
-      <!-- ============ INTERESTS ============ -->
-      <h2 class="cert-group-title">Also Into</h2>
-      <div class="egg-interests">
-        <span>Hiking</span><span>Traveling</span><span>Soccer</span><span>Running</span><span>Triathlon</span><span>Filmmaking</span>
-      </div>
+        <figure class="tile phototile">
+          <span class="tile-fill">Endurance<br>Racing</span>
+          <span class="tile-info"><span class="tile-title">Endurance Racing</span><span class="tile-cat">Marathons &amp; Ironman</span></span>
+        </figure>
 
-      <!-- ============ PHOTO GALLERY ============ -->
-      <h2 class="cert-group-title" style="margin-top: 46px">Photos</h2>
-      <p style="color: var(--muted); margin-bottom: 22px; max-width: 62ch;">A running scrapbook of trips and
-        life outside class. (Placeholders for now — real photos dropping in soon.)</p>
+        <figure class="tile phototile">
+          <span class="tile-fill">@jmoonmovies</span>
+          <span class="tile-info"><span class="tile-title">@jmoonmovies</span><span class="tile-cat">170K+ followers</span></span>
+        </figure>
 
-      <div class="gallery">
-        <!-- =========================================================
-             TO ADD A PHOTO: replace a placeholder block with:
-             <figure class="gallery-item"><img class="zoomable" src="assets/personal/my-photo.jpg" alt="Short caption" loading="lazy"></figure>
-             (drop the image file in assets/personal/)
-             ========================================================= -->
-        <div class="gallery-item gallery-ph" style="aspect-ratio: 3/4;"><span>Travel</span></div>
-        <div class="gallery-item gallery-ph" style="aspect-ratio: 4/3;"><span>Outdoors</span></div>
-        <div class="gallery-item gallery-ph" style="aspect-ratio: 1/1;"><span>Adventures</span></div>
-        <div class="gallery-item gallery-ph" style="aspect-ratio: 4/5;"><span>Friends</span></div>
-        <div class="gallery-item gallery-ph" style="aspect-ratio: 4/3;"><span>Food</span></div>
-        <div class="gallery-item gallery-ph" style="aspect-ratio: 3/4;"><span>Hobbies</span></div>
+        <figure class="tile phototile">
+          <span class="tile-fill">Chilifest<br>&amp; Builds</span>
+          <span class="tile-info"><span class="tile-title">Chilifest &amp; Builds</span><span class="tile-cat">Build Logistics</span></span>
+        </figure>
+
+        <figure class="tile phototile">
+          <span class="tile-fill">Traveling</span>
+          <span class="tile-info"><span class="tile-title">Traveling</span><span class="tile-cat">On the road</span></span>
+        </figure>
+
+        <figure class="tile phototile">
+          <span class="tile-fill">Hiking</span>
+          <span class="tile-info"><span class="tile-title">Hiking</span><span class="tile-cat">Outdoors</span></span>
+        </figure>
+
+        <figure class="tile phototile">
+          <span class="tile-fill">Soccer</span>
+          <span class="tile-info"><span class="tile-title">Soccer</span><span class="tile-cat">On the pitch</span></span>
+        </figure>
+
       </div>
 
       <div class="btn-row" style="margin-top: 44px">
@@ -111,6 +104,6 @@
   <button class="lb-next" id="lbNext" aria-label="Next image">&rsaquo;</button>
 </div>
 
-<script src="script.js?v=20260720j"></script>
+<script src="script.js?v=20260720k"></script>
 </body>
 </html>

@@ -496,6 +496,12 @@ p { text-wrap: pretty; }
   font-family: var(--font-head); font-weight: 500; font-size: .92rem;
   padding: 8px 16px; border-radius: 999px;
 }
+/* topic photo tiles (reuse .tile look, open in lightbox) */
+.phototile { margin: 0; }
+.phototile img { cursor: zoom-in; }
+.phototile .tile-info { pointer-events: none; }
+.phototile:has(.tile-fill) .tile-info { display: none; }
+
 .gallery { columns: 3; column-gap: 16px; }
 .gallery-item {
   break-inside: avoid; margin: 0 0 16px; border-radius: var(--radius); overflow: hidden;
