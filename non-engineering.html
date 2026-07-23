@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Off the Clock - Jasper Buntinx</title>
+  <meta name="description" content="The non-engineering side of Jasper Buntinx — travel, interests, and personality outside the lab.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20260720i">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="site-title" href="index.html">Jasper Buntinx</a>
+    <nav class="site-nav" id="siteNav">
+      <a href="index.html">Home</a>
+      <a href="resume.html">Resume</a>
+      <a href="experiences.html">Experiences</a>
+      <a href="certifications.html">Certifications</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <div class="page-header">
+      <p class="egg-eyebrow">You found the easter egg 🥚</p>
+      <h1>Off the Clock</h1>
+      <p>Welcome to the non-engineering corner. This is who I am when I'm not in the shop or in front of
+        SolidWorks — the traveling, the hobbies, and a bit of personality. Thanks for being curious enough
+        to click.</p>
+    </div>
+
+    <div class="section" style="padding-top: 20px">
+
+      <!-- ============ INTERESTS ============ -->
+      <h2 class="cert-group-title">A Few Things I'm Into</h2>
+      <div class="egg-interests">
+        <!-- Edit these to your real interests -->
+        <span>Traveling</span><span>Woodworking</span><span>Hiking</span><span>Cooking</span>
+        <span>Photography</span><span>Pickup soccer</span><span>Chess</span><span>Tinkering</span>
+      </div>
+
+      <!-- ============ PHOTO GALLERY ============ -->
+      <h2 class="cert-group-title" style="margin-top: 46px">Photos</h2>
+      <p style="color: var(--muted); margin-bottom: 22px; max-width: 62ch;">A running scrapbook of trips and
+        life outside class. (Placeholders for now — real photos dropping in soon.)</p>
+
+      <div class="gallery">
+        <!-- =========================================================
+             TO ADD A PHOTO: replace a placeholder block with:
+             <figure class="gallery-item"><img class="zoomable" src="assets/personal/my-photo.jpg" alt="Short caption" loading="lazy"></figure>
+             (drop the image file in assets/personal/)
+             ========================================================= -->
+        <div class="gallery-item gallery-ph" style="aspect-ratio: 3/4;"><span>Travel</span></div>
+        <div class="gallery-item gallery-ph" style="aspect-ratio: 4/3;"><span>Outdoors</span></div>
+        <div class="gallery-item gallery-ph" style="aspect-ratio: 1/1;"><span>Adventures</span></div>
+        <div class="gallery-item gallery-ph" style="aspect-ratio: 4/5;"><span>Friends</span></div>
+        <div class="gallery-item gallery-ph" style="aspect-ratio: 4/3;"><span>Food</span></div>
+        <div class="gallery-item gallery-ph" style="aspect-ratio: 3/4;"><span>Hobbies</span></div>
+      </div>
+
+      <div class="btn-row" style="margin-top: 44px">
+        <a class="btn btn-outline" href="index.html">← Back to the engineering side</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <span>Copyright © 2026 Jasper Buntinx</span>
+    <span><a href="https://www.linkedin.com/in/jasper-buntinx/" target="_blank" rel="noopener">LinkedIn</a> &nbsp;|&nbsp; Email: <a href="mailto:jasper_buntinx@tamu.edu">jasper_buntinx@tamu.edu</a></span>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lb-close" id="lbClose" aria-label="Close">&times;</button>
+  <button class="lb-prev" id="lbPrev" aria-label="Previous image">&lsaquo;</button>
+  <figure>
+    <img id="lbImg" src="" alt="">
+    <figcaption id="lbCaption"></figcaption>
+  </figure>
+  <button class="lb-next" id="lbNext" aria-label="Next image">&rsaquo;</button>
+</div>
+
+<script src="script.js?v=20260720i"></script>
+</body>
+</html>
