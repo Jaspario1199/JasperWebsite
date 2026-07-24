@@ -23,3 +23,12 @@ sharp upgrades of the soft images currently on the site (which came from a portf
 | photo-15.jpg | Bike lock CAD — wireframe/hidden-line view of the same assembly. | **RFID Bike Lock — CAD rev v.04–v.05** |
 | photo-16.jpg | Bike lock CAD — shaded render, alternate angle. | **RFID Bike Lock — CAD rev v.04–v.05** |
 | photo-17.jpg | Electrical/wiring schematic diagram (dark background, colored nodes/blocks) for the extruder stage. ⚠️ arrived low-res (286×168) — a higher-res export would help. | **ECOFIL — Phase 3 (Filament Extruder) — control schematic** |
+
+## Austin Creek Show — page structure (3 sections)
+
+The Creek Show detail page will be organized into three sections; photos get assigned to one:
+1. **Modeling, Prototyping & Manufacturing**
+2. **Onsite + Assembly**
+3. **Final Product** — photos 06–13 (the lit dragonflies at night) go here.
+
+_(Section 1 and 2 photos to be assigned as Jasper sends them.)_
