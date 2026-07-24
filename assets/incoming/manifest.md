@@ -53,6 +53,10 @@ sharp upgrades of the soft images currently on the site (which came from a portf
 | photo-45.jpg | Soccer Shots — a part being 3D-printed on a Voron 2.4 (enclosed CoreXY printer, textured PEI bed, white PLA). Good sharp shot of the fabrication step. (447×396). | **Soccer Shots — fabrication (3D printing the prototype)** |
 | photo-46.jpg | Soccer Shots — sourced (not-in-house) parts laid out: two clear suction-cup feet (Amazon) and four interchangeable compression springs of two stiffnesses (Home Depot) for the launcher. (311×359). | **Soccer Shots — sourced parts (springs + suction cups)** |
 | photo-47.jpg | Soccer Shots — green 3D-printed launcher end block, close-up of the two guide-rod bores that printed too tight (undersized holes → had to enlarge/sand for fit). ⚠️ small (125×134). | **Soccer Shots — tolerancing issue (holes too tight)** |
+| photo-48.jpg | Soccer Shots — finished **shooter/launcher**: gray 3D-printed body with scalloped finger grips, twin steel guide rods, orange plunger head on springs, mounted on suction-cup feet. Sharp product shot. (447×290). | **Soccer Shots — finished product (shooter)** |
+| photo-49.jpg | Soccer Shots — finished **goal**: blue diagonal-truss backboard between two orange triangular end stands on suction-cup feet, with the orange goalie post. (254×200). | **Soccer Shots — finished product (goal)** |
+| photo-50.jpg | Soccer Shots — CAD assembly of the **shooter/launcher**: magenta grip body, twin guide rods, green plunger block on a compression spring, and the suction-cup base plate. Clean shaded SolidWorks render. (458×230). | **Soccer Shots — shooter assembly CAD** |
+| photo-51.jpg | Soccer Shots — CAD assembly of the **goal**: blue diagonal-truss backboard, teal triangular end stands, red goalie post + sliding gray goalie block on the base rail. Larger/cleaner than photo-41 → use this as the goal-assembly CAD. (387×243). | **Soccer Shots — goal assembly CAD (supersedes photo-41)** |
 
 ## Austin Creek Show — page structure (3 sections)
 
