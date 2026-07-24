@@ -73,3 +73,4 @@ _(Section 1 and 2 photos to be assigned as Jasper sends them.)_
 > **Page-copy note (Creek Show):** each dragonfly has a *different* wing design — mention this in the section text, not as an image caption.
 
 | photo-55.jpg | High-res exploded CAD of the v.08 RFID bike lock (barrel, blower/motor, electronics, shaft, mounting foot). Used as the bike-lock cover/hero (overwrote bikelock-v08-exploded.jpg). (649x621). | **RFID Bike Lock — v.08 exploded (cover)** |
+| photo-56.jpg | High-res "GOALIE GAME" concept sketch (shooting mech on rail, movable goalie, front + top views, spring-loaded peg). Replaces the low-res soccershots-sketch-a. (792x608). | **Soccer Shots — concept sketch A (hi-res)** |
