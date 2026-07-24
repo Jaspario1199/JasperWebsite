@@ -157,16 +157,9 @@ p { text-wrap: pretty; }
 }
 .egg-link .egg-arrow { font-weight: 700; }
 
-/* little "In My Life" nod to the Beatles song, sits beside the page heading */
-.song-link {
-  display: inline-flex; align-items: center; gap: 6px; vertical-align: middle;
-  margin-left: 14px; padding: 5px 13px; border-radius: 999px;
-  border: 1px dashed var(--accent-line); background: var(--accent-quiet); color: var(--accent);
-  font-family: var(--font-head); font-size: .82rem; font-weight: 600; letter-spacing: .01em;
-  white-space: nowrap; text-decoration: none;
-  transition: background .2s ease, color .2s ease, transform .2s ease;
-}
-.song-link:hover { background: var(--accent); color: #1a0d0e; transform: translateY(-1px); }
+/* compact Spotify player: a little play/pause clip of "A Day in the Life" */
+.song-embed { margin: 16px 0 6px; max-width: 340px; }
+.song-embed iframe { width: 100%; display: block; }
 .egg-link:hover {
   transform: rotate(11deg) translateY(-3px) scale(1.05);
   background: var(--accent); color: #1a0d0e; border-color: var(--accent);
