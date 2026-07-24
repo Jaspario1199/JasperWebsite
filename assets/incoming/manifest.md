@@ -22,3 +22,4 @@ sharp upgrades of the soft images currently on the site (which came from a portf
 | photo-14.jpg | Bike lock CAD — shaded render, blower housing + motor + enclosure. | **RFID Bike Lock — CAD rev v.04–v.05** |
 | photo-15.jpg | Bike lock CAD — wireframe/hidden-line view of the same assembly. | **RFID Bike Lock — CAD rev v.04–v.05** |
 | photo-16.jpg | Bike lock CAD — shaded render, alternate angle. | **RFID Bike Lock — CAD rev v.04–v.05** |
+| photo-17.jpg | Electrical/wiring schematic diagram (dark background, colored nodes/blocks) for the extruder stage. ⚠️ arrived low-res (286×168) — a higher-res export would help. | **ECOFIL — Phase 3 (Filament Extruder) — control schematic** |
