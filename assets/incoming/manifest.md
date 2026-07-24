@@ -27,6 +27,8 @@ sharp upgrades of the soft images currently on the site (which came from a portf
 | photo-19.jpg | Two people in waders carrying a metal base frame through the creek during install. | **Creek Show — Section 2 (Onsite + Assembly)** |
 | photo-20.jpg | White translucent-wing dragonflies being set into the creek; installer in waders. | **Creek Show — Section 2 (Onsite + Assembly)** |
 | photo-21.jpg | Crew on ladders assembling a large white dragonfly wing over the creek. | **Creek Show — Section 2 (Onsite + Assembly)** |
+| photo-22.jpg | SolidWorks CAD of a single dragonfly wing (structural rib frame). ⚠️ very low-res (304×146) — higher-res export would help. | **Creek Show — Section 1 (Modeling, Prototyping & Manufacturing)** |
+| photo-23.jpg | Close-up of a welded/manufactured unfinished wing frame (weld tabs) on a scorched wooden jig. | **Creek Show — Section 1 (Modeling, Prototyping & Manufacturing)** |
 
 ## Austin Creek Show — page structure (3 sections)
 
