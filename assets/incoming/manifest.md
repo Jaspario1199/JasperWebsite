@@ -44,6 +44,8 @@ sharp upgrades of the soft images currently on the site (which came from a portf
 | photo-36.jpg | Phase 2 dehydrator manufacturing — water-jet-cut sheet-metal panels (fan bores + slots) laid out on the machine bed after cutting. ⚠️ small (154×115). | **ECOFIL — Phase 2 (Filament Dehydrator) — manufacturing (water-jet cutting)** |
 | photo-37.jpg | Phase 2 dehydrator full-assembly exploded CAD — chamber panels, fan array, shelves, and door separated along the assembly axis. ⚠️ small (187×116). | **ECOFIL — Phase 2 (Filament Dehydrator) — exploded full-assembly CAD** |
 | photo-38.jpg | RFID Bike Lock — first physical prototype (v0.0): brushed-metal wedge enclosure with round RFID reader port and a small color status display on the front face. ⚠️ small (217×186). | **RFID Bike Lock — v0.0 first prototype (built)** |
+| photo-39.jpg | RFID Bike Lock v0.0 CAD assembly — shaded render: cylindrical lock barrel, top display cutout + RFID port, and the green shackle/latch in the base. ⚠️ small (195×196). | **RFID Bike Lock — v0.0 assembly CAD** |
+| photo-40.jpg | RFID Bike Lock v0.0 CAD assembly — alternate angle showing the split housing and mounting base. ⚠️ small (199×195). | **RFID Bike Lock — v0.0 assembly CAD** |
 
 ## Austin Creek Show — page structure (3 sections)
 
