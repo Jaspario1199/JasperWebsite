@@ -33,6 +33,13 @@ sharp upgrades of the soft images currently on the site (which came from a portf
 | photo-25.jpg | Finished (white-painted) back wing frames of one dragonfly leaning against a stone wall. ⚠️ small (144×211). | **Creek Show — Section 1 (Modeling, Prototyping & Manufacturing)** |
 | photo-26.jpg | A finished small-scale **prototype wing** (bare metal) next to a finished full-size **wing** on a workbench — a wing-to-wing comparison (NOT the full assembly). | **Creek Show — Section 1 (Modeling, Prototyping & Manufacturing)** |
 | photo-27.jpg | White-painted small-scale prototype dragonfly assembly on a stand in the shop — built to show the artists and gather design feedback. ⚠️ small (176×208). | **Creek Show — Section 1 (Modeling, Prototyping & Manufacturing)** |
+| photo-28.jpg | Undetailed/simplified CAD assembly of one of the four dragonflies — wings and body simplified (in the field they carry covers), built for wind-resistance simulation. ⚠️ small (200×208). | **Creek Show — Section 1 (Modeling, Prototyping & Manufacturing)** |
+| photo-29.jpg | Physical gray-painted multi-tier machine frame (mesh/screen shelves) — the built Phase 1 shredder structure. ⚠️ small (133×172). | **ECOFIL — Phase 1 (Plastic Shredder)** |
+| photo-30.jpg | Full-assembly CAD of the Phase 1 shredder — wireframe/hidden-line, hopper + cutter + control bays on the wooden frame. ⚠️ small (267×260). | **ECOFIL — Phase 1 (Plastic Shredder) — full assembly CAD** |
+| photo-31.jpg | Exploded CAD of the Phase 1 shredder assembly — frame legs, shelves, drawer, and subsystem modules separated. ⚠️ small (249×268). | **ECOFIL — Phase 1 (Plastic Shredder) — exploded CAD** |
+| photo-32.jpg | Phase 3 extruder prototype — CAD assembly, side view: motor + gearbox driving a vertical barrel/hopper on an extruded-frame stand. ⚠️ small (172×172). | **ECOFIL — Phase 3 (Filament Extruder) — prototype assembly CAD** |
+| photo-33.jpg | Phase 3 extruder prototype — CAD assembly, alternate angle: hopper feed, drive housing, and base frame. ⚠️ small (175×170). | **ECOFIL — Phase 3 (Filament Extruder) — prototype assembly CAD** |
+| photo-34.jpg | Physical Phase 2 dehydrator prototype — black powder-coated sheet-metal chamber, open front showing the internal brushless-fan array. ⚠️ small (156×117). | **ECOFIL — Phase 2 (Filament Dehydrator) — built prototype** |
 
 ## Austin Creek Show — page structure (3 sections)
 
