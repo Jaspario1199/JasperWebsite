@@ -57,6 +57,9 @@ sharp upgrades of the soft images currently on the site (which came from a portf
 | photo-49.jpg | Soccer Shots — finished **goal**: blue diagonal-truss backboard between two orange triangular end stands on suction-cup feet, with the orange goalie post. (254×200). | **Soccer Shots — finished product (goal)** |
 | photo-50.jpg | Soccer Shots — CAD assembly of the **shooter/launcher**: magenta grip body, twin guide rods, green plunger block on a compression spring, and the suction-cup base plate. Clean shaded SolidWorks render. (458×230). | **Soccer Shots — shooter assembly CAD** |
 | photo-51.jpg | Soccer Shots — CAD assembly of the **goal**: blue diagonal-truss backboard, teal triangular end stands, red goalie post + sliding gray goalie block on the base rail. Larger/cleaner than photo-41 → use this as the goal-assembly CAD. (387×243). | **Soccer Shots — goal assembly CAD (supersedes photo-41)** |
+| photo-52.jpg | Soccer Shots — hand sketch (napkin drawing) of the **shooter sub-assembly**: pencil views of the plunger/handle, guide rod, and spring layout with early dimensions/notes. (227×296). | **Soccer Shots — initial concept sketches (napkin drawings)** |
+| photo-53.jpg | Soccer Shots — hand sketch: **final assembly (not to scale)** — plunger + spring detail, cross-hatched section, and the triangular goal end-stand profile. (257×324). | **Soccer Shots — initial concept sketches (napkin drawings)** |
+| photo-54.jpg | Soccer Shots — hand sketch of the **goal / goalie** concept: angled backboard, goalie block, and base with dimension callouts. (255×325). | **Soccer Shots — initial concept sketches (napkin drawings)** |
 
 ## Austin Creek Show — page structure (3 sections)
 
