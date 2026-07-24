@@ -163,6 +163,27 @@ p { text-wrap: pretty; }
 
 /* personal "A Day in the Life" page: one scroll, short alternating sections */
 .life { max-width: 900px; margin: 8px auto 0; }
+
+/* accordion: each life topic collapses to a clickable row */
+.acc { border-bottom: 1px solid var(--border); }
+.life > .acc:first-child { border-top: 1px solid var(--border); }
+.acc-head {
+  list-style: none; cursor: pointer; user-select: none;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 22px 4px; color: var(--text-strong);
+  font-family: var(--font-head); font-weight: 600; line-height: 1.15;
+  font-size: clamp(1.3rem, 3.4vw, 1.7rem); transition: color .15s ease;
+}
+.acc-head::-webkit-details-marker { display: none; }
+.acc-head::after {
+  content: ""; width: 10px; height: 10px; flex-shrink: 0; margin-right: 6px;
+  border-right: 2px solid var(--faint); border-bottom: 2px solid var(--faint);
+  transform: rotate(45deg); transition: transform .2s ease, border-color .2s ease;
+}
+.acc[open] .acc-head::after { transform: rotate(-135deg); border-color: var(--accent); }
+.acc-head:hover { color: var(--accent); }
+.acc-body { padding: 2px 4px 30px; }
+.acc-body > p:first-child { margin-top: 0; color: var(--text); line-height: 1.66; max-width: 72ch; }
 .life-section {
   display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: center;
   padding: 42px 0; border-top: 1px solid var(--border);
