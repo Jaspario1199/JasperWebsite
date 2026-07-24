@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ECOFIL Filament Recycler - Jasper Buntinx</title>
+  <meta name="description" content="Every makerspace generates buckets of failed prints and scrap plastic. ECOFIL is a startup I co-founded to close that loop: a three-stage machine line">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css?v=20260724b">
+  <link rel="canonical" href="https://jasperbuntinx.com/experiences/ecofil.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Jasper Buntinx">
+  <meta property="og:title" content="ECOFIL Filament Recycler - Jasper Buntinx">
+  <meta property="og:description" content="Every makerspace generates buckets of failed prints and scrap plastic. ECOFIL is a startup I co-founded to close that loop: a three-stage machine line">
+  <meta property="og:url" content="https://jasperbuntinx.com/experiences/ecofil.html">
+  <meta property="og:image" content="https://jasperbuntinx.com/assets/img/ecofil-dehydrator-chamber.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="site-title" href="../index.html">Jasper Buntinx</a>
+    <nav class="site-nav" id="siteNav">
+      <a href="../index.html">Home</a>
+      <a href="../resume.html">Resume</a>
+      <a href="../experiences.html" class="active">Experiences</a>
+      <a href="../certifications.html">Certifications</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+    <button type="button" class="nav-toggle" id="navToggle" aria-label="Menu" aria-controls="siteNav" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main class="case-page">
+  <div class="case-shell">
+    <section class="case-hero">
+      <div class="case-hero-copy">
+        <p class="crumb"><a href="../experiences.html">&larr; All Experiences</a></p>
+        <span class="case-eyebrow">Product Development · Manufacturing · Controls</span>
+        <h1>ECOFIL Filament Recycler</h1>
+        <p class="case-deck">A three-machine line that turns failed 3D prints into reusable filament. I lead mechanical design from CAD and analysis through fabrication, sensing, and system integration.</p>
+        <p class="case-role"><strong>Co-founder / Mechanical Engineer</strong> · ECOFIL · Aug 2025–Present · College Station, TX</p>
+      </div>
+      <figure class="case-hero-visual">
+        <img class="zoomable" src="../assets/img/ecofil-dehydrator-chamber.jpg" alt="ECOFIL dehydrator chamber opened to show the internal brushless-fan array and shelf">
+        <figcaption>Dehydrator chamber held open, showing the 2&times;2 brushless-fan array and aluminum shelf inside the sheet-metal housing.</figcaption>
+      </figure>
+    </section>
+
+    <div class="case-metrics" aria-label="Project summary">
+      <div class="case-metric"><strong>3 stages</strong><span>One recycling line</span></div>
+      <div class="case-metric"><strong>Closed loop</strong><span>Thermal and diameter control</span></div>
+      <div class="case-metric"><strong>CAD → build</strong><span>Mechanical ownership</span></div>
+      <div class="case-metric"><strong>On budget</strong><span>Funded prototype</span></div>
+    </div>
+
+    <section class="case-section">
+      <div class="case-section-label"><span class="case-index">01</span><h2>The system</h2></div>
+      <div>
+        <p class="case-lead">Recycling filament is not one mechanism. Waste must be reduced to consistent flake, dried before heating, and extruded at a controlled diameter. Each stage creates the input conditions for the next.</p>
+        <div class="case-flow">
+          <article class="case-flow-step"><strong>Shred</strong><p>Convert failed prints into uniform feedstock with a fabricated cutter stack and frame.</p></article>
+          <article class="case-flow-step"><strong>Dry</strong><p>Use heat, airflow, temperature, and humidity feedback to remove moisture before extrusion.</p></article>
+          <article class="case-flow-step"><strong>Extrude</strong><p>Melt, draw, measure, and spool filament while controlling its final diameter.</p></article>
+        </div>
+        <!-- Optional enhancement: replace or supplement this section with a full-system photo showing all three machines together. -->
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="case-section-label"><span class="case-index">02</span><h2>Stage 1 · Shredder</h2></div>
+      <div>
+        <p class="case-lead">I designed the cutter stack and machine frame in SolidWorks, then carried the design from full-assembly CAD into a built machine with its control electronics. The engineering goal was repeatable flake size and a structure that could carry the cutter loads.</p>
+        <div class="case-figures">
+          <figure class="case-figure"><img class="zoomable" src="../assets/img/ecofil-shredder-assembly-cad.jpg" alt="Full-assembly hidden-line CAD of the ECOFIL shredder with hopper, cutter, and control bays" loading="lazy"><figcaption>Full-assembly CAD: hopper, cutter, and control bays on the frame.</figcaption></figure>
+          <figure class="case-figure"><img class="zoomable" src="../assets/img/ecofil-shredder-cad.jpg" alt="Exploded SolidWorks view of the ECOFIL shredder cutter stack and frame" loading="lazy"><figcaption>Exploded CAD: cutter stack, shafting, and frame interfaces.</figcaption></figure>
+        </div>
+        <div class="case-figures">
+          <figure class="case-figure"><img class="zoomable" src="../assets/img/ecofil-shredder-build.jpg" alt="Built ECOFIL shredder: tall wooden-framed machine with clear hopper, dual-AC-motor cutter, and Arduino controls" loading="lazy"><figcaption>Built shredder: clear hopper feeding a cutter driven by two AC motors, with Arduino and power hardware in the lower bay.</figcaption></figure>
+          <figure class="case-figure"><img class="zoomable" src="../assets/img/ecofil-shredder-electronics.jpg" alt="Benchtop bring-up of the ECOFIL shredder controls with Arduino Uno, breadboard, relay modules, and power board" loading="lazy"><figcaption>Controls bring-up: Arduino Uno, breadboard, relay modules, switch/LED board, and power board.</figcaption></figure>
+        </div>
+        <div class="case-tags"><span class="case-tag">SolidWorks</span><span class="case-tag">GD&amp;T</span><span class="case-tag">CNC milling</span><span class="case-tag">Laser cutting</span><span class="case-tag">MIG welding</span></div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="case-section-label"><span class="case-index">03</span><h2>Stage 2 · Dehydrator</h2></div>
+      <div>
+        <p class="case-lead">Moisture creates poor extrusion quality. I used SolidWorks thermal analysis to develop the heated airflow path, then integrated PTC heaters, fans, thermistors, and hygrometers for closed-loop drying.</p>
+        <div class="case-grid cols-3">
+          <article class="case-card"><span class="case-card-kicker">Input</span><h3>Wet plastic flake</h3><p>Material enters with uncontrolled moisture that would create bubbles and inconsistent filament.</p></article>
+          <article class="case-card"><span class="case-card-kicker">Control</span><h3>Heat + airflow</h3><p>PTC elements and fans move controlled thermal energy through the feedstock.</p></article>
+          <article class="case-card"><span class="case-card-kicker">Feedback</span><h3>Temperature + humidity</h3><p>Thermistors and hygrometers close the loop instead of relying on a fixed timer.</p></article>
+        </div>
+        <div class="case-figures">
+          <figure class="case-figure"><img class="zoomable" src="../assets/img/ecofil-dehydrator-sim.jpg" alt="Thermal and airflow simulation of the ECOFIL dehydrator showing a heat contour over the four-fan shelf array" loading="lazy"><figcaption>Thermal/airflow simulation: heat and flow contour across the four-fan shelf array.</figcaption></figure>
+          <figure class="case-figure"><img class="zoomable" src="../assets/img/ecofil-dehydrator-exploded-cad.jpg" alt="Exploded full-assembly CAD of the ECOFIL dehydrator" loading="lazy"><figcaption>Exploded full-assembly CAD of the dehydrator.</figcaption></figure>
+        </div>
+        <div class="case-figures cols-3">
+          <figure class="case-figure"><img class="zoomable" src="../assets/img/ecofil-dehydrator-waterjet.jpg" alt="Water-jet-cut sheet-metal dehydrator panels with fan bores and slots on the machine bed" loading="lazy"><figcaption>Manufacturing: water-jet-cut sheet-metal panels with fan bores and slots.</figcaption></figure>
+          <figure class="case-figure"><img class="zoomable" src="../assets/img/ecofil-dehydrator-welding.jpg" alt="Welded ECOFIL dehydrator housing clamped on a Fireball welding fixture table" loading="lazy"><figcaption>Welding: sheet-metal housing clamped on a fixture table, weld bead visible.</figcaption></figure>
+          <figure class="case-figure"><img class="zoomable" src="../assets/img/ecofil-dehydrator-proto-built.jpg" alt="Built black powder-coated ECOFIL dehydrator chamber with the front open showing the internal fan array" loading="lazy"><figcaption>Built powder-coated chamber, front open to the internal fan array.</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="case-section-label"><span class="case-index">04</span><h2>Stage 3 · Extruder</h2></div>
+      <div>
+        <p class="case-lead">The extruder combines a high-voltage AC drive, controlled heating, stepper-driven spooling, and linear Hall-effect sensing. The design problem is maintaining a repeatable material flow and final diameter across connected subsystems.</p>
+        <div class="case-figures">
+          <figure class="case-figure"><img class="zoomable" src="../assets/img/ecofil-extruder-cad.jpg" alt="ECOFIL extruder assembly in SolidWorks" loading="lazy"><figcaption>System assembly and component packaging.</figcaption></figure>
+          <figure class="case-figure"><img class="zoomable" src="../assets/img/ecofil-extruder-exploded.jpg" alt="Exploded view of the ECOFIL extruder" loading="lazy"><figcaption>Exploded view showing the mechanical architecture.</figcaption></figure>
+        </div>
+        <div class="case-figures">
+          <figure class="case-figure"><img class="zoomable" src="../assets/img/ecofil-extruder-proto-cad-a.jpg" alt="Prototype CAD side view of the ECOFIL extruder: motor and gearbox driving a vertical barrel on an extruded-frame stand" loading="lazy"><figcaption>Prototype CAD: motor and gearbox driving a vertical barrel/hopper on an extruded-frame stand.</figcaption></figure>
+          <figure class="case-figure"><img class="zoomable" src="../assets/img/ecofil-extruder-proto-cad-b.jpg" alt="Prototype CAD of the ECOFIL extruder from an alternate angle" loading="lazy"><figcaption>Prototype CAD from an alternate angle.</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="case-section-label"><span class="case-index">05</span><h2>Controls and delivery</h2></div>
+      <div>
+        <p class="case-lead">Arduino controllers coordinate Hall-effect sensors, MOSFETs, thermistors, and hygrometers across the line. I also manage BOMs, project finances, incubator funding, and material donations, connecting technical decisions to a buildable product.</p>
+        <div class="case-figures">
+          <figure class="case-figure"><img class="zoomable" src="../assets/img/ecofil-electronics-schematic.jpg" alt="Electrical control schematic for the ECOFIL system" loading="lazy"><figcaption>Shared sensing and control architecture.</figcaption></figure>
+          <article class="case-card"><span class="case-card-kicker">Result</span><h3>Integrated prototype delivered within budget</h3><p>ECOFIL secured support from Aggies Create, Tyrex, and the TAMU Meloy program. The recycler combined mechanical fabrication, embedded control, and operations into one working development effort.</p></article>
+        </div>
+        <div class="case-tags"><span class="case-tag">SolidWorks</span><span class="case-tag">Thermal FEA</span><span class="case-tag">Arduino</span><span class="case-tag">Sensors</span><span class="case-tag">DFM</span><span class="case-tag">BOM management</span></div>
+        <div class="detail-nav"><a href="rochester-sensors.html">&larr; Rochester Sensors</a><a href="cfd-optimization.html">CUDA CFD Internship &rarr;</a></div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <span>Copyright © 2026 Jasper Buntinx</span>
+    <span><a href="https://www.linkedin.com/in/jasper-buntinx/" target="_blank" rel="noopener">LinkedIn</a> &nbsp;|&nbsp; Email: <a href="mailto:jasper_buntinx@tamu.edu">jasper_buntinx@tamu.edu</a></span>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" hidden>
+  <button type="button" class="lb-close" id="lbClose" aria-label="Close">&times;</button>
+  <button type="button" class="lb-prev" id="lbPrev" aria-label="Previous image">&lsaquo;</button>
+  <figure>
+    <img id="lbImg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="">
+    <figcaption id="lbCaption" aria-live="polite"></figcaption>
+  </figure>
+  <button type="button" class="lb-next" id="lbNext" aria-label="Next image">&rsaquo;</button>
+</div>
+
+<script src="../script.js?v=20260724b"></script>
+</body>
+</html>

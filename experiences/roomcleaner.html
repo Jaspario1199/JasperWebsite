@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RoomCleaner Cable Robot - Jasper Buntinx</title>
+  <meta name="description" content="A ceiling-mounted cable robot that detects and picks up laundry. Explore the live control simulation, solve the cable statics yourself, and browse the CAD and BOM.">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css?v=20260724b">
+  <style>
+/* ---- RoomCleaner interactive block, scoped under .rcx, site-token palette ---- */
+.rcx{
+  --panel:#16181d; --panel-2:#1c1f25; --inset:#0b0c0f;
+  --line:rgba(255,255,255,.09); --line-strong:rgba(255,255,255,.18);
+  --text:#d7dade; --dim:#9aa0a8; --bright:#f4f6f8;
+  --accent:#e06a72; --accent-soft:rgba(224,106,114,.14);
+  --cyan:#8aa6e6; --cyan-soft:rgba(138,166,230,.12);
+  --good:#63c58a; --crit:#eca23f; --ground:#0e0f12;
+  --mono:ui-monospace,"SF Mono","Cascadia Mono","JetBrains Mono","Roboto Mono",Menlo,Consolas,monospace;
+  --sans:"Inter",system-ui,-apple-system,sans-serif;
+  --head:"Space Grotesk","Inter",system-ui,sans-serif;
+  font-family:var(--sans); color:var(--text); font-size:15.5px; line-height:1.6;
+}
+.rcx, .rcx *{box-sizing:border-box}
+.rcx .wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+.rcx a{color:var(--accent);text-decoration:none}
+.rcx h2,.rcx h3{font-family:var(--head);color:var(--bright);text-wrap:balance;font-weight:600;letter-spacing:-.01em;margin:0}
+.rcx h2{font-size:clamp(21px,3vw,28px);margin-bottom:6px}
+.rcx p{max-width:64ch;margin:0 0 10px}
+.rcx section{padding:56px 0;border-bottom:1px solid var(--line)}
+.rcx section:last-of-type{border-bottom:none}
+.rcx .lead{font-size:15.5px;color:var(--text)}
+.rcx .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:6px;flex-wrap:wrap}
+.rcx .sec-head .idx{font-family:var(--mono);font-size:12px;color:var(--accent)}
+
+/* live sim stage */
+.rcx .stage{margin-top:6px;border:1px solid var(--line-strong);border-radius:12px;overflow:hidden;background:var(--inset);box-shadow:0 2px 6px rgba(0,0,0,.45),0 24px 60px rgba(0,0,0,.5)}
+.rcx .stage-head{display:flex;align-items:center;gap:12px;padding:11px 16px;border-bottom:1px solid var(--line);background:var(--panel);font-family:var(--mono);font-size:12px;color:var(--dim)}
+.rcx .dot{width:8px;height:8px;border-radius:50%;background:var(--good);box-shadow:0 0 8px var(--good)}
+.rcx .stage-head .spacer{flex:1}
+.rcx .stage-body{display:grid;grid-template-columns:1fr 236px;gap:0}
+.rcx #sim{display:block;width:100%;height:auto;background:var(--inset)}
+.rcx .telem{border-left:1px solid var(--line);padding:16px;font-family:var(--mono);font-size:12px;background:var(--panel)}
+.rcx .telem .row{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px dashed var(--line)}
+.rcx .telem .row span:first-child{color:var(--dim)}
+.rcx .telem .row span:last-child{color:var(--bright);font-variant-numeric:tabular-nums}
+.rcx .telem .state{color:var(--accent)}
+.rcx .telem h4{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin:14px 0 6px;font-weight:500}
+.rcx .stage-foot{display:flex;gap:10px;align-items:center;padding:11px 16px;border-top:1px solid var(--line);background:var(--panel);font-family:var(--mono);font-size:12px;color:var(--dim);flex-wrap:wrap}
+.rcx .btn{font-family:var(--mono);font-size:12px;color:var(--bright);background:var(--accent-soft);border:1px solid var(--accent);border-radius:6px;padding:6px 12px;cursor:pointer;transform:none;box-shadow:none}
+.rcx .btn:hover{background:var(--accent);color:#14090b;transform:none;box-shadow:none}
+.rcx .btn.ghost{background:none;border-color:var(--line-strong);color:var(--text)}
+.rcx .btn.ghost:hover{border-color:var(--accent);color:var(--accent)}
+.rcx .hint{color:var(--dim)}
+
+/* stats */
+.rcx .stats{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:26px}
+.rcx .stat{background:var(--panel);padding:16px 16px 14px}
+.rcx .stat .n{font-family:var(--mono);font-size:23px;color:var(--bright);font-weight:600;letter-spacing:-.02em}
+.rcx .stat .n b{color:var(--accent);font-weight:600}
+.rcx .stat .l{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-top:3px}
+.rcx .statusline{margin-top:14px;font-family:var(--mono);font-size:12px;color:var(--dim)}
+.rcx .statusline b{color:var(--good);font-weight:500}
+
+/* panel grids */
+.rcx .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:26px}
+.rcx .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:26px}
+.rcx .panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px;position:relative}
+.rcx .panel .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:9px}
+.rcx .panel h3{font-size:16px;margin:0 0 7px}
+.rcx .panel p{font-size:13.5px;color:var(--text);margin:0}
+.rcx .panel .k{font-family:var(--mono);color:var(--cyan)}
+.rcx .corner{position:absolute;width:7px;height:7px;border:1px solid var(--line-strong)}
+.rcx .corner.tl{top:-1px;left:-1px;border-right:0;border-bottom:0}
+.rcx .corner.br{bottom:-1px;right:-1px;border-left:0;border-top:0}
+
+/* charts + force explorer */
+.rcx .charts{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:26px}
+.rcx .chartcard{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}
+.rcx .chartcard h3{font-size:15px;margin:0 0 2px}
+.rcx .chartcard .cap{font-size:12.5px;color:var(--dim);margin:0 0 12px;font-family:var(--mono);max-width:none}
+.rcx .chartcard canvas{display:block;width:100%;height:auto}
+.rcx .metric{display:flex;gap:18px;margin-top:12px;flex-wrap:wrap}
+.rcx .metric div{font-family:var(--mono);font-size:12px;color:var(--dim)}
+.rcx .metric b{color:var(--accent);font-size:17px;display:block}
+.rcx .force-grid{display:grid;grid-template-columns:1fr 250px;gap:18px;margin-top:6px}
+.rcx #fmap{touch-action:none;cursor:crosshair;border:1px solid var(--line);border-radius:8px;background:var(--inset);display:block;width:100%;height:auto}
+.rcx .force-side label{display:block;font-family:var(--mono);font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px}
+.rcx .force-side label b{color:var(--bright);float:right;text-transform:none;letter-spacing:0;font-variant-numeric:tabular-nums}
+.rcx .force-side input[type=range]{width:100%;accent-color:var(--accent);margin-top:6px}
+.rcx .fbar{display:grid;grid-template-columns:16px 1fr 58px;gap:8px;align-items:center;margin:7px 0;font-family:var(--mono);font-size:11.5px}
+.rcx .fbar .fl{color:var(--dim)}
+.rcx .ftrack{position:relative;height:10px;background:var(--inset);border:1px solid var(--line);border-radius:4px;overflow:hidden}
+.rcx .ffill{height:100%;background:var(--cyan);width:0%}
+.rcx .ffill.hot{background:var(--crit)}
+.rcx .ftrack:after{content:"";position:absolute;left:80%;top:0;bottom:0;width:1px;background:var(--crit);opacity:.7}
+.rcx .fbar .fv{text-align:right;color:var(--bright);font-variant-numeric:tabular-nums}
+.rcx .fnote{margin-top:12px;font-family:var(--mono);font-size:12px;color:var(--dim);border-top:1px dashed var(--line);padding-top:10px}
+.rcx .fnote b{color:var(--accent)}
+.rcx .fnote .bad{color:var(--crit)}
+
+/* gripper + stack + arch */
+.rcx .gripper{display:grid;grid-template-columns:340px 1fr;gap:28px;align-items:center;margin-top:24px}
+.rcx .gripper img{width:100%;border:1px solid var(--line);border-radius:10px;background:var(--inset);cursor:zoom-in}
+.rcx ul.clean{list-style:none;padding:0;margin:12px 0 0}
+.rcx ul.clean li{padding:7px 0 7px 20px;position:relative;font-size:13.5px;border-bottom:1px dashed var(--line)}
+.rcx ul.clean li:before{content:"›";position:absolute;left:2px;color:var(--accent);font-family:var(--mono)}
+.rcx .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.rcx .chip{font-family:var(--mono);font-size:12px;color:var(--text);background:var(--panel-2);border:1px solid var(--line);border-radius:20px;padding:6px 13px}
+.rcx .chip b{color:var(--cyan)}
+.rcx .arch{margin-top:26px;background:var(--inset);border:1px solid var(--line);border-radius:10px;padding:16px 20px;overflow-x:auto}
+.rcx .arch pre{margin:0;font-family:var(--mono);font-size:12.5px;line-height:1.75;color:var(--text)}
+.rcx .arch .a{color:var(--accent)} .rcx .arch .c{color:var(--cyan)} .rcx .arch .d{color:var(--dim)}
+
+/* BOM */
+.rcx details.bom{background:var(--panel);border:1px solid var(--line);border-radius:10px;margin-top:12px;overflow:hidden}
+.rcx details.bom summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:12px;padding:14px 18px;font-family:var(--mono);color:var(--bright);font-size:13.5px}
+.rcx details.bom summary::-webkit-details-marker{display:none}
+.rcx details.bom summary:before{content:"▸";color:var(--accent);transition:transform .15s}
+.rcx details.bom[open] summary:before{transform:rotate(90deg)}
+.rcx details.bom summary:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.rcx .bsub{color:var(--dim);font-size:11px;letter-spacing:.05em;font-weight:400}
+.rcx .bom-body{overflow-x:auto;border-top:1px solid var(--line)}
+.rcx .bom table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:520px}
+.rcx .bom td,.rcx .bom th{padding:9px 18px;text-align:left;border-top:1px dashed var(--line)}
+.rcx .bom th{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);border-top:none;font-weight:500}
+.rcx .bom td:first-child{color:var(--bright)}
+.rcx .bom td.qty,.rcx .bom th.qty{text-align:right;font-family:var(--mono);white-space:nowrap}
+.rcx .bom td.price,.rcx .bom th.price{display:none;text-align:right;font-family:var(--mono);color:var(--accent);white-space:nowrap}
+.rcx[data-prices] .bom td.price,.rcx[data-prices] .bom th.price{display:table-cell}
+
+@media(max-width:860px){.rcx .stats{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:820px){.rcx .grid2,.rcx .charts,.rcx .force-grid{grid-template-columns:1fr}.rcx .grid4{grid-template-columns:1fr 1fr}}
+@media(max-width:720px){.rcx .stage-body{grid-template-columns:1fr}.rcx .telem{border-left:none;border-top:1px solid var(--line)}.rcx .gripper{grid-template-columns:1fr}}
+@media(max-width:480px){.rcx .stats{grid-template-columns:repeat(2,1fr)}.rcx .grid4{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.rcx *{animation:none!important;transition:none!important}}
+</style>
+  <link rel="canonical" href="https://jasperbuntinx.com/experiences/roomcleaner.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Jasper Buntinx">
+  <meta property="og:title" content="RoomCleaner Cable Robot - Jasper Buntinx">
+  <meta property="og:description" content="A ceiling-mounted cable robot that detects and picks up laundry. Explore the live control simulation, solve the cable statics yourself, and browse the CAD and BOM.">
+  <meta property="og:url" content="https://jasperbuntinx.com/experiences/roomcleaner.html">
+  <meta property="og:image" content="https://jasperbuntinx.com/assets/img/creekshow-night.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="site-title" href="../index.html">Jasper Buntinx</a>
+    <nav class="site-nav" id="siteNav">
+      <a href="../index.html">Home</a>
+      <a href="../resume.html">Resume</a>
+      <a href="../experiences.html" class="active">Experiences</a>
+      <a href="../certifications.html">Certifications</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+    <button type="button" class="nav-toggle" id="navToggle" aria-label="Menu" aria-controls="siteNav" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <div class="page-header">
+      <p class="crumb"><a href="../experiences.html">&larr; All Experiences</a></p>
+      <h1>RoomCleaner: Autonomous Laundry-Picking Cable Robot</h1>
+      <p class="detail-meta"><strong>Personal Project</strong> &nbsp;|&nbsp; Independent &nbsp;|&nbsp; Jul 2026 &ndash; Present &nbsp;|&nbsp; College Station, TX</p>
+      <p style="max-width:70ch">Four ceiling winches fly a claw on cables (think stadium SkyCam) while a camera finds the laundry. Everything below is live: the control loop, the physics, the CAD. <strong>Click the floor to drop laundry. Drag the claw. Push the cables to their limits.</strong></p>
+      <div class="btn-row" style="margin-top:18px">
+        <a class="btn btn-outline" href="https://github.com/Jaspario1199/RoomCleaner" target="_blank" rel="noopener">Source on GitHub</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="rcx">
+    <div class="wrap">
+      <div class="stage" id="build">
+    <div class="stage-head">
+      <span class="dot"></span><span>control_loop.sim</span>
+      <span class="spacer"></span><span id="fps">live</span>
+    </div>
+    <div class="stage-body">
+      <canvas id="sim" width="880" height="560" role="img" aria-label="Live simulation of the cable robot picking up laundry"></canvas>
+      <div class="telem">
+        <h4>Telemetry</h4>
+        <div class="row"><span>state</span><span class="state" id="t-state">SCAN</span></div>
+        <div class="row"><span>claw x,y</span><span id="t-pos">–</span></div>
+        <div class="row"><span>height z</span><span id="t-z">–</span></div>
+        <div class="row"><span>picked</span><span id="t-pick">0</span></div>
+        <h4>Cable length (m)</h4>
+        <div class="row"><span>winch A</span><span id="t-a">–</span></div>
+        <div class="row"><span>winch B</span><span id="t-b">–</span></div>
+        <div class="row"><span>winch C</span><span id="t-c">–</span></div>
+        <div class="row"><span>winch D</span><span id="t-d">–</span></div>
+      </div>
+    </div>
+    <div class="stage-foot">
+      <button type="button" class="btn" id="playbtn">❚❚ pause</button>
+      <button type="button" class="btn ghost" id="dropbtn">+ drop laundry</button>
+      <span class="hint">or click on the floor to add an item</span>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="n"><b>9</b> lb</div><div class="l">payload reach</div></div>
+    <div class="stat"><div class="n"><b>63</b>%</div><div class="l">room volume</div></div>
+    <div class="stat"><div class="n">±<b>1</b> cm</div><div class="l">grab accuracy</div></div>
+    <div class="stat"><div class="n"><b>29</b></div><div class="l">tests passing</div></div>
+    <div class="stat"><div class="n"><b>8</b></div><div class="l">printed parts</div></div>
+    <div class="stat"><div class="n">$<b>230</b></div><div class="l">total build</div></div>
+  </div>
+  <div class="statusline">status: <b>simulation + analysis validated</b> · parts ordered · hardware bring-up next</div>
+
+    </div>
+<section><div class="wrap">
+  <div class="sec-head"><span class="idx">01</span><h2>How it works</h2></div>
+  <p class="lead">Four subsystems, each isolated behind a clean interface so the same control code runs the simulator and the real motors.</p>
+  <div class="grid4">
+    <div class="panel"><span class="corner tl"></span><span class="corner br"></span>
+      <div class="tag">Kinematics</div><h3>Where's the claw?</h3>
+      <p>A cable's length is just the distance from its ceiling corner to the claw. Invert that and you convert <span class="k">go to (x,y,z)</span> into four spool lengths.</p></div>
+    <div class="panel"><span class="corner tl"></span><span class="corner br"></span>
+      <div class="tag">Perception</div><h3>Find the laundry</h3>
+      <p>An open-vocabulary vision model (<span class="k">YOLO-World</span>) detects clothes by name, then maps each pixel to a floor coordinate.</p></div>
+    <div class="panel"><span class="corner tl"></span><span class="corner br"></span>
+      <div class="tag">Grip</div><h3>Tentacle hand</h3>
+      <p>Five tendon-driven curling fingers rake and wrap crumpled cloth; one servo closes them all. Better than a rigid claw on a soft target.</p></div>
+    <div class="panel"><span class="corner tl"></span><span class="corner br"></span>
+      <div class="tag">Control</div><h3>Scan → grab → deliver</h3>
+      <p>An explicit state machine clears the floor nearest-first, geofenced away from the walls and the ceiling fan.</p></div>
+  </div>
+  <div class="arch"><pre>
+<span class="d">┌ perception ─────────────────────┐   ┌ planning ──────────────────┐</span>
+camera ▸ <span class="c">YOLO-World</span> ▸ floor (x,y) <span class="a">──▸</span> state machine ▸ <span class="c">inverse kinematics</span> ▸ 4 cable lengths
+<span class="d">└─────────────────────────────────┘   └────────────────────────────┘</span>
+                              USB serial <span class="a">──▸</span> Arduino + 4× DRV8825 <span class="a">──▸</span> corner winches
+                              WiFi <span class="a">──▸</span> ESP32 on the claw <span class="a">──▸</span> tentacle gripper (battery)
+</pre></div>
+</div></section>
+
+<section id="analysis"><div class="wrap">
+  <div class="sec-head"><span class="idx">02</span><h2>Engineering analysis</h2></div>
+  <p class="lead">The physics is closed-form, so the design validates itself. These charts render live from the same equations that drive the robot.</p>
+  <div class="charts">
+    <div class="chartcard">
+      <h3>Cable-tension cost map</h3>
+      <p class="cap">peak motor load across the floor · z = 0.3 m</p>
+      <canvas id="heat" width="760" height="420"></canvas>
+      <div class="metric">
+        <div><b>12 N</b>worst case</div><div><b>40 N</b>motor limit</div><div><b>3.3×</b>headroom</div>
+      </div>
+    </div>
+    <div class="chartcard">
+      <h3>Maximum payload</h3>
+      <p class="cap">load where the busiest cable hits the motor limit</p>
+      <canvas id="payload" width="760" height="420"></canvas>
+      <div class="metric">
+        <div><b>4 kg</b>anywhere</div><div><b>10.6 kg</b>at center</div><div><b>0.9 kg</b>a pair of jeans</div>
+      </div>
+    </div>
+  </div>
+  <div class="chartcard" style="margin-top:18px">
+    <h3>Force explorer: solve the statics yourself</h3>
+    <p class="cap">drag the claw or drive it with the sliders; the four cable tensions are solved live from the robot's equilibrium equations · dynamic load = m·(g + a)</p>
+    <div class="force-grid">
+      <canvas id="fmap" width="640" height="440" role="img" aria-label="Interactive force map: drag to move the claw"></canvas>
+      <div class="force-side">
+        <label>payload <b id="fm-lbl">0.9 kg</b>
+          <input type="range" id="fmass" min="0" max="5" step="0.1" value="0.9" aria-label="Payload mass"></label>
+        <label>claw height <b id="fz-lbl">0.30 m</b>
+          <input type="range" id="fz" min="0.10" max="2.20" step="0.05" value="0.30" aria-label="Claw height"></label>
+        <label>acceleration <b id="fa-lbl">0.0 m/s²</b>
+          <input type="range" id="fa" min="0" max="3" step="0.1" value="0" aria-label="Vertical acceleration (dynamic load)"></label>
+        <div class="fbar"><span class="fl">A</span><div class="ftrack"><div class="ffill" id="fb0"></div></div><span class="fv" id="fv0">–</span></div>
+        <div class="fbar"><span class="fl">B</span><div class="ftrack"><div class="ffill" id="fb1"></div></div><span class="fv" id="fv1">–</span></div>
+        <div class="fbar"><span class="fl">C</span><div class="ftrack"><div class="ffill" id="fb2"></div></div><span class="fv" id="fv2">–</span></div>
+        <div class="fbar"><span class="fl">D</span><div class="ftrack"><div class="ffill" id="fb3"></div></div><span class="fv" id="fv3">–</span></div>
+        <div class="fnote" id="fnote">max payload here: –</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid2" style="margin-top:18px">
+    <div class="panel"><span class="corner tl"></span><span class="corner br"></span>
+      <div class="tag">Calibration sensitivity</div><h3>How precisely to measure the ceiling</h3>
+      <p>Perturbing the anchor positions and re-solving the forward kinematics shows claw error ≈ measurement error. Target: measure each corner to <span class="k">~1 cm</span> for ~1–2 cm grab accuracy.</p></div>
+    <div class="panel"><span class="corner tl"></span><span class="corner br"></span>
+      <div class="tag">Statics</div><h3>Cables pull, never push</h3>
+      <p>Holding the claw means finding four non-negative tensions that cancel gravity. Where none exist (near the walls, behind the fan) is exactly the unreachable border, computed, not guessed.</p></div>
+  </div>
+</div></section>
+
+<section id="gripper"><div class="wrap">
+  <div class="sec-head"><span class="idx">03</span><h2>The gripper</h2></div>
+  <div class="gripper">
+    <img class="zoomable" src="../assets/img/roomcleaner-gripper-cad.png" alt="CAD render of the tentacle gripper: a frame with five curling fingers">
+    <div>
+      <p class="lead">Grabbing flat, crumpled cloth off a hard floor is the classic failure point. The answer isn't a claw. It's a <b style="color:var(--bright)">ring of soft, tendon-driven tentacles</b> that curl inward and gather the laundry toward the center.</p>
+      <ul class="clean">
+        <li>Fully parametric: modeled in code (CadQuery), exports STEP + STL</li>
+        <li>Five TPU fingers with ventral notches that close when a tendon pulls</li>
+        <li>One servo curls all five together; needle-gripper fallback for flat socks</li>
+        <li>Wireless: an ESP32 + battery on the claw take grip commands over WiFi</li>
+      </ul>
+    </div>
+  </div>
+</div></section>
+
+<section id="bom"><div class="wrap">
+  <div class="sec-head"><span class="idx">04</span><h2>Bill of materials</h2>
+    <button type="button" class="btn ghost" id="pricebtn">show est. pricing</button></div>
+  <p class="lead">Everything mechanical that could be printed, was: eight parametric parts modeled in code. The bought parts were each sized from the analysis above (motor torque from the tension map, line strength from peak load, supply wattage from total draw). Total build ≈ <b style="color:var(--bright)">$230</b>, reusing a computer for vision.</p>
+
+  <details class="bom" open>
+    <summary>Motion &amp; structure <span class="bsub">the four corner winches and what holds them up</span></summary>
+    <div class="bom-body"><table><tbody>
+      <tr><th>Component</th><th>Purpose</th><th class="qty">Qty</th><th class="price">Est.</th></tr>
+      <tr><td>NEMA 17 stepper, 42 N·cm</td><td>Ceiling winches, sized to 2.6× the worst-case cable tension</td><td class="qty">4 + 1 spare</td><td class="price">$33</td></tr>
+      <tr><td>Winch spool · motor mount · corner guide</td><td>3D-printed drivetrain (parametric CadQuery, PETG)</td><td class="qty">4 each</td><td class="price">–</td></tr>
+      <tr><td>UHMWPE (Dyneema) braided line, 50 lb</td><td>The cables: near-zero stretch keeps position accurate; ~15× load margin</td><td class="qty">150 m</td><td class="price">$8</td></tr>
+      <tr><td>Stainless lag eye anchors, 700 lb, closed-eye</td><td>Into ceiling joists, the one part that must never be plastic</td><td class="qty">4</td><td class="price">$14</td></tr>
+    </tbody></table></div>
+  </details>
+
+  <details class="bom">
+    <summary>Control &amp; power <span class="bsub">one wired controller drives all four axes</span></summary>
+    <div class="bom-body"><table><tbody>
+      <tr><th>Component</th><th>Purpose</th><th class="qty">Qty</th><th class="price">Est.</th></tr>
+      <tr><td>Arduino Uno + CNC Shield + 4× DRV8825</td><td>4-axis step/dir motor control; custom firmware speaks a simple serial protocol</td><td class="qty">1 kit</td><td class="price">$17</td></tr>
+      <tr><td>Roller-lever limit switches</td><td>Homing: each winch finds its zero cable length at startup</td><td class="qty">4 + spares</td><td class="price">$6</td></tr>
+      <tr><td>12 V 6 A supply + 7.5 A inline fuse</td><td>Motor rail, killed by a switched power strip; fuse protects the wiring</td><td class="qty">1</td><td class="price">$28</td></tr>
+      <tr><td>Extensions, hookup wire, ceiling raceway</td><td>Corner runs hidden along the ceiling seams, no visible wiring</td><td class="qty">set</td><td class="price">$45</td></tr>
+    </tbody></table></div>
+  </details>
+
+  <details class="bom">
+    <summary>Perception <span class="bsub">one camera sees the whole floor</span></summary>
+    <div class="bom-body"><table><tbody>
+      <tr><th>Component</th><th>Purpose</th><th class="qty">Qty</th><th class="price">Est.</th></tr>
+      <tr><td>1080p UVC board camera, 130° FOV</td><td>Ceiling-mounted; wide angle covers every floor corner (computed, not guessed)</td><td class="qty">1</td><td class="price">$19</td></tr>
+      <tr><td>Vision compute</td><td>Reused PC runs YOLO-World open-vocabulary detection</td><td class="qty">–</td><td class="price">$0</td></tr>
+    </tbody></table></div>
+  </details>
+
+  <details class="bom">
+    <summary>Wireless effector <span class="bsub">only the four cables touch the claw</span></summary>
+    <div class="bom-body"><table><tbody>
+      <tr><th>Component</th><th>Purpose</th><th class="qty">Qty</th><th class="price">Est.</th></tr>
+      <tr><td>MG996R servo (180° positional)</td><td>One servo curls all five tentacle tendons</td><td class="qty">1 + 3 spares</td><td class="price">$18</td></tr>
+      <tr><td>ESP32 dev board</td><td>WiFi grip/release server riding on the claw</td><td class="qty">1 + 1 spare</td><td class="price">$13</td></tr>
+      <tr><td>2S LiPo + charger + 6 V buck + switch</td><td>Self-contained power; dock-charging at the rest pose is the end-state</td><td class="qty">1 set</td><td class="price">$38</td></tr>
+    </tbody></table></div>
+  </details>
+
+  <details class="bom">
+    <summary>Printed parts &amp; fasteners <span class="bsub">eight parametric models, STEP + STL in the repo</span></summary>
+    <div class="bom-body"><table><tbody>
+      <tr><th>Component</th><th>Purpose</th><th class="qty">Qty</th><th class="price">Est.</th></tr>
+      <tr><td>Tentacle fingers (TPU 95A)</td><td>Tendon-driven curling fingers: dorsal skin + ventral notches</td><td class="qty">5</td><td class="price">$22 filament</td></tr>
+      <tr><td>Effector frame · tentacle hub · camera mounts</td><td>The claw assembly (PETG/PLA), heat-set-insert ready</td><td class="qty">4 parts</td><td class="price">–</td></tr>
+      <tr><td>M3 stainless kit + brass heat-set inserts</td><td>Metal threads in plastic, the cheap upgrade that outlasts self-tapping</td><td class="qty">2 kits</td><td class="price">$19</td></tr>
+    </tbody></table></div>
+  </details>
+</div></section>
+
+<section id="stack"><div class="wrap">
+  <div class="sec-head"><span class="idx">05</span><h2>Built with</h2></div>
+  <p class="lead">Robotics, computer vision, controls, mechanical CAD, and embedded firmware. One coherent system.</p>
+  <div class="chips">
+    <span class="chip"><b>Python</b> · control + kinematics</span>
+    <span class="chip"><b>NumPy</b> / <b>SciPy</b> · statics &amp; least-squares FK</span>
+    <span class="chip"><b>YOLO-World</b> · open-vocab detection</span>
+    <span class="chip"><b>OpenCV</b> · camera + homography</span>
+    <span class="chip"><b>CadQuery</b> · parametric CAD → STEP/STL</span>
+    <span class="chip"><b>Arduino</b> · 4-axis stepper firmware</span>
+    <span class="chip"><b>ESP32</b> · wireless gripper over WiFi</span>
+    <span class="chip"><b>Matplotlib</b> · analysis + simulation</span>
+    <span class="chip"><b>pytest</b> · 29 tests</span>
+  </div>
+</div></section>
+  </div>
+
+  <div class="container-narrow" style="padding-top:34px">
+    <div class="detail-nav"><a href="tractor.html">&larr; Electric Tractor</a><a href="rochester-sensors.html">Rochester Sensors &rarr;</a></div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <span>Copyright © 2026 Jasper Buntinx</span>
+    <span><a href="https://www.linkedin.com/in/jasper-buntinx/" target="_blank" rel="noopener">LinkedIn</a> &nbsp;|&nbsp; Email: <a href="mailto:jasper_buntinx@tamu.edu">jasper_buntinx@tamu.edu</a></span>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" hidden>
+  <button type="button" class="lb-close" id="lbClose" aria-label="Close">&times;</button>
+  <button type="button" class="lb-prev" id="lbPrev" aria-label="Previous image">&lsaquo;</button>
+  <figure>
+    <img id="lbImg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="">
+    <figcaption id="lbCaption" aria-live="polite"></figcaption>
+  </figure>
+  <button type="button" class="lb-next" id="lbNext" aria-label="Next image">&rsaquo;</button>
+</div>
+
+<script src="../script.js?v=20260724b"></script>
+<script>
+(function(){
+  var rcxEl=document.querySelector('.rcx');
+  function css(v){return getComputedStyle(rcxEl).getPropertyValue(v).trim();}
+
+  /* ---------- room model (4x3 m) ---------- */
+  var W=4.0,D=3.0,H=2.6;
+  var anchors=[[0,0],[W,0],[W,D],[0,D]];
+  var hamper=[W-0.5,0.5];
+
+  /* ---------- live simulation ---------- */
+  var cv=document.getElementById('sim'),cx=cv.getContext('2d');
+  var items=[], claw=[W/2,D/2], z=1.4, target=hamper.slice(), state='SCAN', picked=0, wait=0, playing=true, DPR=1;
+
+  function scatter(n){for(var i=0;i<n;i++)items.push([0.5+Math.random()*(W-1),0.5+Math.random()*(D-1)]);}
+  scatter(4);
+
+  function fit(){
+    var w=cv.clientWidth; DPR=Math.min(2,window.devicePixelRatio||1);
+    cv.width=w*DPR; cv.height=(w*D/W)*DPR; cx.setTransform(DPR,0,0,DPR,0,0);
+  }
+  function toPx(p){var w=cv.clientWidth,h=w*D/W,m=26;return [m+(p[0]/W)*(w-2*m), m+(p[1]/D)*(h-2*m)];}
+  function nearest(){var b=-1,bd=1e9;for(var i=0;i<items.length;i++){var dx=items[i][0]-claw[0],dy=items[i][1]-claw[1],dd=dx*dx+dy*dy;if(dd<bd){bd=dd;b=i;}}return b;}
+
+  function step(){
+    if(!playing)return;
+    if(wait>0){wait--;return;}
+    if(state==='SCAN'){
+      if(items.length===0){ if(Math.random()<0.02) scatter(2+((Math.random()*3)|0)); target=hamper.slice(); moveToward(0.012); return;}
+      var i=nearest(); target=items[i].slice(); state='APPROACH';
+    }
+    if(state==='APPROACH'){ if(moveToward(0.02)){ state='GRAB'; wait=26; } z=1.4-(1.4-0.12)*grabPhase(); }
+    else if(state==='GRAB'){ var i=nearest(); if(i>=0)items.splice(i,1); target=hamper.slice(); state='DELIVER'; z=0.12; }
+    else if(state==='DELIVER'){ z=1.0; if(moveToward(0.02)){ state='RELEASE'; wait=22; z=0.4; } }
+    else if(state==='RELEASE'){ picked++; state='SCAN'; z=1.4; }
+  }
+  var _phase=0;
+  function grabPhase(){_phase=Math.min(1,_phase+0.06);return _phase;}
+  function moveToward(sp){
+    var dx=target[0]-claw[0],dy=target[1]-claw[1],d=Math.hypot(dx,dy);
+    if(d<0.03){_phase=0;return true;}
+    claw[0]+=dx/d*sp; claw[1]+=dy/d*sp; return false;
+  }
+
+  function draw(){
+    var w=cv.clientWidth,h=w*D/W;
+    cx.clearRect(0,0,w,h);
+    // grid
+    cx.strokeStyle=css('--line'); cx.lineWidth=1; cx.globalAlpha=.5;
+    for(var gx=0;gx<=W;gx+=0.5){var a=toPx([gx,0]),b=toPx([gx,D]);cx.beginPath();cx.moveTo(a[0],a[1]);cx.lineTo(b[0],b[1]);cx.stroke();}
+    for(var gy=0;gy<=D;gy+=0.5){var a2=toPx([0,gy]),b2=toPx([W,gy]);cx.beginPath();cx.moveTo(a2[0],a2[1]);cx.lineTo(b2[0],b2[1]);cx.stroke();}
+    cx.globalAlpha=1;
+    // fan keep-out
+    var fc=toPx([2,1.5]),fr=(0.7/W)*(w-52);
+    cx.strokeStyle=css('--crit'); cx.globalAlpha=.5; cx.setLineDash([4,4]);
+    cx.beginPath();cx.arc(fc[0],fc[1],fr,0,7);cx.stroke(); cx.setLineDash([]); cx.globalAlpha=1;
+    // cables
+    var cp=toPx(claw);
+    cx.strokeStyle=css('--cyan'); cx.lineWidth=1.4; cx.globalAlpha=.8;
+    for(var a=0;a<4;a++){var ap=toPx(anchors[a]);cx.beginPath();cx.moveTo(ap[0],ap[1]);cx.lineTo(cp[0],cp[1]);cx.stroke();}
+    cx.globalAlpha=1;
+    // winches
+    for(var a=0;a<4;a++){var ap=toPx(anchors[a]);cx.fillStyle=css('--bright');cx.fillRect(ap[0]-5,ap[1]-5,10,10);
+      cx.strokeStyle=css('--cyan');cx.strokeRect(ap[0]-5,ap[1]-5,10,10);}
+    // hamper
+    var hp=toPx(hamper);cx.strokeStyle=css('--accent');cx.lineWidth=2;cx.strokeRect(hp[0]-11,hp[1]-11,22,22);
+    cx.font='9px '+css('--mono');cx.fillStyle=css('--dim');cx.fillText('hamper',hp[0]-16,hp[1]+24);
+    // laundry
+    for(var i=0;i<items.length;i++){var ip=toPx(items[i]);cx.fillStyle=css('--cyan');cx.globalAlpha=.85;
+      cx.beginPath();cx.arc(ip[0],ip[1],5,0,7);cx.fill();cx.globalAlpha=1;}
+    // claw (size encodes height; pulse on grab)
+    var r=6+(1.4-z)*5;
+    cx.fillStyle=css('--accent');
+    if(state==='GRAB'||state==='RELEASE'){cx.shadowColor=css('--accent');cx.shadowBlur=16;}
+    cx.beginPath();cx.arc(cp[0],cp[1],r,0,7);cx.fill();cx.shadowBlur=0;
+    cx.strokeStyle=css('--ground');cx.lineWidth=2;cx.stroke();
+  }
+
+  function telem(){
+    var L=anchors.map(function(a){return Math.hypot(a[0]-claw[0],a[1]-claw[1],0).toFixed(2);});
+    // include z in cable length for realism
+    L=anchors.map(function(a){return Math.sqrt(Math.pow(a[0]-claw[0],2)+Math.pow(a[1]-claw[1],2)+Math.pow(H-z,2)).toFixed(2);});
+    set('t-state',state);set('t-pos',claw[0].toFixed(2)+', '+claw[1].toFixed(2));
+    set('t-z',z.toFixed(2)+' m');set('t-pick',picked);
+    set('t-a',L[0]);set('t-b',L[1]);set('t-c',L[2]);set('t-d',L[3]);
+  }
+  function set(id,v){document.getElementById(id).textContent=v;}
+
+  var acc=0,last=performance.now();
+  function loop(now){
+    var dt=now-last;last=now;acc+=dt;
+    while(acc>33){step();acc-=33;}
+    draw();telem();requestAnimationFrame(loop);
+  }
+  cv.addEventListener('click',function(e){
+    var rect=cv.getBoundingClientRect(),w=cv.clientWidth,h=w*D/W,m=26;
+    var x=((e.clientX-rect.left)-m)/(w-2*m)*W, y=((e.clientY-rect.top)-m)/(h-2*m)*D;
+    if(x>0.3&&x<W-0.3&&y>0.3&&y<D-0.3)items.push([x,y]);
+  });
+  document.getElementById('dropbtn').addEventListener('click',function(){scatter(1);});
+  document.getElementById('playbtn').addEventListener('click',function(){
+    playing=!playing;this.textContent=playing?'❚❚ pause':'▶ play';
+  });
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches)playing=false,document.getElementById('playbtn').textContent='▶ play';
+  window.addEventListener('resize',function(){fit();drawCharts();});
+  fit();requestAnimationFrame(loop);
+
+  /* ---------- native charts ---------- */
+  function tauAt(px,py,pz,mass){
+    // unit cable dirs (toward anchors, up to ceiling); solve 2-cable-symmetric approx
+    // real approach: min-norm nonneg tensions balancing weight. Use analytic for viz.
+    var g=9.81, wz=mass*g, dirs=[];
+    for(var a=0;a<4;a++){var vx=anchors[a][0]-px,vy=anchors[a][1]-py,vz=H-pz,L=Math.hypot(vx,vy,vz);dirs.push([vx/L,vy/L,vz/L]);}
+    // least-squares particular + push to nonneg via simple iterative clamp
+    // Approximate peak tension = wz / sum(up components)*balance factor near edges.
+    // Use a robust proxy: tension ~ wz / (4*mean_up) scaled by horizontal imbalance.
+    var meanUp=0;for(var a=0;a<4;a++)meanUp+=dirs[a][2];meanUp/=4;
+    var base=wz/(4*meanUp);
+    // edge penalty: how horizontal the worst cable is
+    var minUp=1;for(var a=0;a<4;a++)minUp=Math.min(minUp,dirs[a][2]);
+    return base*(meanUp/Math.max(minUp,0.15));
+  }
+  function drawHeat(){
+    var c=document.getElementById('heat'),ctx=c.getContext('2d');
+    var w=c.clientWidth||760,h=w*0.55;c.width=w*2;c.height=h*2;ctx.setTransform(2,0,0,2,0,0);
+    ctx.clearRect(0,0,w,h);
+    var nx=48,ny=32,m=30,pw=(w-2*m)/nx,ph=(h-2*m)/ny,vals=[],mx=0,mn=1e9;
+    for(var j=0;j<ny;j++){vals[j]=[];for(var i=0;i<nx;i++){
+      var x=(i+0.5)/nx*W,y=(j+0.5)/ny*D;var t=tauAt(x,y,0.3,1.35);vals[j][i]=t;mx=Math.max(mx,t);mn=Math.min(mn,t);}}
+    for(var j=0;j<ny;j++)for(var i=0;i<nx;i++){
+      ctx.fillStyle=viridis((vals[j][i]-mn)/(mx-mn));ctx.fillRect(m+i*pw,m+j*ph,pw+0.6,ph+0.6);}
+    // winches
+    for(var a=0;a<4;a++){var wx=m+anchors[a][0]/W*(w-2*m),wy=m+anchors[a][1]/D*(h-2*m);
+      ctx.fillStyle=css('--bright');ctx.fillRect(wx-4,wy-4,8,8);}
+    // fan
+    ctx.strokeStyle='rgba(229,99,77,.8)';ctx.lineWidth=1.4;
+    ctx.beginPath();ctx.arc(m+2/W*(w-2*m),m+1.5/D*(h-2*m),0.7/W*(w-2*m),0,7);ctx.stroke();
+    ctx.fillStyle=css('--dim');ctx.font='10px '+css('--mono');
+    ctx.fillText('low',m,h-8);ctx.fillText('high',w-m-26,h-8);
+  }
+  function viridis(t){t=Math.max(0,Math.min(1,t));
+    var stops=[[68,1,84],[59,82,139],[33,145,140],[94,201,98],[253,231,37]];
+    var s=t*4,i=Math.floor(s),f=s-i;i=Math.min(3,i);
+    var a=stops[i],b=stops[i+1];
+    return 'rgb('+Math.round(a[0]+(b[0]-a[0])*f)+','+Math.round(a[1]+(b[1]-a[1])*f)+','+Math.round(a[2]+(b[2]-a[2])*f)+')';
+  }
+  function drawPayload(){
+    var c=document.getElementById('payload'),ctx=c.getContext('2d');
+    var w=c.clientWidth||760,h=w*0.55;c.width=w*2;c.height=h*2;ctx.setTransform(2,0,0,2,0,0);
+    ctx.clearRect(0,0,w,h);
+    var m=42,x0=m,x1=w-14,y0=h-30,y1=14,maxP=12,maxT=110,limit=40;
+    var tauC=3.7,tauW=9.6; // per-kg at center / corner (matches sim analysis)
+    function X(p){return x0+p/maxP*(x1-x0);}
+    function Y(t){return y0-t/maxT*(y0-y1);}
+    // grid
+    ctx.strokeStyle=css('--line');ctx.lineWidth=1;ctx.fillStyle=css('--dim');ctx.font='10px '+css('--mono');
+    for(var t=0;t<=maxT;t+=20){ctx.globalAlpha=.5;ctx.beginPath();ctx.moveTo(x0,Y(t));ctx.lineTo(x1,Y(t));ctx.stroke();ctx.globalAlpha=1;ctx.fillText(t+'N',4,Y(t)+3);}
+    for(var p=0;p<=maxP;p+=3){ctx.fillText(p+'kg',X(p)-8,h-14);}
+    // limit line
+    ctx.strokeStyle=css('--crit');ctx.setLineDash([5,4]);ctx.beginPath();ctx.moveTo(x0,Y(limit));ctx.lineTo(x1,Y(limit));ctx.stroke();ctx.setLineDash([]);
+    ctx.fillStyle=css('--crit');ctx.fillText('motor limit 40N',x1-96,Y(limit)-5);
+    // lines: tension = (0.45+p)*tau
+    function line(tau,col,lbl,lx){ctx.strokeStyle=col;ctx.lineWidth=2.2;ctx.beginPath();
+      for(var p=0;p<=maxP;p+=0.1){var T=(0.45+p)*tau;var px=X(p),py=Y(Math.min(T,maxT));if(p===0)ctx.moveTo(px,py);else ctx.lineTo(px,py);}ctx.stroke();
+      var cross=limit/tau-0.45;ctx.setLineDash([2,3]);ctx.strokeStyle=col;ctx.globalAlpha=.6;ctx.beginPath();ctx.moveTo(X(cross),y0);ctx.lineTo(X(cross),Y(limit));ctx.stroke();ctx.setLineDash([]);ctx.globalAlpha=1;
+      ctx.fillStyle=col;ctx.fillText(lbl,lx,y1+12);}
+    line(tauC,css('--cyan'),'center · 10.6kg',X(7));
+    line(tauW,css('--accent'),'corner · 4kg',X(1.4));
+  }
+  /* ---------- BOM price toggle ---------- */
+  document.getElementById('pricebtn').addEventListener('click',function(){
+    var on=rcxEl.toggleAttribute('data-prices');
+    this.textContent=on?'hide est. pricing':'show est. pricing';
+  });
+
+  /* ---------- force explorer: real statics, solved live ---------- */
+  // Equilibrium: sum(t_i * u_i) = (0,0,m*g), t_i >= t_min. With 4 cables and 3
+  // equations there's a 1-D family of solutions; we take the min-norm particular
+  // solution and center along the null space -- the same method as the Python.
+  function trip(u,v,w){return u[0]*(v[1]*w[2]-v[2]*w[1])-u[1]*(v[0]*w[2]-v[2]*w[0])+u[2]*(v[0]*w[1]-v[1]*w[0]);}
+  function solveT(px,py,pz,mass,acc){
+    var U=[],a;
+    for(a=0;a<4;a++){var vx=anchors[a][0]-px,vy=anchors[a][1]-py,vz=H-pz;
+      var L=Math.sqrt(vx*vx+vy*vy+vz*vz)||1e-9;U.push([vx/L,vy/L,vz/L]);}
+    var S=[[0,0,0],[0,0,0],[0,0,0]];
+    for(a=0;a<4;a++)for(var r=0;r<3;r++)for(var c=0;c<3;c++)S[r][c]+=U[a][r]*U[a][c];
+    // Dynamic load: accelerating the claw upward at `acc` is the worst case,
+    // so the cables must supply m*(g + a) instead of m*g.
+    var w=[0,0,mass*(9.81+(acc||0))];
+    var c0=[S[0][0],S[1][0],S[2][0]],c1=[S[0][1],S[1][1],S[2][1]],c2=[S[0][2],S[1][2],S[2][2]];
+    var D=trip(c0,c1,c2); if(Math.abs(D)<1e-12)return null;
+    var y=[trip(w,c1,c2)/D,trip(c0,w,c2)/D,trip(c0,c1,w)/D];
+    var t0=U.map(function(u){return u[0]*y[0]+u[1]*y[1]+u[2]*y[2];});
+    var n=[];
+    for(a=0;a<4;a++){var cols=[];for(var b=0;b<4;b++)if(b!==a)cols.push(U[b]);
+      n.push(((a%2)?-1:1)*trip(cols[0],cols[1],cols[2]));}
+    var lo=-1e12,hi=1e12,tmin=0.5;
+    for(a=0;a<4;a++){
+      if(Math.abs(n[a])<1e-12){if(t0[a]<tmin-1e-9)return null;continue;}
+      var bnd=(tmin-t0[a])/n[a];
+      if(n[a]>0)lo=Math.max(lo,bnd);else hi=Math.min(hi,bnd);
+    }
+    if(lo>hi)return null;
+    var s=(lo+hi)/2;
+    return t0.map(function(t,i){return t+s*n[i];});
+  }
+
+  var ASSEMBLY=0.45, LIMIT=40;
+  var fx=2.0, fy=1.5, fpay=0.9, fzv=0.30, facc=0;
+  var fhover=false, fmoved=false;
+  var motionOK=!matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var fcv=document.getElementById('fmap'), fctx=fcv.getContext('2d');
+
+  function ffit(){var w2=fcv.clientWidth||640;var d=Math.min(2,window.devicePixelRatio||1);
+    fcv.width=w2*d;fcv.height=(w2*D/W)*d;fctx.setTransform(d,0,0,d,0,0);}
+  function fToPx(p){var w2=fcv.clientWidth,h2=w2*D/W,m=24;return [m+(p[0]/W)*(w2-2*m), m+(p[1]/D)*(h2-2*m)];}
+  function fFromPx(ex,ey){var r=fcv.getBoundingClientRect(),w2=fcv.clientWidth,h2=w2*D/W,m=24;
+    return [((ex-r.left)-m)/(w2-2*m)*W, ((ey-r.top)-m)/(h2-2*m)*D];}
+
+  function drawForce(){
+    ffit();
+    var w2=fcv.clientWidth,h2=w2*D/W;
+    fctx.clearRect(0,0,w2,h2);
+    fctx.strokeStyle=css('--line');fctx.lineWidth=1;fctx.globalAlpha=.5;
+    for(var gx=0;gx<=W;gx+=0.5){var a1=fToPx([gx,0]),b1=fToPx([gx,D]);fctx.beginPath();fctx.moveTo(a1[0],a1[1]);fctx.lineTo(b1[0],b1[1]);fctx.stroke();}
+    for(var gy=0;gy<=D;gy+=0.5){var a2=fToPx([0,gy]),b2=fToPx([W,gy]);fctx.beginPath();fctx.moveTo(a2[0],a2[1]);fctx.lineTo(b2[0],b2[1]);fctx.stroke();}
+    fctx.globalAlpha=1;
+    var T=solveT(fx,fy,fzv,ASSEMBLY+fpay,facc);
+    var cp=fToPx([fx,fy]);
+    for(var a=0;a<4;a++){
+      var ap=fToPx(anchors[a]);
+      var t=T?T[a]:0, frac=Math.min(1,t/LIMIT);
+      fctx.strokeStyle = T ? (t>LIMIT?css('--crit'):css('--cyan')) : css('--crit');
+      fctx.lineWidth = 1 + frac*4;
+      fctx.globalAlpha = T?0.4+0.6*frac:0.35;
+      fctx.beginPath();fctx.moveTo(ap[0],ap[1]);fctx.lineTo(cp[0],cp[1]);fctx.stroke();
+      fctx.globalAlpha=1;
+      fctx.fillStyle=css('--bright');fctx.fillRect(ap[0]-5,ap[1]-5,10,10);
+      fctx.strokeStyle=css('--cyan');fctx.lineWidth=1;fctx.strokeRect(ap[0]-5,ap[1]-5,10,10);
+      fctx.fillStyle=css('--dim');fctx.font='10px '+css('--mono');
+      fctx.fillText('ABCD'[a], ap[0]+(a===0||a===3?-14:9), ap[1]+4);
+    }
+    // The claw: highlighted when hovered/dragged, with a pulsing "grab me" ring
+    // and a "drag me" hint until the first drag.
+    var hot=fhover||fdrag;
+    if(!fmoved){
+      var ph=motionOK?(0.5+0.5*Math.sin(performance.now()/450)):0.6;
+      fctx.strokeStyle=css('--accent');fctx.globalAlpha=0.25+0.45*ph;fctx.lineWidth=1.5;
+      fctx.beginPath();fctx.arc(cp[0],cp[1],14+4*ph,0,7);fctx.stroke();fctx.globalAlpha=1;
+    }
+    if(hot){
+      fctx.strokeStyle=css('--accent');fctx.globalAlpha=.9;fctx.lineWidth=2;
+      fctx.beginPath();fctx.arc(cp[0],cp[1],14,0,7);fctx.stroke();fctx.globalAlpha=1;
+      fctx.shadowColor=css('--accent');fctx.shadowBlur=14;
+    }
+    fctx.fillStyle=T?css('--accent'):css('--crit');
+    fctx.beginPath();fctx.arc(cp[0],cp[1],hot?10:9,0,7);fctx.fill();
+    fctx.shadowBlur=0;
+    fctx.strokeStyle=css('--ground');fctx.lineWidth=2;fctx.stroke();
+    if(!fmoved&&!hot){
+      var msg='◂ drag me';
+      fctx.font='11px '+css('--mono');
+      var tw=fctx.measureText(msg).width, px2=cp[0]+20, py2=cp[1]-8;
+      if(px2+tw+14>w2)px2=cp[0]-tw-34;
+      fctx.fillStyle=css('--accent-soft');fctx.strokeStyle=css('--accent');fctx.lineWidth=1;
+      if(fctx.roundRect){fctx.beginPath();fctx.roundRect(px2-7,py2-13,tw+14,20,5);fctx.fill();fctx.stroke();}
+      else{fctx.fillRect(px2-7,py2-13,tw+14,20);fctx.strokeRect(px2-7,py2-13,tw+14,20);}
+      fctx.fillStyle=css('--bright');fctx.fillText(msg,px2,py2+1);
+    }
+
+    for(var a=0;a<4;a++){
+      var bar=document.getElementById('fb'+a),val=document.getElementById('fv'+a);
+      if(!T){bar.style.width='0%';val.textContent='–';continue;}
+      bar.style.width=Math.min(100,(T[a]/50)*100)+'%';
+      bar.className='ffill'+(T[a]>LIMIT?' hot':'');
+      val.textContent=T[a].toFixed(1)+' N';
+    }
+    var note=document.getElementById('fnote');
+    if(!T){note.innerHTML='<span class="bad">infeasible: cables can\'t hold this point</span>';}
+    else{
+      var tau=Math.max.apply(null,T)/(ASSEMBLY+fpay);
+      var maxPay=Math.max(0,LIMIT/tau-ASSEMBLY);
+      note.innerHTML='max payload here: <b>'+maxPay.toFixed(1)+' kg</b> ('+(maxPay*2.2).toFixed(1)+' lb) before the busiest cable hits 40 N'
+        +(facc>0?', while accelerating up at '+facc.toFixed(1)+' m/s²':'');
+    }
+  }
+
+  var fdrag=false;
+  function fset(e){var p=fFromPx(e.clientX,e.clientY);
+    fx=Math.max(0.25,Math.min(W-0.25,p[0]));fy=Math.max(0.25,Math.min(D-0.25,p[1]));
+    fmoved=true;drawForce();}
+  function overClaw(e){var r=fcv.getBoundingClientRect(),cp=fToPx([fx,fy]);
+    return Math.hypot((e.clientX-r.left)-cp[0],(e.clientY-r.top)-cp[1])<18;}
+  function fcursor(){fcv.style.cursor=fdrag?'grabbing':(fhover?'grab':'crosshair');}
+  fcv.addEventListener('pointerdown',function(e){fdrag=true;fcv.setPointerCapture(e.pointerId);fcursor();fset(e);});
+  fcv.addEventListener('pointermove',function(e){
+    if(fdrag){fset(e);return;}
+    var h=overClaw(e);
+    if(h!==fhover){fhover=h;fcursor();drawForce();}
+  });
+  fcv.addEventListener('pointerup',function(){fdrag=false;fcursor();});
+  fcv.addEventListener('pointerleave',function(){if(fhover){fhover=false;fcursor();drawForce();}});
+  document.getElementById('fmass').addEventListener('input',function(){
+    fpay=parseFloat(this.value);document.getElementById('fm-lbl').textContent=fpay.toFixed(1)+' kg';drawForce();});
+  document.getElementById('fz').addEventListener('input',function(){
+    fzv=parseFloat(this.value);document.getElementById('fz-lbl').textContent=fzv.toFixed(2)+' m';drawForce();});
+  document.getElementById('fa').addEventListener('input',function(){
+    facc=parseFloat(this.value);document.getElementById('fa-lbl').textContent=facc.toFixed(1)+' m/s²';drawForce();});
+  // Gentle pulse on the "drag me" affordance until the first drag.
+  if(motionOK){(function pulse(){if(fmoved)return;drawForce();requestAnimationFrame(pulse);})();}
+
+  function drawCharts(){drawHeat();drawPayload();drawForce();}
+  drawCharts();
+})();
+</script>
+</body>
+</html>
