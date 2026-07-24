@@ -199,6 +199,10 @@ p { text-wrap: pretty; }
 /* featured org (One Army): role blurb + build photos */
 .org-feature { margin-bottom: 26px; }
 .org-feature h3 { font-family: var(--font-head); font-size: 1.25rem; margin: 0 0 8px; color: var(--text-strong); }
+.org-subhead {
+  font-family: var(--font-head); font-size: 1.02rem; color: var(--accent);
+  margin: 24px 0 8px; letter-spacing: .01em;
+}
 .org-feature > p { color: var(--text); line-height: 1.62; margin: 0 0 16px; max-width: 72ch; }
 .org-groupphoto { margin: 0 0 14px; }
 .org-groupphoto img {
