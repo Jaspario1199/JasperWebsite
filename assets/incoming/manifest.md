@@ -23,6 +23,10 @@ sharp upgrades of the soft images currently on the site (which came from a portf
 | photo-15.jpg | Bike lock CAD — wireframe/hidden-line view of the same assembly. | **RFID Bike Lock — CAD rev v.04–v.05** |
 | photo-16.jpg | Bike lock CAD — shaded render, alternate angle. | **RFID Bike Lock — CAD rev v.04–v.05** |
 | photo-17.jpg | Electrical/wiring schematic diagram (dark background, colored nodes/blocks) for the extruder stage. ⚠️ arrived low-res (286×168) — a higher-res export would help. | **ECOFIL — Phase 3 (Filament Extruder) — control schematic** |
+| photo-18.jpg | Daytime: bare welded-metal dragonfly frame (unlit) on a mobile stand outdoors, person inspecting. | **Creek Show — Section 2 (Onsite + Assembly)** |
+| photo-19.jpg | Two people in waders carrying a metal base frame through the creek during install. | **Creek Show — Section 2 (Onsite + Assembly)** |
+| photo-20.jpg | White translucent-wing dragonflies being set into the creek; installer in waders. | **Creek Show — Section 2 (Onsite + Assembly)** |
+| photo-21.jpg | Crew on ladders assembling a large white dragonfly wing over the creek. | **Creek Show — Section 2 (Onsite + Assembly)** |
 
 ## Austin Creek Show — page structure (3 sections)
 
