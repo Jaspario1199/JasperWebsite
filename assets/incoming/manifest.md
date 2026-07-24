@@ -74,3 +74,5 @@ _(Section 1 and 2 photos to be assigned as Jasper sends them.)_
 
 | photo-55.jpg | High-res exploded CAD of the v.08 RFID bike lock (barrel, blower/motor, electronics, shaft, mounting foot). Used as the bike-lock cover/hero (overwrote bikelock-v08-exploded.jpg). (649x621). | **RFID Bike Lock — v.08 exploded (cover)** |
 | photo-56.jpg | High-res "GOALIE GAME" concept sketch (shooting mech on rail, movable goalie, front + top views, spring-loaded peg). Replaces the low-res soccershots-sketch-a. (792x608). | **Soccer Shots — concept sketch A (hi-res)** |
+| photo-57.jpg | High-res "FINAL ASSEMBLY (not to scale)" concept sketch — launcher, triangular-truss goal, goalie block. Replaces low-res soccershots-sketch-b. (732x582). | **Soccer Shots — concept sketch B (hi-res)** |
+| photo-58.jpg | High-res "SUB ASSEMBLY: FITS AND TOLERANCES" sketch — dimensioned shooting-mechanism fits/clearances. Replaces low-res soccershots-sketch-c. (614x484). | **Soccer Shots — concept sketch C (hi-res)** |
