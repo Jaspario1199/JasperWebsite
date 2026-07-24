@@ -46,6 +46,7 @@ sharp upgrades of the soft images currently on the site (which came from a portf
 | photo-38.jpg | RFID Bike Lock — first physical prototype (v0.0): brushed-metal wedge enclosure with round RFID reader port and a small color status display on the front face. ⚠️ small (217×186). | **RFID Bike Lock — v0.0 first prototype (built)** |
 | photo-39.jpg | RFID Bike Lock v0.0 CAD assembly — shaded render: cylindrical lock barrel, top display cutout + RFID port, and the green shackle/latch in the base. ⚠️ small (195×196). | **RFID Bike Lock — v0.0 assembly CAD** |
 | photo-40.jpg | RFID Bike Lock v0.0 CAD assembly — alternate angle showing the split housing and mounting base. ⚠️ small (199×195). | **RFID Bike Lock — v0.0 assembly CAD** |
+| photo-41.jpg | Soccer Shots toy — CAD of the goal + goalie assembly: triangular truss end supports, a diagonal-slotted crossbar/backboard, and a sliding goalie block on a base rail. ⚠️ small (201×169). | **Soccer Shots Toy Prototype — goal & goalie assembly CAD** |
 
 ## Austin Creek Show — page structure (3 sections)
 
