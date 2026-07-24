@@ -47,6 +47,9 @@ sharp upgrades of the soft images currently on the site (which came from a portf
 | photo-39.jpg | RFID Bike Lock v0.0 CAD assembly — shaded render: cylindrical lock barrel, top display cutout + RFID port, and the green shackle/latch in the base. ⚠️ small (195×196). | **RFID Bike Lock — v0.0 assembly CAD** |
 | photo-40.jpg | RFID Bike Lock v0.0 CAD assembly — alternate angle showing the split housing and mounting base. ⚠️ small (199×195). | **RFID Bike Lock — v0.0 assembly CAD** |
 | photo-41.jpg | Soccer Shots toy — CAD of the goal + goalie assembly: triangular truss end supports, a diagonal-slotted crossbar/backboard, and a sliding goalie block on a base rail. ⚠️ small (201×169). | **Soccer Shots Toy Prototype — goal & goalie assembly CAD** |
+| photo-42.jpg | Soccer Shots — 3D-printed gray launcher body held in hand with the green plunger/handle inserted; showing initial fit of the sliding parts. ⚠️ small (243×181). | **Soccer Shots — initial tolerancing issues (built)** |
+| photo-43.jpg | Soccer Shots — blue 3D-printed end block with two bored guide-rod holes, held to camera; the holes were undersized on the first print. ⚠️ small (216×288). | **Soccer Shots — initial tolerancing issues (built)** |
+| photo-44.jpg | Soccer Shots — assembled launcher on a table: gray body + green plunger head on twin guide rods, showing the shooting mechanism's pole-and-hole fit. ⚠️ small (188×140). | **Soccer Shots — initial tolerancing issues (built)** |
 
 ## Austin Creek Show — page structure (3 sections)
 
