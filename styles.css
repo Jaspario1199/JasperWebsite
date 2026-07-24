@@ -196,6 +196,17 @@ p { text-wrap: pretty; }
   border-radius: var(--radius); border: 1px solid var(--border); cursor: zoom-in;
 }
 
+/* featured org (One Army): role blurb + build photos */
+.org-feature { margin-bottom: 26px; }
+.org-feature h3 { font-family: var(--font-head); font-size: 1.25rem; margin: 0 0 8px; color: var(--text-strong); }
+.org-feature > p { color: var(--text); line-height: 1.62; margin: 0 0 16px; max-width: 72ch; }
+.org-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.org-gallery img {
+  width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block;
+  border-radius: var(--radius); border: 1px solid var(--border); cursor: zoom-in;
+}
+@media (max-width: 720px) { .org-gallery { grid-template-columns: 1fr 1fr; } }
+
 /* campus organizations: small logo + name + one line */
 .life-orgs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
 .org-card {
