@@ -31,6 +31,7 @@ sharp upgrades of the soft images currently on the site (which came from a portf
 | photo-23.jpg | Close-up of a welded/manufactured unfinished wing frame (weld tabs) on a scorched wooden jig. | **Creek Show — Section 1 (Modeling, Prototyping & Manufacturing)** |
 | photo-24.jpg | Welded steel base/cross-frame fixture for the dragonfly, clamped on a fixture welding table. | **Creek Show — Section 1 (Modeling, Prototyping & Manufacturing)** |
 | photo-25.jpg | Finished (white-painted) back wing frames of one dragonfly leaning against a stone wall. ⚠️ small (144×211). | **Creek Show — Section 1 (Modeling, Prototyping & Manufacturing)** |
+| photo-26.jpg | Small bare-metal woven wing prototype next to the large black final wing frames on a workbench — prototype vs. finished comparison. | **Creek Show — Section 1 (Modeling, Prototyping & Manufacturing)** |
 
 ## Austin Creek Show — page structure (3 sections)
 
