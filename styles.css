@@ -204,6 +204,20 @@ p { text-wrap: pretty; }
   margin: 24px 0 8px; letter-spacing: .01em;
 }
 .org-feature > p { color: var(--text); line-height: 1.62; margin: 0 0 16px; max-width: 72ch; }
+
+/* larger, matted frame for a single team portrait (on-theme dark) */
+.team-figure {
+  margin: 10px auto 0; max-width: 780px; padding: 12px;
+  border: 1px solid var(--border-strong); border-radius: var(--radius-lg);
+  background: var(--bg-elev); box-shadow: var(--shadow-lg);
+}
+.team-figure img {
+  width: 100%; display: block; border-radius: var(--radius);
+  border: 1px solid var(--border); cursor: zoom-in;
+}
+.team-figure figcaption {
+  padding: 12px 4px 2px; text-align: center; color: var(--faint); font-size: .82rem;
+}
 .org-groupphoto { margin: 0 0 14px; }
 .org-groupphoto img {
   width: 100%; display: block; border-radius: var(--radius);
