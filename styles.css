@@ -160,6 +160,37 @@ p { text-wrap: pretty; }
 /* compact Spotify player: a little play/pause clip of "A Day in the Life" */
 .song-embed { margin: 16px 0 6px; max-width: 340px; }
 .song-embed iframe { width: 100%; display: block; }
+
+/* personal "A Day in the Life" page: one scroll, short alternating sections */
+.life { max-width: 900px; margin: 8px auto 0; }
+.life-section {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: center;
+  padding: 42px 0; border-top: 1px solid var(--border);
+}
+.life-eyebrow {
+  font-family: var(--font-head); font-size: .72rem; font-weight: 600;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin: 0 0 10px;
+}
+.life-text h2 {
+  font-family: var(--font-head); font-size: clamp(1.35rem, 3vw, 1.85rem);
+  margin: 0 0 12px; color: var(--text-strong); line-height: 1.1;
+}
+.life-text p { color: var(--text); line-height: 1.66; margin: 0; }
+.life-media { margin: 0; }
+.life-media img, .life-ph {
+  width: 100%; aspect-ratio: 4 / 3; border-radius: var(--radius); border: 1px solid var(--border);
+}
+.life-media img { object-fit: cover; cursor: zoom-in; display: block; }
+.life-ph {
+  display: flex; align-items: center; justify-content: center; border-style: dashed;
+  background: var(--bg-elev); color: var(--faint);
+  font-family: var(--font-head); font-size: .84rem; letter-spacing: .02em;
+}
+.life > .life-section:nth-child(even) .life-media { order: -1; }
+@media (max-width: 720px) {
+  .life-section { grid-template-columns: 1fr; gap: 16px; padding: 30px 0; }
+  .life > .life-section:nth-child(even) .life-media { order: 0; }
+}
 .egg-link:hover {
   transform: rotate(11deg) translateY(-3px) scale(1.05);
   background: var(--accent); color: #1a0d0e; border-color: var(--accent);

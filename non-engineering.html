@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260724b">
+  <link rel="stylesheet" href="styles.css?v=20260724c">
 </head>
 <body>
 
@@ -38,49 +38,66 @@
       <div class="song-embed">
         <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0hKRSZhUGEhKU6aNSPBACZ?utm_source=generator&amp;theme=0" width="330" height="80" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="A Day in the Life by The Beatles on Spotify"></iframe>
       </div>
-      <p>A few things outside the lab that I love to talk about. Click any photo to open it.</p>
+      <p>A quick look at what I get up to outside the lab. No clicking around, just scroll.</p>
     </div>
 
-    <div class="section" style="padding-top: 22px">
+    <!-- =========================================================
+         TO ADD A PHOTO TO A SECTION: drop the image in assets/personal/
+         and replace the <div class="life-ph">…</div> line with:
+         <img class="zoomable" src="assets/personal/topic.jpg" alt="Topic name" loading="lazy">
+         Copy a whole <section class="life-section"> block to add a topic.
+         ========================================================= -->
+    <div class="life">
 
-      <!-- =========================================================
-           TO FILL A TOPIC: drop the image in assets/personal/ and replace
-           the <span class="tile-fill">…</span> line inside a tile with:
-           <img class="zoomable" src="assets/personal/topic.jpg" alt="Topic name" loading="lazy">
-           Copy a whole <figure class="tile phototile"> block to add a topic.
-           ========================================================= -->
-      <div class="tile-grid">
+      <section class="life-section">
+        <div class="life-text">
+          <p class="life-eyebrow">Endurance</p>
+          <h2>Endurance racing</h2>
+          <p>Three marathons, a half Ironman, and right now I am training for Ironman Texas. The long miles are where I do my best thinking.</p>
+        </div>
+        <figure class="life-media"><div class="life-ph">Photo coming soon</div></figure>
+      </section>
 
-        <figure class="tile phototile">
-          <span class="tile-fill">Endurance<br>Racing</span>
-          <span class="tile-info"><span class="tile-title">Endurance Racing</span><span class="tile-cat">Marathons &amp; Ironman</span></span>
-        </figure>
+      <section class="life-section">
+        <div class="life-text">
+          <p class="life-eyebrow">Film</p>
+          <h2>@jmoonmovies</h2>
+          <p>I run a movie account that has grown past 170,000 followers. Pulling apart what makes a film work scratches the same itch as taking apart a machine.</p>
+        </div>
+        <figure class="life-media"><div class="life-ph">Photo coming soon</div></figure>
+      </section>
 
-        <figure class="tile phototile">
-          <span class="tile-fill">@jmoonmovies</span>
-          <span class="tile-info"><span class="tile-title">@jmoonmovies</span><span class="tile-cat">170K+ followers</span></span>
-        </figure>
+      <section class="life-section">
+        <div class="life-text">
+          <p class="life-eyebrow">On campus</p>
+          <h2>Student involvement</h2>
+          <p>I run build logistics for my men's organization at Chilifest, one of the largest student-run festivals in Texas. Plenty of moving parts, tight timelines, and a crew to keep in sync.</p>
+        </div>
+        <figure class="life-media"><div class="life-ph">Photo coming soon</div></figure>
+      </section>
 
-        <figure class="tile phototile">
-          <span class="tile-fill">Student<br>Involvement</span>
-          <span class="tile-info"><span class="tile-title">Student Involvement</span><span class="tile-cat">Build Logistics &amp; Chilifest</span></span>
-        </figure>
+      <section class="life-section">
+        <div class="life-text">
+          <p class="life-eyebrow">Outdoors</p>
+          <h2>Exploring</h2>
+          <p>Hiking and traveling whenever I get the chance. New trails and new cities are how I stay curious.</p>
+        </div>
+        <figure class="life-media"><div class="life-ph">Photo coming soon</div></figure>
+      </section>
 
-        <figure class="tile phototile">
-          <span class="tile-fill">Exploring</span>
-          <span class="tile-info"><span class="tile-title">Exploring</span><span class="tile-cat">Travel &amp; the outdoors</span></span>
-        </figure>
+      <section class="life-section">
+        <div class="life-text">
+          <p class="life-eyebrow">Soccer</p>
+          <h2>On the pitch</h2>
+          <p>I grew up playing soccer and still get out on the pitch whenever I can. First team sport I loved, and still my favorite.</p>
+        </div>
+        <figure class="life-media"><div class="life-ph">Photo coming soon</div></figure>
+      </section>
 
-        <figure class="tile phototile">
-          <span class="tile-fill">Soccer</span>
-          <span class="tile-info"><span class="tile-title">Soccer</span><span class="tile-cat">On the pitch</span></span>
-        </figure>
+    </div>
 
-      </div>
-
-      <div class="btn-row" style="margin-top: 44px">
-        <a class="btn btn-outline" href="index.html">← Back to the engineering side</a>
-      </div>
+    <div class="btn-row" style="justify-content: center; margin-top: 48px">
+      <a class="btn btn-outline" href="index.html">← Back to the engineering side</a>
     </div>
   </div>
 </main>
@@ -102,6 +119,6 @@
   <button type="button" class="lb-next" id="lbNext" aria-label="Next image">&rsaquo;</button>
 </div>
 
-<script src="script.js?v=20260724b"></script>
+<script src="script.js?v=20260724c"></script>
 </body>
 </html>
