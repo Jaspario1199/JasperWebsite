@@ -16,7 +16,7 @@
   <meta property="og:title" content="Automatic RFID Bike Lock - Jasper Buntinx">
   <meta property="og:description" content="Fumbling with a key or combination every time you park a bike is friction that doesn't need to exist. This project is an automatic lock: tap an RFID f">
   <meta property="og:url" content="https://jasperbuntinx.com/experiences/bike-lock.html">
-  <meta property="og:image" content="https://jasperbuntinx.com/assets/img/creekshow-night.jpg">
+  <meta property="og:image" content="https://jasperbuntinx.com/assets/img/bikelock-v00-proto.jpg">
   <meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
@@ -74,19 +74,32 @@
     </section>
 
     <section class="case-section">
-      <div class="case-section-label"><span class="case-index">02</span><h2>Prototype · Prove the loop</h2></div>
+      <div class="case-section-label"><span class="case-index">02</span><h2>v0.0 · Prove the loop</h2></div>
       <div>
-        <p class="case-lead">The first prototype answered the highest-risk question first: could the electronics authenticate a fob, actuate the mechanism, and report the new state? Packaging was intentionally simple.</p>
-        <div class="case-figures">
-          <figure class="case-figure"><img class="zoomable" src="../assets/img/bikelock-prototype.jpg" alt="Working first prototype of the RFID bike lock" loading="lazy"><figcaption>Working prototype with RFID reader and status display.</figcaption></figure>
-          <figure class="case-figure"><img class="zoomable" src="../assets/img/bikelock-cad.jpg" alt="SolidWorks model of the first bike lock enclosure" loading="lazy"><figcaption>Simple first enclosure built around function, not final packaging.</figcaption></figure>
+        <p class="case-lead">The first prototype answered the highest-risk question first: could the electronics authenticate a fob, actuate the mechanism, and report the new state? Packaging was intentionally a simple wedge enclosure built around function, not final form.</p>
+        <div class="case-figures cols-3">
+          <figure class="case-figure"><img class="zoomable" src="../assets/img/bikelock-v00-proto.jpg" alt="First built RFID bike lock prototype: wedge enclosure with RFID port and status display" loading="lazy"><figcaption>v0.0 built prototype: RFID reader port and a color status display on the front face.</figcaption></figure>
+          <figure class="case-figure"><img class="zoomable" src="../assets/img/bikelock-v00-cad-a.jpg" alt="SolidWorks CAD of the v0.0 bike lock enclosure" loading="lazy"><figcaption>v0.0 CAD: display cutout, RFID port, and the shackle/latch in the base.</figcaption></figure>
+          <figure class="case-figure"><img class="zoomable" src="../assets/img/bikelock-v00-cad-b.jpg" alt="Alternate CAD view of the v0.0 bike lock assembly" loading="lazy"><figcaption>Split housing and mounting base from an alternate angle.</figcaption></figure>
         </div>
         <div class="case-result"><strong>Core loop proven</strong><p>The prototype authenticated, actuated, and confirmed state reliably—clearing the way for mechanical integration and packaging iterations.</p></div>
       </div>
     </section>
 
     <section class="case-section">
-      <div class="case-section-label"><span class="case-index">03</span><h2>v.06 · Package the mechanism</h2></div>
+      <div class="case-section-label"><span class="case-index">03</span><h2>v.04–v.05 · Refine in CAD</h2></div>
+      <div>
+        <p class="case-lead">Before committing to new hardware, I iterated the mechanism entirely in CAD—organizing the drive motor, housing, and enclosure into a tighter, more manufacturable package.</p>
+        <div class="case-figures cols-3">
+          <figure class="case-figure"><img class="zoomable" src="../assets/img/bikelock-v05-shaded.jpg" alt="Shaded SolidWorks render of the v.04-v.05 bike lock assembly" loading="lazy"><figcaption>Shaded render: drive motor, housing, and enclosure packaging.</figcaption></figure>
+          <figure class="case-figure"><img class="zoomable" src="../assets/img/bikelock-v05-wireframe.jpg" alt="Wireframe view of the v.04-v.05 bike lock assembly" loading="lazy"><figcaption>Hidden-line view exposing the internal component layout.</figcaption></figure>
+          <figure class="case-figure"><img class="zoomable" src="../assets/img/bikelock-v05-alt.jpg" alt="Alternate-angle render of the v.04-v.05 bike lock assembly" loading="lazy"><figcaption>Alternate angle of the refined enclosure.</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="case-section-label"><span class="case-index">04</span><h2>v.06 · Package the mechanism</h2></div>
       <div>
         <p class="case-lead">The first major redesign moved the system into a compact cylindrical architecture and separated functional zones so the mechanism could still be assembled and serviced.</p>
         <div class="case-grid cols-3">
@@ -102,7 +115,7 @@
     </section>
 
     <section class="case-section">
-      <div class="case-section-label"><span class="case-index">04</span><h2>v.08 · Integrate for use</h2></div>
+      <div class="case-section-label"><span class="case-index">05</span><h2>v.08 · Integrate for use</h2></div>
       <div>
         <p class="case-lead">The current revision stacks the control and RFID boards above the lock barrel, refines the drive shaft and cylindrical body, and adds a bolt-down foot for mounting to a frame or rack.</p>
         <div class="case-figures">
