@@ -30,6 +30,7 @@ sharp upgrades of the soft images currently on the site (which came from a portf
 | photo-22.jpg | SolidWorks CAD of a single dragonfly wing (structural rib frame). ⚠️ very low-res (304×146) — higher-res export would help. | **Creek Show — Section 1 (Modeling, Prototyping & Manufacturing)** |
 | photo-23.jpg | Close-up of a welded/manufactured unfinished wing frame (weld tabs) on a scorched wooden jig. | **Creek Show — Section 1 (Modeling, Prototyping & Manufacturing)** |
 | photo-24.jpg | Welded steel base/cross-frame fixture for the dragonfly, clamped on a fixture welding table. | **Creek Show — Section 1 (Modeling, Prototyping & Manufacturing)** |
+| photo-25.jpg | Finished (white-painted) back wing frames of one dragonfly leaning against a stone wall. ⚠️ small (144×211). | **Creek Show — Section 1 (Modeling, Prototyping & Manufacturing)** |
 
 ## Austin Creek Show — page structure (3 sections)
 
@@ -39,3 +40,6 @@ The Creek Show detail page will be organized into three sections; photos get ass
 3. **Final Product** — photos 06–13 (the lit dragonflies at night) go here.
 
 _(Section 1 and 2 photos to be assigned as Jasper sends them.)_
+
+> **Page-copy note (Creek Show):** each dragonfly has a *different* wing design — mention this in the section text, not as an image caption.
+
