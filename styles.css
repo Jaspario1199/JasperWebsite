@@ -200,6 +200,11 @@ p { text-wrap: pretty; }
 .org-feature { margin-bottom: 26px; }
 .org-feature h3 { font-family: var(--font-head); font-size: 1.25rem; margin: 0 0 8px; color: var(--text-strong); }
 .org-feature > p { color: var(--text); line-height: 1.62; margin: 0 0 16px; max-width: 72ch; }
+.org-groupphoto { margin: 0 0 14px; }
+.org-groupphoto img {
+  width: 100%; max-width: 620px; display: block; border-radius: var(--radius);
+  border: 1px solid var(--border); cursor: zoom-in;
+}
 .org-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 .org-gallery img {
   width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block;
