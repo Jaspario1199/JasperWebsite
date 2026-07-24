@@ -165,7 +165,24 @@ p { text-wrap: pretty; }
 .life { max-width: 900px; margin: 8px auto 0; }
 
 /* accordion: each life topic collapses to a clickable row */
+:root { interpolate-size: allow-keywords; }
 .acc { border-bottom: 1px solid var(--border); }
+
+/* slide the panel open/closed instead of snapping (browsers without support just snap) */
+.acc::details-content,
+.sub-acc::details-content {
+  block-size: 0; overflow-y: clip; opacity: 0;
+  transition: block-size .4s ease, opacity .32s ease, content-visibility .4s allow-discrete;
+}
+.acc[open]::details-content,
+.sub-acc[open]::details-content { block-size: auto; opacity: 1; }
+
+/* landing position when we scroll an opened section into view */
+.acc, .sub-acc { scroll-margin-top: 86px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .acc::details-content, .sub-acc::details-content { transition: none; }
+}
 .life > .acc:first-child { border-top: 1px solid var(--border); }
 .acc-head {
   list-style: none; cursor: pointer; user-select: none;
