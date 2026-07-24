@@ -187,9 +187,37 @@ p { text-wrap: pretty; }
   font-family: var(--font-head); font-size: .84rem; letter-spacing: .02em;
 }
 .life > .life-section:nth-child(even) .life-media { order: -1; }
+
+/* full-width section with a small photo gallery (e.g. The outdoors) */
+.life-section.life-wide { grid-template-columns: 1fr; gap: 20px; }
+.life-gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.life-gallery img {
+  width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block;
+  border-radius: var(--radius); border: 1px solid var(--border); cursor: zoom-in;
+}
+
+/* campus organizations: small logo + name + one line */
+.life-orgs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.org-card {
+  display: grid; grid-template-columns: 68px 1fr; gap: 16px; align-items: center;
+  padding: 16px 18px; border: 1px solid var(--border); border-radius: var(--radius);
+  background: var(--bg-elev);
+}
+.org-card img, .org-ph {
+  width: 68px; height: 68px; border-radius: 12px; border: 1px solid var(--border);
+}
+.org-card img { object-fit: cover; display: block; }
+.org-ph {
+  display: flex; align-items: center; justify-content: center; border-style: dashed;
+  background: var(--bg); color: var(--faint); font-family: var(--font-head); font-size: .68rem;
+}
+.org-card h3 { font-family: var(--font-head); font-size: 1.05rem; margin: 0 0 4px; color: var(--text-strong); }
+.org-card p { margin: 0; color: var(--faint); font-size: .87rem; line-height: 1.5; }
+
 @media (max-width: 720px) {
   .life-section { grid-template-columns: 1fr; gap: 16px; padding: 30px 0; }
   .life > .life-section:nth-child(even) .life-media { order: 0; }
+  .life-gallery { grid-template-columns: repeat(2, 1fr); }
 }
 .egg-link:hover {
   transform: rotate(11deg) translateY(-3px) scale(1.05);
