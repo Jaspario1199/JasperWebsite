@@ -44,7 +44,7 @@
         <p class="crumb"><a href="../experiences.html">&larr; All Experiences</a></p>
         <span class="case-eyebrow">GPU Computing · CFD · Research</span>
         <h1>CUDA CFD Optimization</h1>
-        <p class="case-deck">Profiled and reworked a lattice Boltzmann GPU solver to remove hidden compute and memory bottlenecks—then validated every speedup against the simulation's accuracy limits.</p>
+        <p class="case-deck">Profiled and reworked a lattice Boltzmann GPU solver to remove hidden compute and memory bottlenecks, then validated every speedup against the simulation's accuracy limits.</p>
         <p class="case-role"><strong>Mechanical Engineering Intern</strong> · Petrobras / Geoenergia Lab, UDESC · Jun–Aug 2025 · Santa Catarina, Brazil</p>
       </div>
       <figure class="case-hero-visual">
@@ -63,7 +63,7 @@
     <section class="case-section">
       <div class="case-section-label"><span class="case-index">01</span><h2>The engineering problem</h2></div>
       <div>
-        <p class="case-lead">The lab's higher-order physics kernels were running roughly 10× slower than expected. The task was not simply to make code faster—it was to find the actual limiting hardware behavior and preserve valid CFD results.</p>
+        <p class="case-lead">The lab's higher-order physics kernels were running roughly 10× slower than expected. The task was not simply to make code faster. It was to find the actual limiting hardware behavior and preserve valid CFD results.</p>
         <div class="case-grid cols-3">
           <article class="case-card"><span class="case-card-kicker">System</span><h3>D3Q19 lattice solver</h3><p>Collision and streaming operations update independent lattice sites, making the method well suited to GPU parallelism.</p></article>
           <article class="case-card"><span class="case-card-kicker">Constraint</span><h3>Accuracy had to hold</h3><p>Precision and grid changes were checked against established simulation tolerances at every step.</p></article>

@@ -1,5 +1,5 @@
 /* ============================================================
-   Jasper Buntinx — portfolio
+   Jasper Buntinx portfolio
    Dark, refined-minimal theme. Space Grotesk headings + Inter body.
    ============================================================ */
 
@@ -17,7 +17,7 @@
   --muted: #9aa0a8;
   --faint: #6d727b;
 
-  /* accent — lifted A&M maroon that reads on dark */
+  /* accent: lifted A&M maroon that reads on dark */
   --accent: #e06a72;
   --accent-hover: #ec828a;
   --accent-quiet: rgba(224,106,114,.14);
@@ -452,7 +452,7 @@ p { text-wrap: pretty; }
 .cert-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
 .cert-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
 .cert-item { margin: 0; }
-/* certificates are documents — present them as framed prints on a light mat */
+/* certificates are documents: present them as framed prints on a light mat */
 .cert-item .cert-frame {
   aspect-ratio: 1.373; overflow: hidden; border-radius: 10px;
   background: var(--mat); padding: 10px; border: 1px solid var(--border-strong);
