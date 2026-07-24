@@ -158,8 +158,8 @@ p { text-wrap: pretty; }
 .egg-link .egg-arrow { font-weight: 700; }
 
 /* compact Spotify player: a little play/pause clip of "A Day in the Life" */
-.song-embed { margin: 16px 0 6px; max-width: 340px; }
-.song-embed iframe { width: 100%; display: block; }
+.song-embed { margin: 18px 0 8px; max-width: 380px; }
+.song-embed iframe { width: 100%; aspect-ratio: 16 / 9; height: auto; display: block; border: 0; border-radius: 12px; }
 
 /* personal "A Day in the Life" page: one scroll, short alternating sections */
 .life { max-width: 900px; margin: 8px auto 0; }
