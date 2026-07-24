@@ -214,6 +214,36 @@ p { text-wrap: pretty; }
 .org-card h3 { font-family: var(--font-head); font-size: 1.05rem; margin: 0 0 4px; color: var(--text-strong); }
 .org-card p { margin: 0; color: var(--faint); font-size: .87rem; line-height: 1.5; }
 
+/* @jmoonmovies: TikTok profile emulation + Google AI Overview screenshot */
+.jmoon-media { display: grid; grid-template-columns: minmax(280px, 330px) 1fr; gap: 22px; align-items: start; }
+.tiktok-card {
+  padding: 22px; border: 1px solid var(--border); border-radius: 16px; background: var(--bg-elev);
+}
+.tiktok-top { display: flex; align-items: center; gap: 14px; }
+.tiktok-avatar {
+  width: 66px; height: 66px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 1.9rem;
+  background: radial-gradient(circle at 35% 30%, #2b3550, #0d1017); border: 1px solid var(--border-strong);
+}
+.tiktok-name { font-family: var(--font-head); font-weight: 700; font-size: 1.05rem; color: var(--text-strong); }
+.tiktok-handle { color: var(--faint); font-size: .9rem; margin-top: 2px; }
+.tiktok-stats { display: flex; gap: 26px; margin: 18px 0 14px; }
+.tiktok-stats span { display: flex; flex-direction: column; color: var(--faint); font-size: .78rem; }
+.tiktok-stats strong { color: var(--text-strong); font-family: var(--font-head); font-size: 1.15rem; }
+.tiktok-bio { color: var(--text); font-size: .9rem; line-height: 1.55; margin: 0 0 18px; }
+.tiktok-follow {
+  display: inline-block; background: #FE2C55; color: #fff; font-family: var(--font-head);
+  font-weight: 600; font-size: .9rem; padding: 10px 26px; border-radius: 8px; text-decoration: none;
+  transition: filter .2s ease;
+}
+.tiktok-follow:hover { filter: brightness(1.1); }
+.jmoon-shot { margin: 0; }
+.jmoon-shot img {
+  width: 100%; border-radius: var(--radius); border: 1px solid var(--border); cursor: zoom-in; display: block;
+}
+.jmoon-shot figcaption { margin-top: 8px; color: var(--faint); font-size: .8rem; }
+@media (max-width: 720px) { .jmoon-media { grid-template-columns: 1fr; } }
+
 @media (max-width: 720px) {
   .life-section { grid-template-columns: 1fr; gap: 16px; padding: 30px 0; }
   .life > .life-section:nth-child(even) .life-media { order: 0; }
