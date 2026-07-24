@@ -202,7 +202,7 @@ p { text-wrap: pretty; }
 .org-feature > p { color: var(--text); line-height: 1.62; margin: 0 0 16px; max-width: 72ch; }
 .org-groupphoto { margin: 0 0 14px; }
 .org-groupphoto img {
-  width: 100%; max-width: 620px; display: block; border-radius: var(--radius);
+  width: 100%; display: block; border-radius: var(--radius);
   border: 1px solid var(--border); cursor: zoom-in;
 }
 .org-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
