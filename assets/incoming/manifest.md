@@ -50,6 +50,7 @@ sharp upgrades of the soft images currently on the site (which came from a portf
 | photo-42.jpg | Soccer Shots — 3D-printed gray launcher body held in hand with the green plunger/handle inserted; showing initial fit of the sliding parts. ⚠️ small (243×181). | **Soccer Shots — initial tolerancing issues (built)** |
 | photo-43.jpg | Soccer Shots — blue 3D-printed end block with two bored guide-rod holes, held to camera; the holes were undersized on the first print. ⚠️ small (216×288). | **Soccer Shots — initial tolerancing issues (built)** |
 | photo-44.jpg | Soccer Shots — assembled launcher on a table: gray body + green plunger head on twin guide rods, showing the shooting mechanism's pole-and-hole fit. ⚠️ small (188×140). | **Soccer Shots — initial tolerancing issues (built)** |
+| photo-45.jpg | Soccer Shots — a part being 3D-printed on a Voron 2.4 (enclosed CoreXY printer, textured PEI bed, white PLA). Good sharp shot of the fabrication step. (447×396). | **Soccer Shots — fabrication (3D printing the prototype)** |
 
 ## Austin Creek Show — page structure (3 sections)
 
