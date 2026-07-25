@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../styles.css?v=20260724p">
+  <link rel="stylesheet" href="../styles.css?v=20260724q">
   <link rel="canonical" href="https://jasperbuntinx.com/experiences/ecofil.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Jasper Buntinx">
@@ -118,26 +118,18 @@
           <figure class="case-figure"><img class="zoomable" src="../assets/img/ecofil-extruder-cad.jpg" alt="ECOFIL extruder assembly in SolidWorks: motor and gearbox driving a vertical barrel on an extruded-frame stand" loading="lazy"><figcaption>System assembly: motor and gearbox driving a vertical barrel/hopper on an extruded-frame stand.</figcaption></figure>
           <figure class="case-figure"><img class="zoomable" src="../assets/img/ecofil-extruder-proto-cad-b.jpg" alt="Prototype CAD of the ECOFIL extruder from an alternate angle" loading="lazy"><figcaption>Prototype CAD from an alternate angle.</figcaption></figure>
         </div>
+        <p>The control workflow ties the stage together: a 24 V supply feeds buck converters for the logic and fan rails, an ESP32 coordinates a TMC2208-driven NEMA 17 for spooling, and a MOSFET switches the cartridge heater against thermistor feedback.</p>
+        <figure class="team-figure"><img class="zoomable" src="../assets/img/ecofil-extruder-schematic.jpg" alt="Extruder control schematic: 24 V supply, buck converters, ESP32, TMC2208 stepper driver, NEMA 17, and MOSFET-switched heater" loading="lazy"><figcaption>Extruder control and power workflow.</figcaption></figure>
       </div>
     </section>
 
     <section class="case-section">
-      <div class="case-section-label"><span class="case-index">05</span><h2>Controls and delivery</h2></div>
-      <div>
-        <p class="case-lead">Arduino controllers coordinate Hall-effect sensors, MOSFETs, thermistors, and hygrometers across the line. I also manage BOMs, project finances, incubator funding, and material donations, connecting technical decisions to a buildable product.</p>
-        <div class="case-figures">
-          <figure class="case-figure"><img class="zoomable" src="../assets/img/ecofil-electronics-schematic.jpg" alt="Electrical control schematic for the ECOFIL system" loading="lazy"><figcaption>Shared sensing and control architecture.</figcaption></figure>
-          <article class="case-card"><span class="case-card-kicker">Result</span><h3>Integrated prototype delivered within budget</h3><p>ECOFIL secured support from Aggies Create, Tyrex, and the TAMU Meloy program. The recycler combined mechanical fabrication, embedded control, and operations into one working development effort.</p></article>
-        </div>
-        <div class="case-tags"><span class="case-tag">SolidWorks</span><span class="case-tag">Thermal FEA</span><span class="case-tag">Arduino</span><span class="case-tag">Sensors</span><span class="case-tag">DFM</span><span class="case-tag">BOM management</span></div>
-      </div>
-    </section>
-
-    <section class="case-section">
-      <div class="case-section-label"><span class="case-index">06</span><h2>The team</h2></div>
+      <div class="case-section-label"><span class="case-index">05</span><h2>The team</h2></div>
       <div>
         <p class="case-lead">None of this happened alone. ECOFIL is the work of a team I could not be luckier to build with. We met through Aggies Create and split the load across mechanical design, electronics, and operations, and every stage of this machine carries their work. A huge shoutout to these guys.</p>
         <figure class="team-figure"><img class="zoomable" src="../assets/img/ecofil-team.jpg" alt="The five-person ECOFIL founding team in suits" loading="lazy"><figcaption>The ECOFIL team.</figcaption></figure>
+        <div class="case-result"><strong>Delivered within budget</strong><p>ECOFIL secured support from Aggies Create, Tyrex, and the TAMU Meloy program. The recycler combined mechanical fabrication, embedded control, and operations into one working development effort.</p></div>
+        <div class="case-tags"><span class="case-tag">SolidWorks</span><span class="case-tag">Thermal FEA</span><span class="case-tag">Arduino</span><span class="case-tag">Sensors</span><span class="case-tag">DFM</span><span class="case-tag">BOM management</span></div>
         <div class="detail-nav"><a href="rochester-sensors.html">&larr; Rochester Sensors</a><a href="cfd-optimization.html">CUDA CFD Internship &rarr;</a></div>
       </div>
     </section>
@@ -161,6 +153,6 @@
   <button type="button" class="lb-next" id="lbNext" aria-label="Next image">&rsaquo;</button>
 </div>
 
-<script src="../script.js?v=20260724p"></script>
+<script src="../script.js?v=20260724q"></script>
 </body>
 </html>
