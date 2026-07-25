@@ -303,7 +303,7 @@ camera ▸ <span class="c">YOLO-World</span> ▸ floor (x,y) <span class="a">─
     <div>
       <p class="lead">Grabbing flat, crumpled cloth off a hard floor is the classic failure point. The answer isn't a claw. It's a <b style="color:var(--bright)">ring of soft, tendon-driven tentacles</b> that curl inward and gather the laundry toward the center.</p>
       <ul class="clean">
-        <li>Fully parametric: modeled in code (CadQuery), exports STEP + STL</li>
+        <li>Fully parametric: modeled in SolidWorks, exports STEP + STL</li>
         <li>Five TPU fingers with ventral notches that close when a tendon pulls</li>
         <li>One servo curls all five together; needle-gripper fallback for flat socks</li>
         <li>Wireless: an ESP32 + battery on the claw take grip commands over WiFi</li>
@@ -322,7 +322,7 @@ camera ▸ <span class="c">YOLO-World</span> ▸ floor (x,y) <span class="a">─
     <div class="bom-body"><table><tbody>
       <tr><th>Component</th><th>Purpose</th><th class="qty">Qty</th><th class="price">Est.</th></tr>
       <tr><td>NEMA 17 stepper, 42 N·cm</td><td>Ceiling winches, sized to 2.6× the worst-case cable tension</td><td class="qty">4 + 1 spare</td><td class="price">$33</td></tr>
-      <tr><td>Winch spool · motor mount · corner guide</td><td>3D-printed drivetrain (parametric CadQuery, PETG)</td><td class="qty">4 each</td><td class="price">–</td></tr>
+      <tr><td>Winch spool · motor mount · corner guide</td><td>3D-printed drivetrain (parametric SolidWorks, PETG)</td><td class="qty">4 each</td><td class="price">–</td></tr>
       <tr><td>UHMWPE (Dyneema) braided line, 50 lb</td><td>The cables: near-zero stretch keeps position accurate; ~15× load margin</td><td class="qty">150 m</td><td class="price">$8</td></tr>
       <tr><td>Stainless lag eye anchors, 700 lb, closed-eye</td><td>Into ceiling joists, the one part that must never be plastic</td><td class="qty">4</td><td class="price">$14</td></tr>
     </tbody></table></div>
@@ -377,7 +377,7 @@ camera ▸ <span class="c">YOLO-World</span> ▸ floor (x,y) <span class="a">─
     <span class="chip"><b>NumPy</b> / <b>SciPy</b> · statics &amp; least-squares FK</span>
     <span class="chip"><b>YOLO-World</b> · open-vocab detection</span>
     <span class="chip"><b>OpenCV</b> · camera + homography</span>
-    <span class="chip"><b>CadQuery</b> · parametric CAD → STEP/STL</span>
+    <span class="chip"><b>SolidWorks</b> · parametric CAD → STEP/STL</span>
     <span class="chip"><b>Arduino</b> · 4-axis stepper firmware</span>
     <span class="chip"><b>ESP32</b> · wireless gripper over WiFi</span>
     <span class="chip"><b>Matplotlib</b> · analysis + simulation</span>
