@@ -14,14 +14,19 @@ swap in measured results (actual grab success rate, cycle time, etc.).
 **RoomCleaner — Autonomous Laundry-Picking Cable Robot** | Personal Project
 *College Station, TX · Jul 2026 – Present*
 
-## Bullet points
+## Bullet points (the two that carry the most weight)
 
-- Designed a ceiling-mounted cable-driven parallel robot that positions a gripper from four winch
-  cables, deriving the inverse kinematics and a closed-form cable-statics model to size NEMA 17
-  steppers to 2.6× worst-case tension (3.3× motor headroom) and verify a 4 kg workspace-wide payload.
-- Modeled eight parametric 3D-printed parts in CadQuery, including a five-finger tendon-driven TPU
-  gripper for crumpled fabric, and architected a YOLO-World perception and state-machine control
-  stack on an Arduino/ESP32 platform with a complete ~$230 bill of materials.
+- Derived the inverse kinematics and a closed-form cable-statics model for a four-cable ceiling
+  robot, sizing NEMA 17 steppers to 2.6× worst-case tension and validating a 4 kg payload
+  across the workspace.
+- Modeled eight parametric 3D-printed parts in CadQuery, including a five-finger tendon-driven
+  TPU gripper engineered to grasp flat, crumpled fabric.
+
+### Swap option
+If the role leans mechatronics/controls, trade bullet two for:
+
+- Architected a YOLO-World perception and state-machine control stack on an Arduino/ESP32
+  platform, with a complete ~$230 bill of materials sized from the analysis.
 
 ## Suggested skills to add to the résumé skills line
 CadQuery · Python · Inverse kinematics · Statics / force analysis · YOLO-World (computer vision)
