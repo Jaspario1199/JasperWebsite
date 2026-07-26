@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Jasper Buntinx - Project Portfolio</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #16181d;
+    --body: #3d434c;
+    --muted: #7b828d;
+    --accent: #b0434c;
+    --accent-soft: #fdf3f4;
+    --line: #dfe3e8;
+    --tile: #f6f7f9;
+  }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: var(--body);
+    font-size: 9.6pt;
+    line-height: 1.45;
+  }
+  .page {
+    width: 8.5in; height: 11in;
+    padding: 0.55in 0.6in 0.62in;
+    page-break-after: always;
+    position: relative;
+    display: flex; flex-direction: column;
+    background: #fff;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* ---------- cover ---------- */
+  .cover-name {
+    font-size: 34pt; font-weight: 700; color: var(--ink);
+    letter-spacing: -0.02em; line-height: 1;
+  }
+  .cover-sub {
+    margin-top: 9px; font-size: 11pt; color: var(--accent); font-weight: 600;
+    letter-spacing: .01em;
+  }
+  .cover-contact {
+    margin-top: 12px; font-size: 9.2pt; color: var(--muted);
+  }
+  .cover-contact span { white-space: nowrap; }
+  .cover-contact i { font-style: normal; color: var(--line); padding: 0 7px; }
+  .cover-rule { height: 3px; background: var(--accent); width: 62px; margin: 20px 0 16px; border-radius: 2px; }
+  .cover-lead { font-size: 10.6pt; line-height: 1.55; color: var(--body); max-width: 6.6in; }
+  .cover-lead strong { color: var(--ink); font-weight: 600; }
+
+  .highlights { display: flex; gap: 10px; margin-top: 22px; }
+  .hl {
+    flex: 1; background: var(--accent-soft); border-top: 2.5px solid var(--accent);
+    padding: 11px 12px 12px; border-radius: 0 0 4px 4px;
+  }
+  .hl b { display: block; font-size: 16pt; color: var(--ink); font-weight: 700; letter-spacing: -.02em; line-height: 1.1; }
+  .hl span { display: block; margin-top: 4px; font-size: 7.6pt; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; line-height: 1.35; }
+
+  .cover-strip { display: flex; gap: 8px; margin-top: 22px; }
+  .cover-strip img { width: 25%; height: 1.78in; object-fit: contain; background: var(--tile); border-radius: 3px; padding: 6px; }
+
+  .cover-cols { display: flex; gap: 30px; margin-top: 24px; }
+  .cover-col { flex: 1; }
+  .col-head {
+    font-size: 8pt; font-weight: 700; color: var(--ink); text-transform: uppercase;
+    letter-spacing: .1em; padding-bottom: 6px; margin-bottom: 9px; border-bottom: 1px solid var(--line);
+  }
+  .toc-row { display: flex; align-items: baseline; font-size: 9.4pt; margin-bottom: 6px; }
+  .toc-row .t { color: var(--ink); font-weight: 600; }
+  .toc-row .d { flex: 1; border-bottom: 1px dotted #cdd3da; margin: 0 6px 0 7px; transform: translateY(-2px); }
+  .toc-row .p { color: var(--muted); font-variant-numeric: tabular-nums; }
+  .skill-row { font-size: 9pt; margin-bottom: 6px; line-height: 1.4; }
+  .skill-row b { color: var(--ink); font-weight: 600; }
+
+  /* ---------- project pages ---------- */
+  .proj-head { border-bottom: 2px solid var(--ink); padding-bottom: 9px; }
+  .proj-eyebrow {
+    font-size: 7.6pt; font-weight: 700; color: var(--accent);
+    text-transform: uppercase; letter-spacing: .11em;
+  }
+  .proj-title {
+    font-size: 20pt; font-weight: 700; color: var(--ink);
+    letter-spacing: -.02em; line-height: 1.12; margin-top: 5px;
+  }
+  .proj-meta { font-size: 8.6pt; color: var(--muted); margin-top: 6px; }
+  .proj-meta b { color: var(--body); font-weight: 600; }
+  .proj-lead { font-size: 10.2pt; line-height: 1.5; color: var(--body); margin-top: 13px; }
+
+  .metrics { display: flex; gap: 8px; margin-top: 15px; }
+  .m { flex: 1; background: var(--tile); border-left: 2.5px solid var(--accent); padding: 9px 10px; border-radius: 0 3px 3px 0; }
+  .m b { display: block; font-size: 12.6pt; color: var(--ink); font-weight: 700; letter-spacing: -.02em; line-height: 1.15; }
+  .m span { display: block; margin-top: 3px; font-size: 7.2pt; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; line-height: 1.3; }
+
+  ul.bullets { list-style: none; margin-top: 16px; }
+  ul.bullets li {
+    position: relative; padding-left: 15px; margin-bottom: 8px;
+    font-size: 9.7pt; line-height: 1.5;
+  }
+  ul.bullets li::before {
+    content: ""; position: absolute; left: 0; top: 6.2px;
+    width: 5px; height: 5px; background: var(--accent); border-radius: 50%;
+  }
+  ul.bullets strong { color: var(--ink); font-weight: 600; }
+
+  .figs { display: flex; gap: 9px; margin-top: 20px; flex: 1; min-height: 0; }
+  .fig { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+  .fig img { width: 100%; flex: 1; min-height: 0; max-height: 3.2in; object-fit: cover; border-radius: 3px; display: block; background: var(--tile); }
+  .fig img.fit { object-fit: contain; padding: 7px; }
+  .fig figcaption { font-size: 7.6pt; color: var(--muted); margin-top: 5px; line-height: 1.35; }
+
+  .tools { margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--line); font-size: 8.4pt; color: var(--muted); }
+  .tools b { color: var(--ink); font-weight: 600; text-transform: uppercase; letter-spacing: .07em; font-size: 7.6pt; }
+
+  /* ---------- grid page ---------- */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 18px; margin-top: 16px; }
+  .card { display: flex; flex-direction: column; }
+  .card img { width: 100%; height: 1.72in; object-fit: cover; border-radius: 3px; background: var(--tile); }
+  .card img.fit { object-fit: contain; padding: 6px; }
+  .card h3 { font-size: 11pt; color: var(--ink); font-weight: 700; margin-top: 9px; letter-spacing: -.01em; line-height: 1.2; }
+  .card .cmeta { font-size: 7.8pt; color: var(--muted); margin-top: 3px; }
+  .card p { font-size: 8.9pt; line-height: 1.45; margin-top: 6px; }
+  .card p strong { color: var(--ink); font-weight: 600; }
+  .card .ctools { font-size: 7.8pt; color: var(--muted); margin-top: 6px; }
+
+  .award-strip { margin-top: auto; background: var(--accent-soft); border-top: 2.5px solid var(--accent); padding: 13px 16px 14px; border-radius: 0 0 4px 4px; }
+  .award-strip .col-head { border-bottom: none; margin-bottom: 8px; padding-bottom: 0; }
+  .award-row { display: flex; gap: 22px; }
+  .award { flex: 1; font-size: 8.8pt; line-height: 1.45; }
+  .award b { display: block; color: var(--ink); font-weight: 700; font-size: 9.4pt; }
+
+  .edu-block { display: flex; gap: 30px; margin-top: auto; padding-top: 15px; border-top: 2px solid var(--ink); }
+  .edu-col { flex: 1; }
+  .foot {
+    position: absolute; left: 0.6in; right: 0.6in; bottom: 0.26in;
+    display: flex; justify-content: space-between;
+    font-size: 7.4pt; color: #a8afb9; letter-spacing: .04em;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE 1 - COVER ============ -->
+<section class="page">
+  <div class="cover-name">Jasper Buntinx</div>
+  <div class="cover-sub">Mechanical Engineering &middot; Texas A&amp;M University &middot; B.S. May 2027</div>
+  <div class="cover-contact">
+    <span>(737) 247-8938</span><i>|</i><span>jasper_buntinx@tamu.edu</span><i>|</i><span>jasperbuntinx.com</span><i>|</i><span>linkedin.com/in/jasper-buntinx</span>
+  </div>
+
+  <div class="cover-rule"></div>
+
+  <p class="cover-lead">
+    I design hardware and then build it. My work runs from <strong>CAD and engineering analysis</strong>
+    through <strong>CNC programming, welding, and fabrication</strong>, into <strong>embedded sensing and
+    controls</strong>, and ends where it should &mdash; with a physical machine tested against real
+    requirements. This portfolio covers production engineering at an Amphenol subsidiary, a filament-recycling
+    startup I cofounded, GPU-accelerated CFD research in Brazil, and public-installation steel fabrication.
+  </p>
+
+  <div class="highlights">
+    <div class="hl"><b>182 &rarr; 34 min</b><span>CNC cycle time on highest-volume part</span></div>
+    <div class="hl"><b>400%+</b><span>CFD solver throughput gain</span></div>
+    <div class="hl"><b>50-year</b><span>Field life qualified vs. 30-yr spec</span></div>
+    <div class="hl"><b>1st place</b><span>2024 VEX U State Championship</span></div>
+  </div>
+
+  <div class="cover-strip">
+    <img src="../assets/img/rochester-machining.jpg" alt="">
+    <img src="../assets/img/ecofil-shredder-build.jpg" alt="">
+    <img src="../assets/img/cfd-d3q19-lattice.jpg" alt="">
+    <img src="../assets/img/creekshow-night-cityscape.jpg" alt="">
+  </div>
+
+  <div class="cover-cols">
+    <div class="cover-col">
+      <div class="col-head">Contents</div>
+      <div class="toc-row"><span class="t">Rochester Sensors (Amphenol)</span><span class="d"></span><span class="p">2</span></div>
+      <div class="toc-row"><span class="t">ECOFIL Filament Recycler</span><span class="d"></span><span class="p">3</span></div>
+      <div class="toc-row"><span class="t">CUDA CFD Optimization &mdash; Petrobras</span><span class="d"></span><span class="p">4</span></div>
+      <div class="toc-row"><span class="t">Creek Show Dragonflies</span><span class="d"></span><span class="p">5</span></div>
+      <div class="toc-row"><span class="t">Additional Projects</span><span class="d"></span><span class="p">6</span></div>
+    </div>
+    <div class="cover-col">
+      <div class="col-head">Capabilities</div>
+      <div class="skill-row"><b>CAD:</b> SolidWorks (CSWA), NX, AutoCAD, OnShape, Fusion 360</div>
+      <div class="skill-row"><b>CAM:</b> CamWorks, SolidWorks CAM, Fusion 360 CAM, Mastercam</div>
+      <div class="skill-row"><b>Analysis:</b> GD&amp;T (ASME Y14.5), FEA, ANSYS, CFD, tolerance stack-up</div>
+      <div class="skill-row"><b>Fabrication:</b> CNC, MIG welding, laser cutting, 3D printing, soldering</div>
+      <div class="skill-row"><b>Programming:</b> CUDA, C++, Python, Arduino / embedded C</div>
+    </div>
+  </div>
+
+  <div class="edu-block">
+    <div class="edu-col">
+      <div class="col-head">Education</div>
+      <div class="skill-row"><b>Texas A&amp;M University</b> &mdash; B.S. Mechanical Engineering &amp; Mathematics</div>
+      <div class="skill-row" style="color:var(--muted)">College Station, TX &middot; Aug 2023 &ndash; May 2027 &middot; GPA 3.31 / 4.0</div>
+    </div>
+    <div class="edu-col">
+      <div class="col-head">Certification</div>
+      <div class="skill-row"><b>CSWA</b> &mdash; Certified SolidWorks Associate</div>
+      <div class="skill-row" style="color:var(--muted)">Full case studies and additional media at jasperbuntinx.com</div>
+    </div>
+  </div>
+
+  <div class="foot"><span>JASPER BUNTINX &mdash; PROJECT PORTFOLIO</span><span>jasperbuntinx.com</span></div>
+</section>
+
+<!-- ============ PAGE 2 - ROCHESTER ============ -->
+<section class="page">
+  <div class="proj-head">
+    <div class="proj-eyebrow">Production Engineering &middot; CAM &middot; Qualification &middot; Automation</div>
+    <div class="proj-title">Rochester Sensors <span style="font-weight:400;color:var(--muted);font-size:13pt;">(Amphenol subsidiary)</span></div>
+    <div class="proj-meta"><b>Mechanical Engineering Intern</b> &middot; Dallas, TX &middot; May 2026 &ndash; Present</div>
+  </div>
+
+  <p class="proj-lead">Rochester builds liquid-level and pressure sensing systems for industrial and vehicle
+  applications. I work across the production lifecycle: developing CNC processes and workholding, troubleshooting
+  in-development designs, qualifying assemblies against their field environment, and automating manual stations.</p>
+
+  <div class="metrics">
+    <div class="m"><b>70&ndash;80%</b><span>Cycle-time reduction</span></div>
+    <div class="m"><b>10+</b><span>Production parts programmed</span></div>
+    <div class="m"><b>50-year</b><span>Field life demonstrated</span></div>
+    <div class="m"><b>15&ndash;30/min</b><span>Robotic bin-pick rate</span></div>
+  </div>
+
+  <ul class="bullets">
+    <li>Programmed CNC machining workflows in CamWorks for <strong>10+ production parts</strong> and dedicated
+      multi-part fixtures, replacing inherited pattern-projected toolpaths to cut cycle times 70&ndash;80%
+      &mdash; <strong>182 &rarr; 34 minutes</strong> on the highest-volume part &mdash; while holding all GD&amp;T requirements.</li>
+    <li>Resolved <strong>tolerance stack-up and assembly fit defects</strong> on in-development products in SolidWorks,
+      validating designs by machining prototypes to released dimensions and correcting a source-design misalignment
+      before mass production.</li>
+    <li>Executed environmental qualification testing &mdash; accelerated thermal cycling
+      (<strong>&minus;40 to +125&nbsp;&deg;C</strong>), salt ingress, and vibration &mdash; on sensor assemblies for
+      pre-launch client products, demonstrating reliability beyond 50-year equivalent field life against a 30-year
+      design requirement.</li>
+    <li>Programmed a <strong>Universal Robots arm for vision-guided bin picking</strong> using Keyence 3D scanning,
+      gripping randomly oriented parts from bulk bins and sorting them at 15&ndash;30 parts/min &mdash; automating the
+      first station of a phased plan to redeploy operator hours.</li>
+  </ul>
+
+  <div class="figs">
+    <figure class="fig"><img class="fit" src="../assets/img/rochester-machining.jpg" alt=""><figcaption>Machining strategy applied to a production component.</figcaption></figure>
+    <figure class="fig"><img class="fit" src="../assets/img/rochester-fixture.jpg" alt=""><figcaption>Multi-part workholding designed for a production run.</figcaption></figure>
+    <figure class="fig"><img class="fit" src="../assets/img/rochester-toolpath-finish.jpg" alt=""><figcaption>Finishing passes and stock-removal verification in CamWorks.</figcaption></figure>
+  </div>
+
+  <div class="tools"><b>Tools</b> &nbsp; CamWorks &middot; SolidWorks &middot; GD&amp;T &middot; Tolerance analysis &middot; Environmental testing &middot; Universal Robots &middot; Keyence 3D vision</div>
+  <div class="foot"><span>JASPER BUNTINX &mdash; PROJECT PORTFOLIO</span><span>2</span></div>
+</section>
+
+<!-- ============ PAGE 3 - ECOFIL ============ -->
+<section class="page">
+  <div class="proj-head">
+    <div class="proj-eyebrow">Startup &middot; Machine Design &middot; Thermal &amp; Controls</div>
+    <div class="proj-title">ECOFIL Filament Recycler</div>
+    <div class="proj-meta"><b>Cofounder / Mechanical Engineer</b> &middot; College Station, TX &middot; Aug 2025 &ndash; Present</div>
+  </div>
+
+  <p class="proj-lead">A three-machine line that turns failed 3D prints back into usable filament: a shredder, a
+  dehydrator, and an extruder. I lead mechanical design from CAD and analysis through fabrication, sensing, and
+  system integration &mdash; every machine on this page was designed and built by our team from nothing.</p>
+
+  <div class="metrics">
+    <div class="m"><b>&plusmn;0.10 mm</b><span>Extruded diameter control</span></div>
+    <div class="m"><b>3 stages</b><span>Shredder / dehydrator / extruder</span></div>
+    <div class="m"><b>Closed loop</b><span>Thermal &amp; diameter sensing</span></div>
+    <div class="m"><b>Funded</b><span>Incubator grants &amp; donations</span></div>
+  </div>
+
+  <ul class="bullets">
+    <li>Designed the three-stage recycler in SolidWorks, applying <strong>GD&amp;T to control mating fits</strong> and
+      hold extruded diameter to &plusmn;0.10&nbsp;mm for consistent standard filament quality.</li>
+    <li>Fabricated functional prototypes of all three machines through <strong>3D printing, CNC milling, laser cutting,
+      soldering, and MIG welding</strong>, providing working models for performance testing and design iteration.</li>
+    <li>Integrated the full control stack myself &mdash; <strong>Arduino controllers, high-voltage AC motors,
+      linear Hall-effect sensors, MOSFETs, PTC heating elements, thermistors, stepper motors, fans, and
+      hygrometers</strong> &mdash; for real-time monitoring and control of the recycling process.</li>
+    <li>Secured <strong>incubator funding and material donations</strong> from Aggies Create, Tyrex, and the TAMU Meloy
+      program, then managed project finances and materials through detailed BOMs to complete the recycler within budget.</li>
+  </ul>
+
+  <div class="figs">
+    <figure class="fig"><img class="fit" src="../assets/img/ecofil-shredder-cad.jpg" alt=""><figcaption>Shredder assembly, exploded view in SolidWorks.</figcaption></figure>
+    <figure class="fig"><img src="../assets/img/ecofil-dehydrator-proto-built.jpg" alt=""><figcaption>Dehydrator prototype built from waterjet and welded stock.</figcaption></figure>
+    <figure class="fig"><img class="fit" src="../assets/img/ecofil-extruder-cad.jpg" alt=""><figcaption>Extruder stage with hopper, heater, and spooling.</figcaption></figure>
+  </div>
+
+  <div class="tools"><b>Tools</b> &nbsp; SolidWorks &middot; GD&amp;T &middot; SolidWorks CAM &middot; Arduino / embedded C &middot; MIG welding &middot; Waterjet &amp; laser cutting &middot; BOM management</div>
+  <div class="foot"><span>JASPER BUNTINX &mdash; PROJECT PORTFOLIO</span><span>3</span></div>
+</section>
+
+<!-- ============ PAGE 4 - CFD ============ -->
+<section class="page">
+  <div class="proj-head">
+    <div class="proj-eyebrow">GPU Computing &middot; Fluid Dynamics &middot; Research</div>
+    <div class="proj-title">CUDA CFD Optimization</div>
+    <div class="proj-meta"><b>Mechanical Engineering Intern</b> &middot; Petrobras / Geoenergia Lab, UDESC &middot; Florian&oacute;polis, Brazil &middot; Jun &ndash; Aug 2025</div>
+  </div>
+
+  <p class="proj-lead">Profiled and reworked a lattice Boltzmann (LBM) GPU solver to remove hidden compute and memory
+  bottlenecks, then validated every speedup against the simulation's accuracy limits rather than accepting raw
+  throughput as the result.</p>
+
+  <div class="metrics">
+    <div class="m"><b>400%+</b><span>MLUPS throughput gain</span></div>
+    <div class="m"><b>+60%</b><span>Warp efficiency</span></div>
+    <div class="m"><b>56 &rarr; 36 KB</b><span>Peak shared memory</span></div>
+    <div class="m"><b>+33%</b><span>Stable peak Reynolds number</span></div>
+  </div>
+
+  <ul class="bullets">
+    <li>Optimized CUDA-based Lattice Boltzmann CFD solvers using <strong>AI-assisted kernel profiling in NVIDIA Nsight
+      Compute</strong>, resolving memory bottlenecks to push throughput past published open-source LBM benchmarks.</li>
+    <li>Achieved <strong>400%+ throughput gain (MLUPS)</strong> via FP64&rarr;FP32 migration and memory-access
+      restructuring, validated against solver tolerances so accuracy was never traded for speed.</li>
+    <li>Authored a <strong>Python mesh-generation script</strong> for fine-to-coarse grid interfaces, raising the stable
+      peak Reynolds number 33% with no throughput loss.</li>
+    <li>Diagnosed uncoalesced global memory access via Nsight workload reports and remapped thread-to-data access for
+      <strong>60% better warp efficiency</strong>; cut peak shared memory 35% by removing redundant data staging.</li>
+  </ul>
+
+  <div class="figs">
+    <figure class="fig"><img class="fit" src="../assets/img/cfd-paraview-sim.jpg" alt=""><figcaption>Solver output visualized in ParaView.</figcaption></figure>
+    <figure class="fig"><img class="fit" src="../assets/img/cfd-nsight-compute.jpg" alt=""><figcaption>Nsight Compute kernel profiling used to find bottlenecks.</figcaption></figure>
+    <figure class="fig"><img class="fit" src="../assets/img/cfd-mesh-refinement.jpg" alt=""><figcaption>Fine-to-coarse grid interface from the meshing script.</figcaption></figure>
+  </div>
+
+  <div class="tools"><b>Tools</b> &nbsp; CUDA &middot; C++ &middot; Python &middot; NVIDIA Nsight Compute &middot; Nsight Systems &middot; ParaView &middot; Lattice Boltzmann methods</div>
+  <div class="foot"><span>JASPER BUNTINX &mdash; PROJECT PORTFOLIO</span><span>4</span></div>
+</section>
+
+<!-- ============ PAGE 5 - CREEK SHOW ============ -->
+<section class="page">
+  <div class="proj-head">
+    <div class="proj-eyebrow">Structural Design &middot; Fabrication &middot; Public Installation</div>
+    <div class="proj-title">Creek Show Dragonflies</div>
+    <div class="proj-meta"><b>Mechanical Engineering Intern</b> &middot; Waterloo Greenway Conservancy &middot; Austin, TX &middot; May 2022 &ndash; Jan 2023</div>
+  </div>
+
+  <p class="proj-lead">Austin's Creek Show installs large-scale illuminated art over Waller Creek each fall. I
+  translated artist concepts into four illuminated steel sculptures &mdash; engineered, fabricated, wired, and
+  installed over a live urban creek, with each dragonfly carrying its own unique wing geometry.</p>
+
+  <div class="metrics">
+    <div class="m"><b>4</b><span>Unique sculptures</span></div>
+    <div class="m"><b>14+ ft</b><span>Wingspan</span></div>
+    <div class="m"><b>200+</b><span>Welded joints</span></div>
+    <div class="m"><b>&minus;30%</b><span>Peak current-induced force</span></div>
+  </div>
+
+  <ul class="bullets">
+    <li>Designed <strong>four unique CAD assemblies in SolidWorks</strong> from client and artist drawings, enabling
+      production of four large metal dragonfly structures with 14-ft+ wingspans after extensive iteration and prototyping.</li>
+    <li>Led fabrication of the full-scale structures: <strong>laser-cut eight unique wing designs</strong> via Fusion 360
+      CAM, welded 200+ joints, soldered wiring for four LED displays, and produced water-resistant electronics packaging
+      for permanent outdoor exposure.</li>
+    <li>Achieved a <strong>30% reduction in peak current-induced forces</strong> on creek structures through FEA with
+      SolidWorks Simulation and ANSYS, enhancing high-wind and flood resilience.</li>
+    <li>Delivered completed installations ready for the show, including on-site assembly and mounting in the creek bed.</li>
+  </ul>
+
+  <div class="figs">
+    <figure class="fig"><img src="../assets/img/creekshow-night-cityscape.jpg" alt=""><figcaption>The completed installation over the creek at night.</figcaption></figure>
+    <figure class="fig"><img src="../assets/img/creekshow-wing-welded.jpg" alt=""><figcaption>Welded wing frame on the fabrication jig.</figcaption></figure>
+    <figure class="fig"><img src="../assets/img/creekshow-onsite-install.jpg" alt=""><figcaption>On-site installation in the creek bed.</figcaption></figure>
+  </div>
+
+  <div class="tools"><b>Tools</b> &nbsp; SolidWorks &middot; SolidWorks Simulation &middot; ANSYS &middot; Fusion 360 CAM &middot; Fiber laser cutting &middot; MIG welding &middot; LED wiring</div>
+  <div class="foot"><span>JASPER BUNTINX &mdash; PROJECT PORTFOLIO</span><span>5</span></div>
+</section>
+
+<!-- ============ PAGE 6 - ADDITIONAL ============ -->
+<section class="page">
+  <div class="proj-head">
+    <div class="proj-eyebrow">Prototypes &middot; Personal Builds &middot; Coursework</div>
+    <div class="proj-title">Additional Projects</div>
+    <div class="proj-meta">Independent prototypes, competition robotics, and design coursework</div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <img class="fit" src="../assets/img/roomcleaner-gripper-cad.png" alt="">
+      <h3>RoomCleaner: Laundry-Picking Cable Robot</h3>
+      <div class="cmeta">Personal project &middot; Dallas, TX &middot; May 2026 &ndash; Present</div>
+      <p>Derived <strong>inverse kinematics for a four-cable ceiling robot</strong>, sizing NEMA 17 steppers to
+      2.6&times; worst-case tension and validating a 4&nbsp;kg payload. Modeled eight parametric 3D-printed parts
+      including a <strong>five-finger tendon-driven TPU gripper</strong> engineered to grasp a wide range of
+      fabrics and textures.</p>
+      <div class="ctools">SolidWorks &middot; Kinematics &middot; Stepper sizing &middot; TPU printing</div>
+    </div>
+
+    <div class="card">
+      <img class="fit" src="../assets/img/bikelock-v08-exploded-color.jpg" alt="">
+      <h3>Automatic Retractable RFID Bike Lock</h3>
+      <div class="cmeta">Personal project &middot; College Station, TX &middot; Dec 2025 &ndash; Present</div>
+      <p>Developed a <strong>retractable RFID locking mechanism</strong> combining tap authentication, solenoid
+      actuation, and LED/audio state feedback in a serviceable 3D-printed enclosure designed for outdoor use.
+      Now at its <strong>eighth design revision</strong>, iterated through full CAD and prototype cycles.</p>
+      <div class="ctools">SolidWorks &middot; Arduino Nano &middot; RFID &middot; Solenoid actuation &middot; 3D printing</div>
+    </div>
+
+    <div class="card">
+      <img src="../assets/img/tractor-gearbox-teardown.jpg" alt="">
+      <h3>Gas-to-Electric Tractor Conversion</h3>
+      <div class="cmeta">Personal project &middot; Austin, TX</div>
+      <p>Full drivetrain swap on a worn-out gas tractor: <strong>tore down the gas drivetrain</strong>, removed the
+      engine and fuel system, and evaluated the transaxle for reuse. Welded in an <strong>electric transaxle and
+      built the battery system and wiring</strong> into the former engine bay, making the machine fully electric.</p>
+      <div class="ctools">Drivetrain design &middot; Battery systems &middot; MIG welding &middot; Electrical wiring</div>
+    </div>
+
+    <div class="card">
+      <img src="../assets/img/soccershots-goal-final.jpg" alt="">
+      <h3>Soccer Shots &mdash; Tabletop Toy Prototype</h3>
+      <div class="cmeta">MEEN 210 design project &middot; Texas A&amp;M &middot; Jan &ndash; Apr 2025</div>
+      <p>A two-player spring-powered tabletop soccer game <strong>designed for elderly couples and former
+      athletes</strong>, taken from concept sketches to a working all-3D-printed prototype. Built almost entirely
+      in PLA with only springs and suction feet sourced, keeping the build near <strong>$43</strong>.</p>
+      <div class="ctools">SolidWorks &middot; User-centered design &middot; DFM &middot; Tolerance fits &middot; 3D printing</div>
+    </div>
+  </div>
+
+  <div class="award-strip">
+    <div class="col-head">Competition &amp; Leadership</div>
+    <div class="award-row">
+      <div class="award">
+        <b>1st Place &mdash; 2024 VEX U OVER UNDER State Championship</b>
+        Aggie Robotics (Team WHOOP5), plus World Championship placement. Contributed AutoCAD schematic redesign and
+        iterative development of an extendable friction launcher to retain, launch, or push Tri-Balls on demand.
+      </div>
+      <div class="award">
+        <b>Special Events Logistics Chair &mdash; One Army Men's Organization</b>
+        Led large event construction on a $30K+ annual budget, taking builds from design and mockup through BOM and
+        fabrication with 80+ members, supporting Gladiator Dash &mdash; a 5K raising $180K+ annually.
+      </div>
+    </div>
+  </div>
+
+  <div class="foot"><span>JASPER BUNTINX &mdash; PROJECT PORTFOLIO</span><span>6</span></div>
+</section>
+
+</body>
+</html>
