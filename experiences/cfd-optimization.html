@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Petrobras CFD Optimization Internship - Jasper Buntinx</title>
-  <meta name="description" content="A Petrobras-sponsored internship at the Geoenergia Lab, where I profiled and optimized a CUDA lattice Boltzmann CFD solver for the Brazilian national energy company, reaching a 400%+ throughput gain.">
+  <meta name="description" content="A Petrobras-sponsored internship at the Geoenergia Lab on oil-spill modeling: profiling and optimizing a CUDA lattice Boltzmann CFD solver built to simulate how spilled oil moves and disperses through seawater, reaching a 400%+ throughput gain.">
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +14,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Jasper Buntinx">
   <meta property="og:title" content="Petrobras CFD Optimization Internship - Jasper Buntinx">
-  <meta property="og:description" content="A Petrobras-sponsored internship at the Geoenergia Lab, where I profiled and optimized a CUDA lattice Boltzmann CFD solver for the Brazilian national energy company, reaching a 400%+ throughput gain.">
+  <meta property="og:description" content="A Petrobras-sponsored internship at the Geoenergia Lab on oil-spill modeling: profiling and optimizing a CUDA lattice Boltzmann CFD solver built to simulate how spilled oil moves and disperses through seawater, reaching a 400%+ throughput gain.">
   <meta property="og:url" content="https://jasperbuntinx.com/experiences/cfd-optimization.html">
   <meta property="og:image" content="https://jasperbuntinx.com/assets/img/creekshow-night.jpg">
   <meta name="twitter:card" content="summary_large_image">
@@ -44,7 +44,7 @@
         <p class="crumb"><a href="../experiences.html">&larr; All Experiences</a></p>
         <span class="case-eyebrow">Energy Industry Internship · CUDA / GPU Computing · Fluid Dynamics</span>
         <h1>Petrobras CFD Optimization</h1>
-        <p class="case-deck">Profiled and reworked a lattice Boltzmann GPU solver to remove hidden compute and memory bottlenecks, then validated every speedup against the simulation's accuracy limits.</p>
+        <p class="case-deck">Petrobras needed to predict where spilled oil goes at sea. I profiled and reworked the lab's lattice Boltzmann GPU solver behind that effort, removing hidden compute and memory bottlenecks and validating every speedup against the simulation's accuracy limits.</p>
         <p class="case-role"><strong>Mechanical Engineering Intern</strong> · Petrobras (the Brazilian national energy company) · Geoenergia Lab, UDESC · Jun–Aug 2025 · Florian&oacute;polis, Brazil</p>
       </div>
       <figure class="case-hero-visual">
@@ -61,7 +61,20 @@
     </div>
 
     <section class="case-section">
-      <div class="case-section-label"><span class="case-index">01</span><h2>The engineering problem</h2></div>
+      <div class="case-section-label"><span class="case-index">01</span><h2>Why this work mattered</h2></div>
+      <div>
+        <p class="case-lead">Petrobras produces oil offshore, and a spill at sea is both an environmental disaster and a long-running liability. The lab's goal was a simulation that could cover a large section of ocean, resolve oil and seawater together, and predict how spilled oil would travel and disperse: accurately enough to be trusted, and fast enough to still be useful while a response is underway.</p>
+        <div class="case-grid cols-3">
+          <article class="case-card"><span class="case-card-kicker">Physics</span><h3>Two fluids at once</h3><p>Oil and seawater have to be resolved together, because dispersion depends on how the two interact rather than on either fluid alone.</p></article>
+          <article class="case-card"><span class="case-card-kicker">Scale</span><h3>Ocean-sized domains</h3><p>A useful prediction covers a large stretch of open water, so the cost per lattice site decides whether the model is practical at all.</p></article>
+          <article class="case-card"><span class="case-card-kicker">The bet</span><h3>Why lattice Boltzmann</h3><p>The premise was that a GPU-parallelized lattice Boltzmann solver could reach a better speed-to-accuracy point than a traditional Navier-Stokes solver. Whether the GPU side could be made fast enough was the open question I worked on.</p></article>
+        </div>
+        <div class="case-result"><strong>Why speed is the whole problem</strong><p>A spill model that resolves the right physics but takes too long to run cannot guide a response. Every factor of speed recovered on the solver widens the area that can be simulated, or shortens the wait for an answer, which is what would let Petrobras direct containment before the oil spreads further and limit both the environmental damage and the liability that follows it.</p></div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="case-section-label"><span class="case-index">02</span><h2>The engineering problem</h2></div>
       <div>
         <p class="case-lead">The lab's higher-order physics kernels were running roughly 10× slower than expected. The task was not simply to make code faster. It was to find the actual limiting hardware behavior and preserve valid CFD results.</p>
         <div class="case-grid cols-3">
@@ -78,7 +91,7 @@
     </section>
 
     <section class="case-section">
-      <div class="case-section-label"><span class="case-index">02</span><h2>Finding the bottleneck</h2></div>
+      <div class="case-section-label"><span class="case-index">03</span><h2>Finding the bottleneck</h2></div>
       <div>
         <p class="case-lead">Manual timers and refactoring did not explain the slowdown. Hardware-level profiling did: Nsight Compute exposed lingering double-precision FMA instructions in the hottest loops and Nsight Systems showed where runtime accumulated.</p>
         <div class="case-flow">
@@ -94,7 +107,7 @@
     </section>
 
     <section class="case-section">
-      <div class="case-section-label"><span class="case-index">03</span><h2>Engineering changes</h2></div>
+      <div class="case-section-label"><span class="case-index">04</span><h2>Engineering changes</h2></div>
       <div>
         <div class="case-grid cols-3">
           <article class="case-card"><span class="case-card-kicker">Precision</span><h3>Validated FP64 → FP32</h3><p>Removed unnecessary double-precision work from hot loops while checking error against simulation tolerances.</p></article>
@@ -107,7 +120,7 @@
     </section>
 
     <section class="case-section">
-      <div class="case-section-label"><span class="case-index">04</span><h2>Extending the solver</h2></div>
+      <div class="case-section-label"><span class="case-index">05</span><h2>Extending the solver</h2></div>
       <div>
         <p class="case-lead">Boundary instability required a geometry change, not another low-level optimization. I generated multiresolution interfaces with a fine lattice near boundaries and a coarser interior.</p>
         <div class="case-figures">
