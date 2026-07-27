@@ -76,11 +76,11 @@
     <section class="case-section">
       <div class="case-section-label"><span class="case-index">02</span><h2>The engineering problem</h2></div>
       <div>
-        <p class="case-lead">The lab's higher-order physics kernels were running roughly 10× slower than expected. The task was not simply to make code faster. It was to find the actual limiting hardware behavior and preserve valid CFD results.</p>
+        <p class="case-lead">There were two problems, and only one of them was obvious. The lab's higher-order physics kernels ran roughly 10× slower than the hardware should have allowed. Underneath that sat a structural one: the solver's data was grouped so that values the next step needed sat in the same blocks as values it did not, so entire sections of the lattice were shuttled between GPU and CPU every iteration whether or not anything in them was required. I owned profiling, the targeted optimizations, the grid-generation tooling, and the handoff back to the lab.</p>
         <div class="case-grid cols-3">
-          <article class="case-card"><span class="case-card-kicker">System</span><h3>D3Q19 lattice solver</h3><p>Collision and streaming operations update independent lattice sites, making the method well suited to GPU parallelism.</p></article>
-          <article class="case-card"><span class="case-card-kicker">Constraint</span><h3>Accuracy had to hold</h3><p>Precision and grid changes were checked against established simulation tolerances at every step.</p></article>
-          <article class="case-card"><span class="case-card-kicker">My ownership</span><h3>Profile → change → validate</h3><p>I owned kernel profiling, targeted optimization, grid-generation tooling, and technical handoff to the lab.</p></article>
+          <article class="case-card"><span class="case-card-kicker">Symptom</span><h3>10&times; slower than it should be</h3><p>The D3Q19 lattice solver parallelizes cleanly, since collision and streaming update independent sites. The hardware was not the limit, so something in how the code used it was.</p></article>
+          <article class="case-card"><span class="case-card-kicker">Root cause</span><h3>Everything travelled together</h3><p>Needed and unneeded data shared the same groupings, so transfers moved far more than the next step actually consumed. The cost was paid every iteration.</p></article>
+          <article class="case-card"><span class="case-card-kicker">Constraint</span><h3>Accuracy had to hold</h3><p>Precision and grid changes were checked against established simulation tolerances at every step, so nothing could be bought with a worse answer.</p></article>
         </div>
         <div class="case-figures cols-3">
           <figure class="case-figure"><img class="zoomable" src="../assets/img/cfd-d3q19-lattice.jpg" alt="D3Q19 lattice configuration used by the solver" loading="lazy"><figcaption>D3Q19 lattice model.</figcaption></figure>
@@ -91,7 +91,21 @@
     </section>
 
     <section class="case-section">
-      <div class="case-section-label"><span class="case-index">03</span><h2>Finding the bottleneck</h2></div>
+      <div class="case-section-label"><span class="case-index">03</span><h2>Why memory is the bottleneck</h2></div>
+      <div>
+        <p class="case-lead">This is the part that decides whether lattice Boltzmann beats a traditional solver at all. A Navier-Stokes solver spends its time working through coupled differential equations, so its cost is dominated by arithmetic. Lattice Boltzmann inverts that: each site does simple local collision math that a GPU thread finishes almost immediately, and then streaming moves those populations to neighbouring sites. The math is cheap and the movement is not, so on a GPU the solver is bound by memory bandwidth rather than floating-point throughput. Almost every optimization on this project is therefore a decision about where data lives and how it travels.</p>
+        <div class="case-grid cols-2">
+          <article class="case-card"><span class="case-card-kicker">Fastest, smallest</span><h3>Registers</h3><p>Private to a single thread and effectively instant. They hold the handful of values a thread is actively working on. Ask for too many and they spill into slow memory, which quietly undoes the benefit.</p></article>
+          <article class="case-card"><span class="case-card-kicker">On-chip scratchpad</span><h3>Shared memory</h3><p>Shared by a block of threads and managed explicitly by the programmer. Ideal for values that neighbouring threads reuse. It is a fixed budget per multiprocessor, so using less of it lets more blocks run at once.</p></article>
+          <article class="case-card"><span class="case-card-kicker">Large, slow</span><h3>Global memory</h3><p>Holds the full lattice, but every access costs hundreds of cycles. It is only efficient when consecutive threads read consecutive addresses, letting the hardware service a whole warp in one transaction instead of many.</p></article>
+          <article class="case-card"><span class="case-card-kicker">Slowest link</span><h3>Host memory, over PCIe</h3><p>The CPU side is the largest pool and by far the most expensive to reach. Anything crossing this link on every timestep will dominate runtime no matter how well the kernels themselves are written.</p></article>
+        </div>
+        <div class="case-result"><strong>The whole problem, stated once</strong><p>Keep working data in the fastest tier that can hold it, arrange it so a warp reads it in one transaction, and stop moving anything across the slow links that the next step does not actually need. It is also why the precision change mattered: moving from FP64 to FP32 halves the bytes behind every lattice population, which on a memory-bound solver buys bandwidth rather than just faster arithmetic.</p></div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="case-section-label"><span class="case-index">04</span><h2>Finding the bottleneck</h2></div>
       <div>
         <p class="case-lead">Manual timers and refactoring did not explain the slowdown. Hardware-level profiling did: Nsight Compute exposed lingering double-precision FMA instructions in the hottest loops and Nsight Systems showed where runtime accumulated.</p>
         <div class="case-flow">
@@ -107,7 +121,7 @@
     </section>
 
     <section class="case-section">
-      <div class="case-section-label"><span class="case-index">04</span><h2>Engineering changes</h2></div>
+      <div class="case-section-label"><span class="case-index">05</span><h2>Engineering changes</h2></div>
       <div>
         <div class="case-grid cols-3">
           <article class="case-card"><span class="case-card-kicker">Precision</span><h3>Validated FP64 → FP32</h3><p>Removed unnecessary double-precision work from hot loops while checking error against simulation tolerances.</p></article>
@@ -120,7 +134,7 @@
     </section>
 
     <section class="case-section">
-      <div class="case-section-label"><span class="case-index">05</span><h2>Extending the solver</h2></div>
+      <div class="case-section-label"><span class="case-index">06</span><h2>Extending the solver</h2></div>
       <div>
         <p class="case-lead">Boundary instability required a geometry change, not another low-level optimization. I generated multiresolution interfaces with a fine lattice near boundaries and a coarser interior.</p>
         <div class="case-figures">
