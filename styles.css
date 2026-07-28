@@ -440,6 +440,29 @@ p { text-wrap: pretty; }
 
 .section-buttons { text-align: center; margin-top: 48px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 
+/* ---------- case page view switcher ---------- */
+.case-switch {
+  display: inline-flex; gap: 4px; padding: 4px; margin: 0 0 30px;
+  background: var(--bg-elev); border: 1px solid var(--border);
+  border-radius: 999px; max-width: 100%;
+}
+.case-switch a {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 10px 20px; border-radius: 999px; white-space: nowrap;
+  font-family: var(--font-head); font-weight: 600; font-size: .93rem;
+  color: var(--muted); text-decoration: none;
+  transition: background .18s ease, color .18s ease;
+}
+.case-switch a:hover { color: var(--text-strong); background: var(--bg-elev-2); }
+.case-switch a.is-active { background: var(--accent); color: #2a1012; }
+.case-switch a.is-active:hover { background: var(--accent-hover); color: #2a1012; }
+.case-switch svg { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
+@media (max-width: 560px) {
+  .case-switch { display: flex; width: 100%; }
+  .case-switch a { flex: 1; padding: 10px 12px; font-size: .84rem; }
+  .case-switch svg { display: none; }
+}
+
 /* ---------- big image nav buttons (home) ---------- */
 .nav-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
 .nav-card {
