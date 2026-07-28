@@ -142,15 +142,15 @@
     <section class="case-section">
       <div class="case-section-label"><span class="case-index">07</span><h2>Vision-guided automation</h2></div>
       <div>
-        <p class="case-lead">Bulk bins of randomly oriented parts were still being sorted by hand. I programmed a Universal Robots arm for vision-guided bin picking, using Keyence 3D scanning to locate and grip parts regardless of how they landed in the bin.</p>
-        <div class="case-grid cols-3">
-          <article class="case-card"><span class="case-card-kicker">Perceive</span><h3>Keyence 3D scanning</h3><p>Scanned the bin to find pickable parts among randomly oriented stock.</p></article>
-          <article class="case-card"><span class="case-card-kicker">Actuate</span><h3>UR arm programming</h3><p>Drove the arm to grip each located part and place it in a sorted position.</p></article>
-          <article class="case-card"><span class="case-card-kicker">Scale</span><h3>First station of many</h3><p>Automated the opening station of a phased plan to redeploy operator hours to higher-value work.</p></article>
+        <p class="case-lead">Bulk bins of randomly oriented parts were still being sorted by hand. I programmed a Universal Robots cobot with a Robotiq Hand-E gripper and Keyence 3D vision to reach into a tote and pick parts at whatever angle they landed, at 15 to 30 parts per minute. It is the first station of a phased plan to redeploy operator hours.</p>
+        <div class="case-figures cols-3">
+          <figure class="case-figure"><img class="zoomable" src="../assets/img/rochester-robot-gripper.jpg" alt="Universal Robots cobot wrist with a Robotiq Hand-E gripper" loading="lazy"><figcaption>Robotiq Hand-E gripper on the cobot wrist.</figcaption></figure>
+          <figure class="case-figure"><img class="zoomable" src="../assets/img/rochester-robot-3dsearch.jpg" alt="Keyence 3D Search depth map of a bin" loading="lazy"><figcaption>3D Search over the scanned bin.</figcaption></figure>
+          <figure class="case-figure"><img class="zoomable" src="../assets/img/rochester-robot-pathplanning.jpg" alt="Path planning simulation of the arm above the bin" loading="lazy"><figcaption>Path planning against the point cloud.</figcaption></figure>
         </div>
-        <div class="case-result"><strong>15–30 parts/min</strong><p>The cell sorts randomly oriented parts straight from bulk bins at production rate, replacing a fully manual step.</p></div>
-        <div class="case-tags"><span class="case-tag">CamWorks</span><span class="case-tag">SolidWorks</span><span class="case-tag">GD&amp;T</span><span class="case-tag">Tolerance analysis</span><span class="case-tag">Environmental testing</span><span class="case-tag">Universal Robots</span><span class="case-tag">Keyence 3D vision</span></div>
-        <div class="detail-nav"><a href="vex-robotics.html">&larr; VEX U Robots</a><a href="ecofil.html">ECOFIL &rarr;</a></div>
+        <div class="case-result"><strong>Full write-up</strong><p>How the vision system finds a pickable part in a pile, how the path is proven before the arm moves, and which acceptance thresholds decide whether the cell runs unattended. <a href="rochester-robot-cell.html">Read the bin-picking deep dive &rarr;</a></p></div>
+        <div class="case-tags"><span class="case-tag">CamWorks</span><span class="case-tag">SolidWorks</span><span class="case-tag">GD&amp;T</span><span class="case-tag">DFM review</span><span class="case-tag">Tolerance analysis</span><span class="case-tag">Environmental testing</span><span class="case-tag">Universal Robots</span><span class="case-tag">Keyence 3D vision</span></div>
+        <div class="detail-nav"><a href="vex-robotics.html">&larr; VEX U Robots</a><a href="rochester-robot-cell.html">Bin-Picking Deep Dive &rarr;</a></div>
       </div>
     </section>
   </div>

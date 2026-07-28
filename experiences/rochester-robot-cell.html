@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vision-Guided Bin Picking - Rochester Sensors - Jasper Buntinx</title>
+  <meta name="description" content="A Universal Robots cobot with a Robotiq Hand-E gripper and Keyence 3D vision, programmed to pick randomly oriented parts out of bulk bins at 15 to 30 parts per minute, replacing a manual sorting station.">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css?v=20260727a">
+  <link rel="canonical" href="https://jasperbuntinx.com/experiences/rochester-robot-cell.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Jasper Buntinx">
+  <meta property="og:title" content="Vision-Guided Bin Picking - Rochester Sensors - Jasper Buntinx">
+  <meta property="og:description" content="A Universal Robots cobot with a Robotiq Hand-E gripper and Keyence 3D vision, programmed to pick randomly oriented parts out of bulk bins at 15 to 30 parts per minute, replacing a manual sorting station.">
+  <meta property="og:url" content="https://jasperbuntinx.com/experiences/rochester-robot-cell.html">
+  <meta property="og:image" content="https://jasperbuntinx.com/assets/img/rochester-robot-gripper.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="site-title" href="../index.html">Jasper Buntinx</a>
+    <nav class="site-nav" id="siteNav">
+      <a href="../index.html">Home</a>
+      <a href="../resume.html">Resume</a>
+      <a href="../experiences.html" class="active">Experiences</a>
+      <a href="../certifications.html">Certifications</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+    <button type="button" class="nav-toggle" id="navToggle" aria-label="Menu" aria-controls="siteNav" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main class="case-page">
+  <div class="case-shell">
+    <section class="case-hero">
+      <div class="case-hero-copy">
+        <p class="crumb"><a href="rochester-sensors.html">&larr; Rochester Sensors</a></p>
+        <span class="case-eyebrow">Automation &middot; Robotics &middot; Machine Vision</span>
+        <h1>Vision-Guided Bin Picking</h1>
+        <p class="case-deck">A collaborative robot that reaches into a bulk bin, finds a part lying at whatever angle it happened to land, and picks it. No fixtures, no trays, no operator orienting anything first.</p>
+        <p class="case-role"><strong>Mechanical Engineering Intern</strong> &middot; Rochester Sensors, an Amphenol company &middot; Dallas, TX</p>
+      </div>
+      <figure class="case-hero-visual">
+        <img class="zoomable" src="../assets/img/rochester-robot-gripper.jpg" alt="Universal Robots cobot wrist fitted with a Robotiq Hand-E parallel gripper and custom jaws">
+        <figcaption>The business end: a Robotiq Hand-E parallel gripper on the cobot wrist, running custom jaws cut for this part family.</figcaption>
+      </figure>
+    </section>
+
+    <div class="case-metrics" aria-label="Cell results">
+      <div class="case-metric"><strong>15&ndash;30/min</strong><span>Sorted from bulk</span></div>
+      <div class="case-metric"><strong>~0.55 s</strong><span>Vision unit time</span></div>
+      <div class="case-metric"><strong>Zero</strong><span>Fixturing on infeed</span></div>
+      <div class="case-metric"><strong>Station 1</strong><span>Of a phased plan</span></div>
+    </div>
+
+    <section class="case-section">
+      <div class="case-section-label"><span class="case-index">01</span><h2>Why bin picking is hard</h2></div>
+      <div>
+        <p class="case-lead">Most automation cheats by removing the problem: parts arrive in a tray, a nest, or on a belt in a known orientation, and the robot repeats one motion forever. Here the parts arrive in a tote, in a pile, at arbitrary positions and angles, sometimes overlapping. Nothing about the next pick is the same as the last one.</p>
+        <div class="case-grid cols-3">
+          <article class="case-card"><span class="case-card-kicker">Perceive</span><h3>Find something pickable</h3><p>A 3D scan of the bin becomes a point cloud, and the vision system has to decide which part is actually graspable rather than buried or lying against a wall.</p></article>
+          <article class="case-card"><span class="case-card-kicker">Plan</span><h3>Reach it without a collision</h3><p>The gripper has to enter a steel tote, close on the part, and come back out without touching the bin, another part, or itself.</p></article>
+          <article class="case-card"><span class="case-card-kicker">Grip</span><h3>Hold it the same way every time</h3><p>Downstream only works if the part leaves the cell in a known orientation, so the grip has to be registered to the part geometry, not just to whatever surface is facing up.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="case-section-label"><span class="case-index">02</span><h2>Seeing into the bin</h2></div>
+      <div>
+        <p class="case-lead">The Keyence system scans the tote and builds a height map of everything in it. Warm colours are close to the camera and cool colours are farther away, so a part sitting proud of the pile reads immediately. From that surface, 3D Search matches the part geometry and returns candidate picks with position and rotation.</p>
+        <div class="case-figures">
+          <figure class="case-figure"><img class="zoomable" src="../assets/img/rochester-robot-3dsearch.jpg" alt="Keyence 3D Search view showing a depth-coloured point cloud of a bin with a detected part outlined" loading="lazy"><figcaption>3D Search on the scanned bin. The depth map runs warm to cool with height, and the detected part carries its own grip label and rotation axes.</figcaption></figure>
+          <figure class="case-figure"><img class="zoomable" src="../assets/img/rochester-robot-bin.jpg" alt="Blue plastic tote holding a single machined flanged component" loading="lazy"><figcaption>The infeed: a standard tote and a machined part, with nothing holding it in any particular orientation.</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="case-section-label"><span class="case-index">03</span><h2>Planning the path</h2></div>
+      <div>
+        <p class="case-lead">Detection is only half of it. The cell then has to prove it can reach the part and get back out. Path planning simulates the arm against the scanned point cloud and the bin walls before anything moves, and the acceptance conditions are tunable: how much a candidate part may be overlapped by others before it is rejected, how much clearance to demand from the sides of the box, and how long to keep searching before giving up on that scan.</p>
+        <div class="case-figures">
+          <figure class="case-figure"><img class="zoomable" src="../assets/img/rochester-robot-pathplanning.jpg" alt="Path planning screen showing a simulated cobot arm above a scanned bin with approach trajectory and detection conditions" loading="lazy"><figcaption>Path planning against the live point cloud, with the approach and retract trajectory drawn above the bin.</figcaption></figure>
+        </div>
+        <div class="case-grid cols-3">
+          <article class="case-card"><span class="case-card-kicker">Overlap limit</span><h3>Is it actually free?</h3><p>A maximum object overlap threshold rejects candidates that are pinned under other parts, which is the usual cause of a pick that looks fine on screen and fails in the bin.</p></article>
+          <article class="case-card"><span class="case-card-kicker">Collision margin</span><h3>Clearance to the walls</h3><p>A judgment margin around the bin sides keeps the gripper from clipping the tote on entry or on the way back out with a part.</p></article>
+          <article class="case-card"><span class="case-card-kicker">Timeout</span><h3>Fail fast, rescan</h3><p>If no valid path is found inside the time budget, the cell stops hunting and takes a new scan rather than stalling the line.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="case-section-label"><span class="case-index">04</span><h2>What it replaced</h2></div>
+      <div>
+        <p class="case-lead">Before the cell, these parts were sorted out of bulk by hand. The cell now runs at 15 to 30 parts per minute depending on how the pile presents, and it is the first station of a phased plan to move operator hours onto work that actually needs a person.</p>
+        <div class="case-result"><strong>The interesting part was not the robot</strong><p>Teaching an arm to repeat a motion is straightforward. The engineering here was in the conditions: deciding how much overlap is too much, how much clearance the gripper really needs, and when to stop planning and rescan. Those thresholds are what separate a cell that demos well from one that runs a shift without someone standing next to it.</p></div>
+        <div class="case-tags"><span class="case-tag">Universal Robots</span><span class="case-tag">Robotiq Hand-E</span><span class="case-tag">Keyence 3D vision</span><span class="case-tag">Point clouds</span><span class="case-tag">Path planning</span><span class="case-tag">Collision avoidance</span><span class="case-tag">Manufacturing automation</span></div>
+        <div class="detail-nav"><a href="rochester-sensors.html">&larr; Rochester Sensors</a><a href="ecofil.html">ECOFIL &rarr;</a></div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <span>Copyright © 2026 Jasper Buntinx</span>
+    <span><a href="https://www.linkedin.com/in/jasper-buntinx/" target="_blank" rel="noopener">LinkedIn</a> &nbsp;|&nbsp; Email: <a href="mailto:jasper_buntinx@tamu.edu">jasper_buntinx@tamu.edu</a></span>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" hidden>
+  <button type="button" class="lb-close" id="lbClose" aria-label="Close">&times;</button>
+  <button type="button" class="lb-prev" id="lbPrev" aria-label="Previous image">&lsaquo;</button>
+  <figure>
+    <img id="lbImg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="">
+    <figcaption id="lbCaption" aria-live="polite"></figcaption>
+  </figure>
+  <button type="button" class="lb-next" id="lbNext" aria-label="Next image">&rsaquo;</button>
+</div>
+
+<script src="../script.js?v=20260727a"></script>
+</body>
+</html>
