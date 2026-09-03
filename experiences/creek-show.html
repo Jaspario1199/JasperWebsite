@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../styles.css?v=20260730a">
+  <link rel="stylesheet" href="../styles.css?v=20260903a">
   <link rel="canonical" href="https://jasperbuntinx.com/experiences/creek-show.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Jasper Buntinx">
@@ -57,13 +57,13 @@
       <div class="case-metric"><strong>4</strong><span>Unique sculptures</span></div>
       <div class="case-metric"><strong>14+ ft</strong><span>Wingspan</span></div>
       <div class="case-metric"><strong>200+</strong><span>Welded joints</span></div>
-      <div class="case-metric"><strong>−30%</strong><span>Peak current force</span></div>
+      <div class="case-metric"><strong>−30%</strong><span>Peak wind and flood load</span></div>
     </div>
 
     <section class="case-section">
       <div class="case-section-label"><span class="case-index">01</span><h2>From artwork to structure</h2></div>
       <div>
-        <p class="case-lead">The artwork had to retain the artist's visual intent while becoming a manufacturable structure with distinct wing geometry, internal masts, mounting interfaces, lighting, and serviceable electronics. Four dragonflies were built, and each one carries its own unique wing design rather than a single repeated pattern.</p>
+        <p class="case-lead">The artwork, sample pieces from the artists at Odonata LLC, had to retain their visual intent while becoming a manufacturable structure with distinct wing geometry, internal masts, mounting interfaces, lighting, and serviceable electronics. Four dragonflies were built, and each one carries its own unique wing design rather than a single repeated pattern.</p>
         <div class="case-flow">
           <article class="case-flow-step"><strong>Interpret</strong><p>Translate client drawings and artistic proportions into engineering requirements.</p></article>
           <article class="case-flow-step"><strong>Engineer</strong><p>Develop four complete SolidWorks assemblies and creek-bed mounting structures.</p></article>
@@ -86,7 +86,7 @@
           <figure class="case-figure"><img class="zoomable" src="../assets/img/creekshow-proto-vs-wing.jpg" alt="Finished small-scale prototype wing placed next to a finished full-size wing for comparison" loading="lazy"><figcaption>Small-scale prototype wing beside its full-size counterpart.</figcaption></figure>
           <figure class="case-figure"><img class="zoomable" src="../assets/img/creekshow-proto-assembly.jpg" alt="White-painted small-scale prototype dragonfly assembly built to show the artists" loading="lazy"><figcaption>Small-scale prototype assembly used to gather artist feedback.</figcaption></figure>
         </div>
-        <p>To validate the sculptures against wind, I built a simplified CAD assembly of one dragonfly for wind-resistance simulation. In the field the wings and body carry covers, so the simulation model is intentionally left undetailed. It captures the loaded profile without the geometry that does not drive the aerodynamic result.</p>
+        <p>To validate the sculptures against wind, I built a simplified CAD assembly of one dragonfly for wind-resistance simulation in SolidWorks Simulation. In the field the wings and body carry covers, so the simulation model is intentionally left undetailed. It captures the loaded profile without the geometry that does not drive the aerodynamic result.</p>
         <div class="case-figures">
           <figure class="case-figure"><img class="zoomable" src="../assets/img/creekshow-windsim-cad.jpg" alt="Simplified CAD assembly of one dragonfly prepared for wind-resistance simulation" loading="lazy"><figcaption>Simplified CAD assembly used for the wind-resistance study.</figcaption></figure>
         </div>
@@ -97,11 +97,11 @@
       <div class="case-section-label"><span class="case-index">03</span><h2>Onsite + Assembly</h2></div>
       <div>
         <p class="case-lead">Sitting in a live creek turned wind, current, and flash flooding into hard design constraints. A sculpture that tipped or washed away would be destroyed, so I built the CAD models specifically to test each dragonfly against wind and water loading before anything went in the water. Every dragonfly also needed a full set of wings with covers that diffused the light, and those covers could not be allowed to turn each wing into a sail.</p>
-        <p>The stability answer was mechanical. I widened the base frame and distributed sandbags evenly across the whole base so no single point could lift or pivot under a gust or a surge. The wing covers were the harder problem. The original plan used a light-diffusing plastic, but I switched to a tough, breathable white fabric that still spreads the LED light while letting wind and water pass through it. Choosing that fabric meant balancing four things at once: it had to be durable, breathable, diffuse the light evenly, and shed enough current and wind force to keep the structure planted.</p>
+        <p>The stability answer was mechanical. I reoriented the wings, widened the steel base frame, and distributed about 300 lb of sandbag ballast evenly across each base so no single point could lift or pivot under a gust or a surge, then checked the peak bending moments in SolidWorks Simulation. The wing covers were the harder problem. The original plan used hard light-diffusing plastic shells, but I switched to a microporous ePTFE membrane, the breathable white fabric in the Gore-Tex family, that still spreads the LED light while letting wind and water pass through it. Choosing that material meant balancing four things at once: it had to be durable, breathable, diffuse the light evenly, and shed enough current and wind force to keep the structure planted. Cutting the effective resistant area that way dropped peak wind and flood loads by 30%.</p>
         <div class="case-grid cols-3">
           <article class="case-card"><span class="case-card-kicker">Analyze</span><h3>Wind, current, and flood</h3><p>Tested each dragonfly in CAD against wind and creek-current loading, including the flash-flood conditions the creek can produce.</p></article>
-          <article class="case-card"><span class="case-card-kicker">Stabilize</span><h3>Wider base, uniform ballast</h3><p>Widened the base frame and spread sandbags evenly across it so nothing could lift or pivot under load.</p></article>
-          <article class="case-card"><span class="case-card-kicker">Reduce</span><h3>−30% peak current force</h3><p>Breathable fabric covers and a reworked creek-facing frame let wind and water pass through, cutting peak current-induced load by 30%.</p></article>
+          <article class="case-card"><span class="case-card-kicker">Stabilize</span><h3>Wider base, 300 lb ballast</h3><p>Reoriented the wings, widened the steel base, and spread about 300 lb of sandbags evenly across each base so nothing could lift or pivot under load.</p></article>
+          <article class="case-card"><span class="case-card-kicker">Reduce</span><h3>−30% peak wind and flood load</h3><p>Swapping hard plastic shells for a microporous ePTFE membrane let wind and water pass through, cutting the effective resistant area and peak loads by 30%.</p></article>
         </div>
         <div class="case-figures cols-3">
           <figure class="case-figure"><img class="zoomable" src="../assets/img/creekshow-onsite-frame.jpg" alt="Bare unlit welded-metal dragonfly frame on a mobile stand outdoors during setup" loading="lazy"><figcaption>A bare welded frame staged on a mobile stand during setup.</figcaption></figure>
@@ -133,7 +133,7 @@
           <figure class="case-figure"><img class="zoomable" src="../assets/img/creekshow-night-cityscape.jpg" alt="Wide night shot of lit dragonflies in the foreground with the Austin skyline and crowd behind" loading="lazy"><figcaption>Wide view: dragonflies in the foreground, Austin skyline and crowd behind.</figcaption></figure>
         </div>
         <div class="case-result"><strong>Full show run completed</strong><p>All four dragonflies operated throughout Creek Show, turning a set of artistic concepts into reliable public infrastructure seen by thousands of visitors.</p></div>
-        <div class="case-tags"><span class="case-tag">SolidWorks</span><span class="case-tag">ANSYS</span><span class="case-tag">MIG welding</span><span class="case-tag">Fusion 360 CAM</span><span class="case-tag">Laser cutting</span><span class="case-tag">Electronics packaging</span></div>
+        <div class="case-tags"><span class="case-tag">SolidWorks</span><span class="case-tag">SolidWorks Simulation</span><span class="case-tag">MIG welding</span><span class="case-tag">Fusion 360 CAM</span><span class="case-tag">Laser cutting</span><span class="case-tag">Electronics packaging</span></div>
         <div class="detail-nav"><a href="ecofil.html">&larr; ECOFIL</a><a href="cfd-optimization.html">Petrobras CFD Internship &rarr;</a></div>
       </div>
     </section>
@@ -157,6 +157,6 @@
   <button type="button" class="lb-next" id="lbNext" aria-label="Next image">&rsaquo;</button>
 </div>
 
-<script src="../script.js?v=20260730a"></script>
+<script src="../script.js?v=20260903a"></script>
 </body>
 </html>

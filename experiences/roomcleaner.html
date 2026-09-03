@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../styles.css?v=20260730a">
+  <link rel="stylesheet" href="../styles.css?v=20260903a">
   <style>
 /* ---- RoomCleaner interactive block, scoped under .rcx, site-token palette ---- */
 .rcx{
@@ -170,7 +170,7 @@
     <div class="page-header">
       <p class="crumb"><a href="../experiences.html">&larr; All Experiences</a></p>
       <h1>RoomCleaner: Autonomous Laundry-Picking Cable Robot</h1>
-      <p class="detail-meta"><strong>Personal Project</strong> &nbsp;|&nbsp; Independent &nbsp;|&nbsp; Jul 2026 &ndash; Present &nbsp;|&nbsp; College Station, TX</p>
+      <p class="detail-meta"><strong>Personal Project</strong> &nbsp;|&nbsp; Independent &nbsp;|&nbsp; May 2026 &ndash; Present &nbsp;|&nbsp; Dallas, TX</p>
       <p style="max-width:70ch">Four ceiling winches fly a claw on cables (think stadium SkyCam) while a camera finds the laundry. Everything below is live: the control loop, the physics, the CAD. <strong>Click the floor to drop laundry. Drag the claw. Push the cables to their limits.</strong></p>
     </div>
   </div>
@@ -209,7 +209,7 @@
     <div class="stat"><div class="n"><b>63</b>%</div><div class="l">room volume</div></div>
     <div class="stat"><div class="n">±<b>1</b> cm</div><div class="l">grab accuracy</div></div>
     <div class="stat"><div class="n"><b>29</b></div><div class="l">tests passing</div></div>
-    <div class="stat"><div class="n"><b>8</b></div><div class="l">printed parts</div></div>
+    <div class="stat"><div class="n"><b>10</b>+</div><div class="l">printed parts</div></div>
     <div class="stat"><div class="n">$<b>230</b></div><div class="l">total build</div></div>
   </div>
   <div class="statusline">status: <b>simulation + analysis validated</b> · parts ordered · hardware bring-up next</div>
@@ -236,8 +236,8 @@
 <span class="d">┌ perception ─────────────────────┐   ┌ planning ──────────────────┐</span>
 camera ▸ <span class="c">YOLO-World</span> ▸ floor (x,y) <span class="a">──▸</span> state machine ▸ <span class="c">inverse kinematics</span> ▸ 4 cable lengths
 <span class="d">└─────────────────────────────────┘   └────────────────────────────┘</span>
-                              USB serial <span class="a">──▸</span> Arduino + 4× DRV8825 <span class="a">──▸</span> corner winches
-                              WiFi <span class="a">──▸</span> ESP32 on the claw <span class="a">──▸</span> tentacle gripper (battery)
+                              USB serial <span class="a">──▸</span> Arduino + 4× A4988 <span class="a">──▸</span> corner winches
+                              WiFi <span class="a">──▸</span> ESP32 on the claw <span class="a">──▸</span> buck-regulated servo <span class="a">──▸</span> tentacle gripper (LiPo)
 </pre></div>
 </div></section>
 
@@ -312,7 +312,7 @@ camera ▸ <span class="c">YOLO-World</span> ▸ floor (x,y) <span class="a">─
 <section id="bom"><div class="wrap">
   <div class="sec-head"><span class="idx">04</span><h2>Bill of materials</h2>
     <button type="button" class="btn ghost" id="pricebtn">show est. pricing</button></div>
-  <p class="lead">Everything mechanical that could be printed, was: eight parametric parts modeled in code. The bought parts were each sized from the analysis above (motor torque from the tension map, line strength from peak load, supply wattage from total draw). Total build ≈ <b style="color:var(--bright)">$230</b>, reusing a computer for vision.</p>
+  <p class="lead">Everything mechanical that could be printed, was: 10+ parametric parts modeled in SolidWorks for FDM printing. The bought parts were each sized from the analysis above (motor torque from the tension map, line strength from peak load, supply wattage from total draw). Total build ≈ <b style="color:var(--bright)">$230</b>, reusing a computer for vision.</p>
 
   <details class="bom" open>
     <summary>Motion &amp; structure <span class="bsub">the four corner winches and what holds them up</span></summary>
@@ -329,9 +329,9 @@ camera ▸ <span class="c">YOLO-World</span> ▸ floor (x,y) <span class="a">─
     <summary>Control &amp; power <span class="bsub">one wired controller drives all four axes</span></summary>
     <div class="bom-body"><table><tbody>
       <tr><th>Component</th><th>Purpose</th><th class="qty">Qty</th><th class="price">Est.</th></tr>
-      <tr><td>Arduino Uno + CNC Shield + 4× DRV8825</td><td>4-axis step/dir motor control; custom firmware speaks a simple serial protocol</td><td class="qty">1 kit</td><td class="price">$17</td></tr>
-      <tr><td>Roller-lever limit switches</td><td>Homing: each winch finds its zero cable length at startup</td><td class="qty">4 + spares</td><td class="price">$6</td></tr>
-      <tr><td>12 V 6 A supply + 7.5 A inline fuse</td><td>Motor rail, killed by a switched power strip; fuse protects the wiring</td><td class="qty">1</td><td class="price">$28</td></tr>
+      <tr><td>Arduino Uno + CNC Shield + 4× A4988</td><td>4-axis step/dir motor control; custom firmware speaks a simple serial protocol</td><td class="qty">1 kit</td><td class="price">$17</td></tr>
+      <tr><td>Roller-lever limit switches, wired normally closed</td><td>Homing: each winch finds its zero cable length at startup. NC wiring is fail-safe: a cut wire reads as a hit and stops the axis</td><td class="qty">4 + spares</td><td class="price">$6</td></tr>
+      <tr><td>12 V 6 A supply + 7.5 A inline fuse + emergency kill switch</td><td>Motor rail, cut by a hard kill switch within reach; fuse protects the wiring</td><td class="qty">1</td><td class="price">$28</td></tr>
       <tr><td>Extensions, hookup wire, ceiling raceway</td><td>Corner runs hidden along the ceiling seams, no visible wiring</td><td class="qty">set</td><td class="price">$45</td></tr>
     </tbody></table></div>
   </details>
@@ -356,7 +356,7 @@ camera ▸ <span class="c">YOLO-World</span> ▸ floor (x,y) <span class="a">─
   </details>
 
   <details class="bom">
-    <summary>Printed parts &amp; fasteners <span class="bsub">eight parametric models, STEP + STL in the repo</span></summary>
+    <summary>Printed parts &amp; fasteners <span class="bsub">10+ parametric models, STEP + STL in the repo</span></summary>
     <div class="bom-body"><table><tbody>
       <tr><th>Component</th><th>Purpose</th><th class="qty">Qty</th><th class="price">Est.</th></tr>
       <tr><td>Tentacle fingers (TPU 95A)</td><td>Tendon-driven curling fingers: dorsal skin + ventral notches</td><td class="qty">5</td><td class="price">$22 filament</td></tr>
@@ -405,7 +405,7 @@ camera ▸ <span class="c">YOLO-World</span> ▸ floor (x,y) <span class="a">─
   <button type="button" class="lb-next" id="lbNext" aria-label="Next image">&rsaquo;</button>
 </div>
 
-<script src="../script.js?v=20260730a"></script>
+<script src="../script.js?v=20260903a"></script>
 <script>
 (function(){
   var rcxEl=document.querySelector('.rcx');

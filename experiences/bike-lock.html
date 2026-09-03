@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../styles.css?v=20260730a">
+  <link rel="stylesheet" href="../styles.css?v=20260903a">
   <link rel="canonical" href="https://jasperbuntinx.com/experiences/bike-lock.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Jasper Buntinx">
@@ -44,7 +44,7 @@
         <p class="crumb"><a href="../experiences.html">&larr; All Experiences</a></p>
         <span class="case-eyebrow">Mechatronics · Product Iteration · Prototyping</span>
         <h1>Automatic RFID Bike Lock</h1>
-        <p class="case-deck">A tap-to-lock mechanism that combines RFID authentication, electromechanical actuation, state feedback, and serviceable 3D-printed packaging.</p>
+        <p class="case-deck">A frame-mounted, NFC-unlocked lock with a retractable steel cable: a 15-part 3D-printed clamshell that integrates a solenoid latch, PN532 RFID reader, Arduino Nano, Li-ion power system, and a spring-loaded cable spool.</p>
         <p class="case-role"><strong>Personal Project</strong> · Independent · Dec 2025–Present · College Station, TX</p>
       </div>
       <figure class="case-hero-visual">
@@ -55,9 +55,9 @@
 
     <div class="case-metrics" aria-label="Project summary">
       <div class="case-metric"><strong>v.08</strong><span>Current design</span></div>
-      <div class="case-metric"><strong>4 steps</strong><span>Control sequence</span></div>
-      <div class="case-metric"><strong>RFID</strong><span>Keyless authentication</span></div>
-      <div class="case-metric"><strong>Outdoor</strong><span>Design target</span></div>
+      <div class="case-metric"><strong>15 parts</strong><span>3D-printed clamshell</span></div>
+      <div class="case-metric"><strong>NFC</strong><span>PN532 keyless unlock</span></div>
+      <div class="case-metric"><strong>Ø27–46 mm</strong><span>Frame fit</span></div>
     </div>
 
     <section class="case-section">
@@ -71,7 +71,7 @@
     <section class="case-section">
       <div class="case-section-label"><span class="case-index">02</span><h2>System behavior</h2></div>
       <div>
-        <p class="case-lead">The product has to make its state obvious and execute the same sequence reliably every time. An Arduino Nano coordinates identity, motion, and user feedback.</p>
+        <p class="case-lead">The product has to make its state obvious and execute the same sequence reliably every time. An Arduino Nano reads a PN532 NFC/RFID module, fires the solenoid latch, and runs the LED and audio feedback, all from an onboard Li-ion pack.</p>
         <div class="case-flow">
           <article class="case-flow-step"><strong>Authenticate</strong><p>Read the RFID fob and reject any credential that is not authorized.</p></article>
           <article class="case-flow-step"><strong>Actuate</strong><p>Drive the solenoid and retraction mechanism to change the lock state.</p></article>
@@ -125,13 +125,13 @@
     <section class="case-section">
       <div class="case-section-label"><span class="case-index">06</span><h2>v.08 · Integrate for use</h2></div>
       <div>
-        <p class="case-lead">The current revision stacks the control and RFID boards above the lock barrel, refines the drive shaft and cylindrical body, and adds a bolt-down foot for mounting to a frame or rack.</p>
+        <p class="case-lead">The current revision stacks the control and RFID boards above the lock barrel, refines the drive shaft and cylindrical body, and adds a bolt-down foot for mounting to a frame or rack. The housing is printed in PETG with a compliant TPU liner so the same clamp fits Ø27–46 mm frame tubes, and the spring-loaded spool retracts a steel cable rather than the earlier shackle.</p>
         <div class="case-figures">
           <figure class="case-figure"><img class="zoomable" src="../assets/img/bikelock-v08-exploded-color.jpg" alt="Colored exploded view of bike lock revision v.08 showing the control boards, motor, drive components, and mounting foot" loading="lazy"><figcaption>v.08: integrated electronics, drive components, and mounting interface.</figcaption></figure>
-          <article class="case-card"><span class="case-card-kicker">Next validation</span><h3>Retraction + weather protection</h3><p>The lock currently authenticates, actuates, and reports state. Current work targets the retraction drive and weatherproofing for daily outdoor use.</p></article>
+          <article class="case-card"><span class="case-card-kicker">Next revision</span><h3>CNC-milled stainless housing</h3><p>The lock authenticates, actuates, and reports state. The next version moves the housing from printed PETG to CNC-milled stainless steel, with the machining constraints designed in from the first sketch rather than fixed afterward.</p></article>
         </div>
         <!-- Optional enhancement: add a weather-ingress test photo and a measured actuation-cycle result once available. -->
-        <div class="case-tags"><span class="case-tag">SolidWorks</span><span class="case-tag">Arduino Nano</span><span class="case-tag">RFID</span><span class="case-tag">Solenoids</span><span class="case-tag">Circuit design</span><span class="case-tag">3D printing</span></div>
+        <div class="case-tags"><span class="case-tag">SolidWorks</span><span class="case-tag">Arduino Nano</span><span class="case-tag">PN532 NFC/RFID</span><span class="case-tag">Solenoids</span><span class="case-tag">Li-ion power</span><span class="case-tag">Circuit design</span><span class="case-tag">PETG + TPU printing</span><span class="case-tag">DFM</span></div>
         <div class="detail-nav"><a href="roomcleaner.html">&larr; RoomCleaner Cable Robot</a><a href="soccer-shots.html">Soccer Shots Toy &rarr;</a></div>
       </div>
     </section>
@@ -155,6 +155,6 @@
   <button type="button" class="lb-next" id="lbNext" aria-label="Next image">&rsaquo;</button>
 </div>
 
-<script src="../script.js?v=20260730a"></script>
+<script src="../script.js?v=20260903a"></script>
 </body>
 </html>

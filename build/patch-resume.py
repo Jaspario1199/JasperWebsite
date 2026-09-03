@@ -2,23 +2,24 @@
 """
 Patch the resume PDF's text at the content-stream level.
 
-    python3 build/patch-resume.py SOURCE.pdf assets/docs/Jasper_Buntinx_Resume.pdf
+    python3 build/patch-resume.py build/src/resume-source.pdf assets/docs/Jasper_Buntinx_Resume.pdf
 
 Why this exists: the resume is authored elsewhere and exported to PDF, so small
 corrections would otherwise mean a round trip through the source document. This
 edits the drawn glyphs directly, leaving typography, fonts, and every other line
 untouched.
 
-TIED TO ONE EXPORT. The glyph IDs below are subset-font specific, so a new export
-will not match and the script will fail loudly rather than corrupt the file.
-Re-derive them by decoding the TJ runs against each font's ToUnicode CMap.
+TIED TO ONE EXPORT (the 2026-08-27 export). The glyph IDs are subset-font
+specific, so a new export will not match and the script fails loudly rather than
+corrupt the file. Re-derive by decoding the TJ runs against the font's ToUnicode
+CMap; the decode happens at run time, so a new export usually only needs the
+OLD / NEW strings and the font size below updated.
 
-Two edits:
-  1. Education date "August 2023 - December 2027" becomes "August 2023 - 2027".
-     That run ends flush at the right margin, so it is shortened and its text
-     matrix shifted right by the width removed to hold that edge.
-  2. "AggiesCreate" becomes "Aggies Create". Inserting a space widens the line by
-     the space advance; verified beforehand that the line has room.
+One edit: the education date "Aug 2023 - Aug 2027" becomes "Aug 2023 - 2027".
+The public site carries no graduation month (see the graduation-date policy in
+the application workspace). That run ends flush at the right margin, so it is
+shortened and its text matrix shifted right by the width removed to hold that
+edge.
 """
 import re
 import sys
@@ -26,7 +27,10 @@ import sys
 from pypdf import PdfReader, PdfWriter
 from pypdf.generic import DecodedStreamObject
 
-SIZE = 8.0
+FONT = "/F10"          # bold face used for the header lines
+SIZE = 9
+OLD = "Aug 2023 - Aug 2027"
+NEW = "Aug 2023 - 2027"
 
 
 def font_tables(page, name):
@@ -70,47 +74,26 @@ def main(src, dst):
     page = reader.pages[0]
     data = page.get_contents().get_data().decode("latin-1")
 
-    bold_ch, bold_rev, bold_w = font_tables(page, "/F10")
-    body_ch, body_rev, body_w = font_tables(page, "/F2")
+    ch, rev, w = font_tables(page, FONT)
 
-    # ---- edit 1: education date, right-aligned so it must be shifted ----
+    pat = (r"BT\n1 0 0 1 0 792 Tm\n" + re.escape(FONT) + rf" {SIZE} Tf\n\[([^\]]*)\] TJ\nET")
     hit = None
-    for m in re.finditer(r"BT\n1 0 0 1 0 792 Tm\n/F10 8 Tf\n\[([^\]]*)\] TJ\nET", data):
+    for m in re.finditer(pat, data):
         gids, kern = tj_glyphs(m.group(1))
-        if "".join(bold_ch.get(g, "?") for g in gids) == "August 2023 - December 2027":
+        if "".join(ch.get(g, "?") for g in gids) == OLD:
             hit = (m, gids, kern)
             break
     if hit is None:
-        sys.exit("ERROR: education date run not found; this is a different export")
+        sys.exit(f"ERROR: run {OLD!r} not found in {FONT} {SIZE}pt; this is a different export")
 
     m, gids, kern = hit
-    old_adv = (sum(bold_w[g] for g in gids) - kern) / 1000 * SIZE
-    new = "August 2023 - 2027"
-    new_adv = sum(bold_w[bold_rev[c]] for c in new) / 1000 * SIZE
+    old_adv = (sum(w[g] for g in gids) - kern) / 1000 * SIZE
+    new_adv = sum(w[rev[c]] for c in NEW) / 1000 * SIZE
     shift = old_adv - new_adv
+    new_hex = "".join(f"{rev[c]:04x}" for c in NEW)
     data = data.replace(m.group(0), (
-        f"BT\n1 0 0 1 {shift:.6f} 792 Tm\n/F10 8 Tf\n"
-        f"[<{''.join(f'{bold_rev[c]:04x}' for c in new)}> 0] TJ\nET"), 1)
-    print(f"  date  -> {new!r}  ({old_adv:.2f}pt to {new_adv:.2f}pt, shifted {shift:.2f}pt)")
-
-    # ---- edit 2: insert the missing space, left-aligned so no shift needed ----
-    space = body_rev[" "]
-    target = None
-    for m in re.finditer(r"\[([^\]]*)\] TJ", data):
-        gids, _ = tj_glyphs(m.group(1))
-        text = "".join(body_ch.get(g, "?") for g in gids)
-        if "AggiesCreate" in text:
-            target = (m, gids, text)
-            break
-    if target is None:
-        sys.exit("ERROR: 'AggiesCreate' run not found")
-
-    m, gids, text = target
-    at = text.index("AggiesCreate") + len("Aggies")
-    patched = gids[:at] + [space] + gids[at:]
-    data = data.replace(
-        m.group(0), f"[<{''.join(f'{g:04x}' for g in patched)}> 0] TJ", 1)
-    print(f"  space -> 'Aggies Create'  (line grew {body_w[space] / 1000 * SIZE:.2f}pt)")
+        f"BT\n1 0 0 1 {shift:.6f} 792 Tm\n{FONT} {SIZE} Tf\n[<{new_hex}> 0] TJ\nET"), 1)
+    print(f"  date -> {NEW!r}  ({old_adv:.2f}pt to {new_adv:.2f}pt, shifted {shift:.2f}pt)")
 
     writer = PdfWriter(clone_from=src)
     stream = DecodedStreamObject()
@@ -118,14 +101,15 @@ def main(src, dst):
     writer.pages[0].replace_contents(stream)
     writer.write(dst)
 
-    out = PdfReader(dst).pages[0].extract_text()
-    for probe, want in (("August 2023 - 2027", True), ("Aggies Create", True),
-                        ("December 2027", False), ("AggiesCreate", False)):
-        ok = (probe in out) == want
-        print(f"  {'OK  ' if ok else 'FAIL'} {probe!r} present={probe in out}")
+    out = PdfReader(dst)
+    text = out.pages[0].extract_text()
+    for probe, want in ((NEW, True), (OLD, False), ("Aug 2027", False)):
+        ok = (probe in text) == want
+        print(f"  {'OK  ' if ok else 'FAIL'} {probe!r} present={probe in text}")
         if not ok:
             sys.exit("verification failed")
-    print(f"  {sum(len(p.get('/Annots') or []) for p in PdfReader(dst).pages)} link annotations kept")
+    print(f"  {len(out.pages)} page(s), "
+          f"{sum(len(p.get('/Annots') or []) for p in out.pages)} link annotations kept")
 
 
 if __name__ == "__main__":
