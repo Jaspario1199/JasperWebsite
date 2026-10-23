@@ -104,6 +104,9 @@
 
 /* gripper + stack + arch */
 .rcx .gripper{display:grid;grid-template-columns:340px 1fr;gap:28px;align-items:center;margin-top:24px}
+.rcx .build-group{margin-top:34px}
+.rcx .build-group h3{font-size:19px;margin-bottom:8px}
+.rcx .build-group .case-figures{margin-top:18px}
 .rcx .gripper img{width:100%;border:1px solid var(--line);border-radius:10px;background:var(--inset);cursor:zoom-in}
 .rcx ul.clean{list-style:none;padding:0;margin:12px 0 0}
 .rcx ul.clean li{padding:7px 0 7px 20px;position:relative;font-size:13.5px;border-bottom:1px dashed var(--line)}
@@ -309,8 +312,88 @@ camera ▸ <span class="c">YOLO-World</span> ▸ floor (x,y) <span class="a">─
   </div>
 </div></section>
 
+<section id="hardware"><div class="wrap">
+  <div class="sec-head"><span class="idx">04</span><h2>Building it</h2></div>
+  <p class="lead">The tentacle hand above was the first concept. What got built is the second generation: four wall-mounted winch stations, each with its own driver and spool encoder, and a geared claw. Click any photo to enlarge it.</p>
+
+  <div class="build-group">
+    <h3>The claw</h3>
+    <p>One MG996R servo drives a printed gear train, and a four-bar linkage keeps the jaws parallel as they close. The claw hangs from an aluminium tube with its battery and electronics in a printed housing.</p>
+      <div class="case-figures cols-3">
+        <figure class="case-figure"><img class="zoomable" src="../assets/img/roomcleaner-claw-assembled.jpg" alt="The assembled RoomCleaner claw with blue four-bar jaws, gear housing, aluminium tube and electrical housing, lying on carpet" loading="lazy"><figcaption>The assembled claw: four-bar jaws, gear train, tube and electrical housing.</figcaption></figure>
+        <figure class="case-figure"><img class="zoomable" src="../assets/img/roomcleaner-claw-gear-train.jpg" alt="Printed gear train in the open gear housing: servo, grey compound gear on its bearing, blue sync gear, crank and arms" loading="lazy"><figcaption>Printed gear train: MG996R servo, 36T/24T compound gear on its bearing, sync gear and crank.</figcaption></figure>
+        <figure class="case-figure"><img class="zoomable" src="../assets/img/roomcleaner-claw-tube-servo.jpg" alt="Aluminium tube standing in the printed top mount with the servo seated in the gear housing and the slotted housing half beside it" loading="lazy"><figcaption>Aluminium tube in the top mount, servo seated in the gear housing, slotted housing half beside it.</figcaption></figure>
+      </div>
+  </div>
+
+  <div class="build-group">
+    <h3>Wall stations</h3>
+    <p>Generation 1 put the motor, spool, pulley and switch on one printed corner plate. Generation 2 splits each station into a wall mount, a slide-in that carries the motor, and a shell. The end-stop switch presses into a pocket with no screws.</p>
+      <div class="case-figures cols-3">
+        <figure class="case-figure"><img class="zoomable" src="../assets/img/roomcleaner-gen1-corner-plate.jpg" alt="Generation 1 printed corner plate carrying a stepper motor, spool, pulley and switch" loading="lazy"><figcaption>Generation 1: one printed corner plate carrying the motor, spool, pulley and switch.</figcaption></figure>
+        <figure class="case-figure"><img class="zoomable" src="../assets/img/roomcleaner-gen1-lift-test.jpg" alt="Generation 1 winch station mounted at the edge of a desk, lifting a test weight on its line" loading="lazy"><figcaption>Generation 1 station lifting a test weight.</figcaption></figure>
+        <figure class="case-figure"><img class="zoomable" src="../assets/img/roomcleaner-station-shells.jpg" alt="Two printed generation 2 station parts: a white plate with the stepper motor on its tab, and a grey part with rails" loading="lazy"><figcaption>Generation 2 station shells, motor tab and rails.</figcaption></figure>
+      </div>
+      <div class="case-figures cols-3">
+        <figure class="case-figure"><img class="zoomable" src="../assets/img/roomcleaner-station-assembled.jpg" alt="Generation 2 winch station assembled on a table, stepper motor and spool with line" loading="lazy"><figcaption>Generation 2 station assembled, with line on the spool.</figcaption></figure>
+        <figure class="case-figure"><img class="zoomable" src="../assets/img/roomcleaner-switch-pressfit.jpg" alt="End-stop microswitch pressed into its printed pocket on the slide-in mount" loading="lazy"><figcaption>End-stop switch pressed into its pocket in the slide-in. No screws.</figcaption></figure>
+        <figure class="case-figure"><img class="zoomable" src="../assets/img/roomcleaner-station-on-wall.jpg" alt="Blue printed station housing mounted on a wall" loading="lazy"><figcaption>Printed station housing mounted on the wall.</figcaption></figure>
+      </div>
+      <div class="case-figures">
+        <figure class="case-figure"><img class="zoomable" src="../assets/img/roomcleaner-slidein-fin-spool.jpg" alt="Grey printed slide-in with a NEMA 17 bolted behind a tall aluminium heat fin, a red spool on the motor shaft and the switch lug below" loading="lazy"><figcaption>Slide-in assembled: the motor bolted behind the aluminium fin, the spool on its shaft, the switch lug below.</figcaption></figure>
+        <figure class="case-figure"><img class="zoomable" src="../assets/img/roomcleaner-station-shell-fin.jpg" alt="Red printed station shell with side vents on a counter, the aluminium heat fin rising through a slot in its top, grey wall mount behind" loading="lazy"><figcaption>Shell on: the fin rises through a slot in the top to shed the motor's heat outside the housing.</figcaption></figure>
+      </div>
+  </div>
+
+  <div class="build-group">
+    <h3>Heat fin</h3>
+    <p>The motors run warm, and the printed tab they bolt to loses strength as it heats, so each station gets an aluminium fin between the motor and the tab. I sheared the blanks and drilled them on a manual mill. The edges locate only the bottom-left hole; once drilled, that hole is the zero for everything else, so the rough sheared edges cannot shift the hole pattern.</p>
+      <div class="case-figures cols-3">
+        <figure class="case-figure"><img class="zoomable" src="../assets/img/roomcleaner-fin-shear-blanks.jpg" alt="Industrial shear with sheared aluminium fin blanks and the printed shop drawing on its bed" loading="lazy"><figcaption>Fin blanks sheared from aluminium sheet, with the shop drawing.</figcaption></figure>
+        <figure class="case-figure"><img class="zoomable" src="../assets/img/roomcleaner-fin-mill-setup.jpg" alt="Manual mill and vise with sheared aluminium fin blanks and the printed shop drawing on the table" loading="lazy"><figcaption>Mill setup: the blanks and the printed shop drawing.</figcaption></figure>
+        <figure class="case-figure"><img class="zoomable" src="../assets/img/roomcleaner-fin-mill.jpg" alt="Drill bit in the mill spindle above an aluminium fin clamped in the vise" loading="lazy"><figcaption>Drilling a fin on the manual mill.</figcaption></figure>
+      </div>
+      <div class="case-figures cols-3">
+        <figure class="case-figure"><img class="zoomable" src="../assets/img/roomcleaner-fin-mill-closeup.jpg" alt="Close-up of the drill entering the aluminium fin in the mill vise" loading="lazy"><figcaption>The first hole drilled becomes the zero for every other feature.</figcaption></figure>
+        <figure class="case-figure"><img class="zoomable" src="../assets/img/roomcleaner-fin-finished.jpg" alt="Finished aluminium heat fin with a large centre hole and four motor holes" loading="lazy"><figcaption>Finished fin: 7/8 in centre hole and four motor holes.</figcaption></figure>
+        <figure class="case-figure"><img class="zoomable" src="../assets/img/roomcleaner-fin-on-motor.jpg" alt="Aluminium fin test-fitted on a NEMA 17 motor, shaft through the centre hole" loading="lazy"><figcaption>Test fit on the NEMA 17: the boss centred in the 7/8 in hole.</figcaption></figure>
+      </div>
+      <div class="case-figures">
+        <figure class="case-figure"><img class="zoomable" src="../assets/img/roomcleaner-fin-on-motor-angle.jpg" alt="Angled view of the aluminium fin on the NEMA 17 motor face" loading="lazy"><figcaption>All four motor threads line up with the drilled holes.</figcaption></figure>
+        <figure class="case-figure"><img class="zoomable" src="../assets/img/roomcleaner-fin-on-motor-closeup.jpg" alt="Close-up of the motor boss and shaft through the fin's centre hole" loading="lazy"><figcaption>Close-up of the fit at the motor boss.</figcaption></figure>
+      </div>
+  </div>
+
+  <div class="build-group">
+    <h3>Electronics</h3>
+    <p>Generation 1 ran all four motors from one Arduino and CNC shield. Generation 2 gives every station its own board: a XIAO ESP32, an A4988 driver and a buck converter, soldered point to point.</p>
+      <div class="case-figures cols-3">
+        <figure class="case-figure"><img class="zoomable" src="../assets/img/roomcleaner-gen1-cnc-shield.jpg" alt="Red CNC shield with four A4988 stepper drivers on an Arduino" loading="lazy"><figcaption>Generation 1: one CNC shield with four A4988 drivers ran every motor.</figcaption></figure>
+        <figure class="case-figure"><img class="zoomable" src="../assets/img/roomcleaner-bench-wiring-a.jpg" alt="Bench covered in jumper wires, meter leads and boards during bring-up" loading="lazy"><figcaption>Bench wiring during motor bring-up.</figcaption></figure>
+        <figure class="case-figure"><img class="zoomable" src="../assets/img/roomcleaner-bench-wiring-b.jpg" alt="Second view of the bench wiring during bring-up" loading="lazy"><figcaption>The same bring-up from another angle.</figcaption></figure>
+      </div>
+      <div class="case-figures cols-3">
+        <figure class="case-figure"><img class="zoomable" src="../assets/img/roomcleaner-bench-bringup.jpg" alt="Laptop on a workbench surrounded by robot parts during bring-up" loading="lazy"><figcaption>Laptop and bench during bring-up.</figcaption></figure>
+        <figure class="case-figure"><img class="zoomable" src="../assets/img/roomcleaner-homing-switch.jpg" alt="Homing microswitch wired to a yellow perfboard" loading="lazy"><figcaption>Homing microswitch wired on the perfboard.</figcaption></figure>
+        <figure class="case-figure"><img class="zoomable" src="../assets/img/roomcleaner-buck-wiring.jpg" alt="Station wiring harness with jumper leads, a small soldered board and a connector" loading="lazy"><figcaption>Buck converter and station wiring.</figcaption></figure>
+      </div>
+      <div class="case-figures">
+        <figure class="case-figure"><img class="zoomable" src="../assets/img/roomcleaner-station-board.jpg" alt="Soldered green perfboard with point-to-point wiring for one winch station" loading="lazy"><figcaption>Soldered station board: point-to-point wiring, a 100 µF capacitor at the driver supply, the buck module underneath.</figcaption></figure>
+      </div>
+  </div>
+
+  <div class="build-group">
+    <h3>Printing</h3>
+    <p>The structural parts are PETG, printed on a Creality K1.</p>
+      <div class="case-figures">
+        <figure class="case-figure"><img class="zoomable" src="../assets/img/roomcleaner-slicer-k1.jpg" alt="Laptop showing a slicer with a plate of PETG parts for a Creality K1" loading="lazy"><figcaption>Slicing a PETG plate for the Creality K1: 0.4 mm nozzle, 0.20 mm layers.</figcaption></figure>
+        <figure class="case-figure"><img class="zoomable" src="../assets/img/roomcleaner-slicer-supports.jpg" alt="Slicer preview of PETG station parts with support structures" loading="lazy"><figcaption>Station parts with supports at 30° before printing.</figcaption></figure>
+      </div>
+  </div>
+</div></section>
+
 <section id="bom"><div class="wrap">
-  <div class="sec-head"><span class="idx">04</span><h2>Bill of materials</h2>
+  <div class="sec-head"><span class="idx">05</span><h2>Bill of materials</h2>
     <button type="button" class="btn ghost" id="pricebtn">show est. pricing</button></div>
   <p class="lead">Everything mechanical that could be printed, was: 10+ parametric parts modeled in SolidWorks for FDM printing. The bought parts were each sized from the analysis above (motor torque from the tension map, line strength from peak load, supply wattage from total draw). Total build ≈ <b style="color:var(--bright)">$230</b>, reusing a computer for vision.</p>
 
@@ -367,7 +450,7 @@ camera ▸ <span class="c">YOLO-World</span> ▸ floor (x,y) <span class="a">─
 </div></section>
 
 <section id="stack"><div class="wrap">
-  <div class="sec-head"><span class="idx">05</span><h2>Built with</h2></div>
+  <div class="sec-head"><span class="idx">06</span><h2>Built with</h2></div>
   <p class="lead">Robotics, computer vision, controls, mechanical CAD, and embedded firmware. One coherent system.</p>
   <div class="chips">
     <span class="chip"><b>Python</b> · control + kinematics</span>
