@@ -12,6 +12,7 @@ certifications.html   # Certification gallery
 experiences/          # One detail page per internship/project
   rochester-sensors.html · ecofil.html · cfd-optimization.html · creek-show.html
   vex-robotics.html · bike-lock.html · soccer-shots.html · tractor.html
+  phase-separation-research.html · rochester-robot-cell.html · roomcleaner.html
 ```
 
 Shared files: `styles.css` (design), `script.js` (mobile nav, filters, lightbox),
@@ -20,7 +21,7 @@ Shared files: `styles.css` (design), `script.js` (mobile nav, filters, lightbox)
 ## Common edits
 
 - **Add an experience** — copy any card block in `experiences.html` (set its `data-cat` to
-  `internships`, `startup`, `teams`, or `personal`), then copy an existing page in `experiences/`
+  `research`, `internships`, `startup`, `teams`, or `personal`), then copy an existing page in `experiences/`
   as the detail page. Photos go in `assets/img/`.
 - **Add a certification** — drop the certificate image in `assets/certs/`, then un-comment and fill in
   the template block already sitting in `certifications.html`.

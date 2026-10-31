@@ -91,14 +91,16 @@ if (skillInput) {
     { n: 'Creo', c: 'CAD', alt: 'cad ptc', u: [E('Coursework',null)] },
     { n: 'Siemens NX', c: 'CAD', alt: 'cad unigraphics', u: [E('Coursework',null)] },
     { n: 'MATLAB', c: 'CAD', alt: 'numerical computing matrix', u: [E('Coursework',null)] },
-    { n: 'CNC Machining (CamWorks)', c: 'Manufacturing', alt: 'cnc milling solidworks cam machining toolpath', u: [E('Rochester Sensors','experiences/rochester-sensors.html'),E('ECOFIL','experiences/ecofil.html')] },
-    { n: '3D Printing (OrcaSlicer)', c: 'Manufacturing', alt: 'additive manufacturing fdm printing', u: [E('ECOFIL','experiences/ecofil.html'),E('Bike Lock','experiences/bike-lock.html'),E('Soccer Shots','experiences/soccer-shots.html')] },
+    { n: 'CNC Machining (CamWorks)', c: 'Manufacturing', alt: 'cnc milling solidworks cam machining toolpath', u: [E('Phase Separation Research','experiences/phase-separation-research.html'),E('Rochester Sensors','experiences/rochester-sensors.html'),E('ECOFIL','experiences/ecofil.html')] },
+    { n: '3D Printing (OrcaSlicer)', c: 'Manufacturing', alt: 'additive manufacturing fdm printing', u: [E('Phase Separation Research','experiences/phase-separation-research.html'),E('ECOFIL','experiences/ecofil.html'),E('Bike Lock','experiences/bike-lock.html'),E('Soccer Shots','experiences/soccer-shots.html')] },
     { n: 'Laser Cutting (Lightburn)', c: 'Manufacturing', alt: 'laser cutting', u: [E('ECOFIL','experiences/ecofil.html'),E('Creek Show','experiences/creek-show.html')] },
-    { n: 'MIG Welding', c: 'Manufacturing', alt: 'welding fabrication metal', u: [E('Creek Show','experiences/creek-show.html'),E('ECOFIL','experiences/ecofil.html'),E('Electric Tractor','experiences/tractor.html')] },
+    { n: 'MIG Welding', c: 'Manufacturing', alt: 'welding fabrication metal', u: [E('Phase Separation Research','experiences/phase-separation-research.html'),E('Creek Show','experiences/creek-show.html'),E('ECOFIL','experiences/ecofil.html'),E('Electric Tractor','experiences/tractor.html')] },
     { n: 'Metalworking', c: 'Manufacturing', alt: 'metal fabrication', u: [E('Creek Show','experiences/creek-show.html'),E('Electric Tractor','experiences/tractor.html')] },
     { n: 'Soldering', c: 'Manufacturing', alt: 'electronics wiring', u: [E('ECOFIL','experiences/ecofil.html'),E('Creek Show','experiences/creek-show.html')] },
     { n: 'Design for Manufacturability', c: 'Manufacturing', alt: 'dfm dfma manufacturability producibility cost reduction tooling setup reduction machinability', u: [E('Rochester Sensors','experiences/rochester-sensors.html'),E('ECOFIL','experiences/ecofil.html')] },
     { n: 'Workholding & Fixture Design', c: 'Manufacturing', alt: 'fixture jig workholding repeatability locating multi part', u: [E('Rochester Sensors','experiences/rochester-sensors.html')] },
+    { n: 'Experimental Design & Testing', c: 'Research', alt: 'test rig test equipment experiment research parabolic flight payload reduced gravity microgravity verification', u: [E('Phase Separation Research','experiences/phase-separation-research.html')] },
+    { n: 'Two-Phase Flow', c: 'Research', alt: 'gas liquid phase separation vortex separator fluids reduced gravity microgravity carbon capture amine rankine', u: [E('Phase Separation Research','experiences/phase-separation-research.html')] },
     { n: 'Environmental Testing', c: 'Manufacturing', alt: 'thermal cycling salt spray vibration qualification', u: [E('Rochester Sensors','experiences/rochester-sensors.html')] },
     { n: 'Industrial Robotics (Universal Robots)', c: 'Manufacturing', alt: 'cobot collaborative robot ur robotiq gripper automation bin picking factory', u: [E('Bin Picking','experiences/rochester-robot-cell.html')] },
     { n: 'Machine Vision (Keyence 3D)', c: 'Manufacturing', alt: 'vision system point cloud 3d search path planning depth map automation', u: [E('Bin Picking','experiences/rochester-robot-cell.html')] },
@@ -128,6 +130,7 @@ if (skillInput) {
     Manufacturing: 'manufacturing fabrication machining making shop build prototyping hands on',
     Programming: 'programming computing software coding development scripting',
     Electronics: 'electronics controls circuits hardware embedded wiring instrumentation mechatronics',
+    Research: 'research lab laboratory experiment experimental undergraduate fluids thermal nuclear',
   };
   const hay = (s) => (s.n + ' ' + s.alt + ' ' + s.c + ' ' + (CAT_KW[s.c] || '') + ' ' + s.u.map((x) => x[0]).join(' ')).toLowerCase();
   let current = [], active = -1;
