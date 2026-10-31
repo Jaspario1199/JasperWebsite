@@ -9,11 +9,12 @@ corrections would otherwise mean a round trip through the source document. This
 edits the drawn glyphs directly, leaving typography, fonts, and every other line
 untouched.
 
-TIED TO ONE EXPORT (the 2026-08-27 export). The glyph IDs are subset-font
-specific, so a new export will not match and the script fails loudly rather than
-corrupt the file. Re-derive by decoding the TJ runs against the font's ToUnicode
-CMap; the decode happens at run time, so a new export usually only needs the
-OLD / NEW strings and the font size below updated.
+TIED TO ONE EXPORT (the November 2026 one-page export). The glyph IDs are
+subset-font specific, so a new export will not match and the script fails loudly
+rather than corrupt the file. Re-derive by decoding the TJ runs against the
+font's ToUnicode CMap; the decode happens at run time, so a new export usually
+only needs the font resource and size in EDITS updated (this export draws the
+header dates at 10 pt, the August one at 9 pt).
 
 Each edit replaces one whole text run (one drawn line). Right-aligned runs
 (header dates) end flush at the right margin, so the text matrix is shifted by
@@ -21,12 +22,10 @@ the width change to hold that edge. Left-aligned runs (bullet text) keep their
 start point and simply get shorter or longer, so only use them on a run with
 room to spare, such as the last line of a wrapped bullet.
 
-Current edits:
-  - education "Aug 2023 - Aug 2027" becomes "Aug 2023 - 2027", because the
-    public site carries no graduation month (see the graduation-date policy in
-    the application workspace)
-  - Rochester cycle time: the confirmed figure is a 30% average cut, with
-    182 -> 34 min on the highest-volume part. The export said "70-80%".
+Current edit: education "Aug 2023 - Aug 2027" becomes "Aug 2023 - 2027",
+because the public site carries no graduation month (see the graduation-date
+policy in the application workspace). The resume itself now carries the 30%
+cycle-time figure, so the earlier body-text correction is no longer needed.
 """
 import re
 import sys
@@ -36,10 +35,7 @@ from pypdf.generic import DecodedStreamObject
 
 # (font resource, size, alignment, old run, new run)
 EDITS = [
-    ("/F10", 9, "right", "Aug 2023 - Aug 2027", "Aug 2023 - 2027"),
-    ("/F2", 8, "left",
-     "cycle times 70\u201380% (182 \u2192 34 min on highest-volume part) while holding all GD&T requirements.",
-     "cycle times an average of 30% (182 \u2192 34 min on highest-volume part) while holding all GD&T requirements."),
+    ("/F10", 10, "right", "Aug 2023 - Aug 2027", "Aug 2023 - 2027"),
 ]
 
 
@@ -117,7 +113,7 @@ def main(src, dst):
     out = PdfReader(dst)
     text = out.pages[0].extract_text()
     probes = [(e[4], True) for e in EDITS] + [(e[3], False) for e in EDITS]
-    for probe, want in probes + [("Aug 2027", False), ("70\u201380", False)]:
+    for probe, want in probes + [("Aug 2027", False), ("70\u201380", False), ("Interphase", True)]:
         ok = (probe in text) == want
         print(f"  {'OK  ' if ok else 'FAIL'} {probe[:48]!r} present={probe in text}")
         if not ok:
