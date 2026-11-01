@@ -107,6 +107,14 @@
 .rcx .build-group{margin-top:34px}
 .rcx .build-group h3{font-size:19px;margin-bottom:8px}
 .rcx .build-group .case-figures{margin-top:18px}
+.rcx .phones{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px;margin-top:26px}
+.rcx .phones figure{margin:0}
+.rcx .phones img{display:block;width:100%;aspect-ratio:390/844;object-fit:cover;object-position:top;border:1px solid var(--line);border-radius:14px;background:var(--inset);cursor:zoom-in}
+.rcx .phones figcaption{font-size:12.5px;color:var(--dim);margin-top:8px;line-height:1.45}
+.rcx .phones figcaption b{color:var(--text);font-weight:600}
+.rcx .app-note{margin-top:22px;font-size:14px;color:var(--dim)}
+@media(max-width:820px){.rcx .phones{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:520px){.rcx .phones{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .rcx .gripper img{width:100%;border:1px solid var(--line);border-radius:10px;background:var(--inset);cursor:zoom-in}
 .rcx ul.clean{list-style:none;padding:0;margin:12px 0 0}
 .rcx ul.clean li{padding:7px 0 7px 20px;position:relative;font-size:13.5px;border-bottom:1px dashed var(--line)}
@@ -393,8 +401,37 @@ camera ▸ <span class="c">YOLO-World</span> ▸ floor (x,y) <span class="a">─
   </div>
 </div></section>
 
+<section id="app"><div class="wrap">
+  <div class="sec-head"><span class="idx">05</span><h2>The phone app</h2></div>
+  <p class="lead">Once the robot could move, I needed a way to live with it. The phone app lets me watch the claw camera, walk through setup, map the room and talk to the robot from my phone on the home Wi-Fi. The phone never talks to the hardware directly: it goes through the same host service and the same safety checks as everything else. The screenshots below are from the simulated robot; bring-up on the real hardware is underway.</p>
+
+  <div class="phones">
+    <figure><img class="zoomable" src="../assets/img/roomcleaner-app-home.jpg" alt="Phone app Home tab: robot state DISARMED in large text with a plain-language explanation, trust level, four station tiles and claw status, with a red PAUSE button above the tab bar" loading="lazy"><figcaption><b>Home.</b> The state in large text, then what it means in plain words.</figcaption></figure>
+    <figure><img class="zoomable" src="../assets/img/roomcleaner-app-camera.jpg" alt="Phone app Camera tab: live claw camera view with frame age, marker detection and stream source" loading="lazy"><figcaption><b>Camera.</b> The claw's view, with how old the frame is.</figcaption></figure>
+    <figure><img class="zoomable" src="../assets/img/roomcleaner-app-setup.jpg" alt="Phone app Setup tab: ticked safety checklist, Start calibration button and the seven startup steps" loading="lazy"><figcaption><b>Setup.</b> Start stays locked until every safety box is ticked.</figcaption></figure>
+    <figure><img class="zoomable" src="../assets/img/roomcleaner-app-chat.jpg" alt="Phone app Chat tab: the robot explains what Start will do and waits 30 seconds for a Yes or No" loading="lazy"><figcaption><b>Chat.</b> Ask for a move and it explains what will happen, then waits for a yes.</figcaption></figure>
+    <figure><img class="zoomable" src="../assets/img/roomcleaner-app-map.jpg" alt="Phone app Map tab: top view of the room with a shelf and a circle drawn as keep-out shapes and the area the claw can reach shaded" loading="lazy"><figcaption><b>Map.</b> Drag furniture onto the room; it shades where the claw can pick things up.</figcaption></figure>
+  </div>
+
+  <div class="grid4">
+    <div class="panel"><span class="corner tl"></span><span class="corner br"></span>
+      <div class="tag">Safety</div><h3>Pause is always there</h3>
+      <p>A red <span class="k">PAUSE (hold position)</span> sits on every screen. Under it, the app says the real emergency stop is the power strip, because cutting power to a cable robot drops the claw. It never pretends to be an e-stop.</p></div>
+    <div class="panel"><span class="corner tl"></span><span class="corner br"></span>
+      <div class="tag">Honesty</div><h3>Only say what's true</h3>
+      <p>Pause first always reported "holding position," even with a station offline and nothing holding. Now it says that only when every station is online and holding; otherwise it tells you to stay clear.</p></div>
+    <div class="panel"><span class="corner tl"></span><span class="corner br"></span>
+      <div class="tag">Chat</div><h3>Ask before moving</h3>
+      <p>Typing "start" or "lower" gets a question back, and the move runs only on a yes within 30 s. The chat can't tick the safety checklist for you. It runs on simple rules on the home network, with no cloud service.</p></div>
+    <div class="panel"><span class="corner tl"></span><span class="corner br"></span>
+      <div class="tag">Map</div><h3>Furniture in a few taps</h3>
+      <p>Pick a square, rectangle or circle, drag it into place, and it snaps to the inch and flush to the wall. Sizes take feet and inches or metres, and the robot keeps the claw out of every shape.</p></div>
+  </div>
+  <p class="app-note">I set what the app needed to do and say, and directed <span class="k">Claude Code</span> to build it.</p>
+</div></section>
+
 <section id="bom"><div class="wrap">
-  <div class="sec-head"><span class="idx">05</span><h2>Bill of materials</h2></div>
+  <div class="sec-head"><span class="idx">06</span><h2>Bill of materials</h2></div>
   <p class="lead">The structure is printed PETG, modeled in SolidWorks. Parts are bought where printing would cost accuracy or safety: motors, bearing pulleys, line, and the aluminum fins and tube.</p>
 
   <details class="bom" open>
@@ -442,7 +479,7 @@ camera ▸ <span class="c">YOLO-World</span> ▸ floor (x,y) <span class="a">─
 </div></section>
 
 <section id="stack"><div class="wrap">
-  <div class="sec-head"><span class="idx">06</span><h2>Built with</h2></div>
+  <div class="sec-head"><span class="idx">07</span><h2>Built with</h2></div>
   <p class="lead">Mechanical CAD, electronics, embedded firmware, controls and computer vision in one system.</p>
   <div class="chips">
     <span class="chip"><b>SolidWorks</b> · station and claw CAD</span>
@@ -451,6 +488,8 @@ camera ▸ <span class="c">YOLO-World</span> ▸ floor (x,y) <span class="a">─
     <span class="chip"><b>C++</b> · station firmware</span>
     <span class="chip"><b>Python</b> · host control and kinematics</span>
     <span class="chip"><b>Claude Code</b> · directed implementation</span>
+    <span class="chip"><b>HTML/CSS/JS</b> · phone app</span>
+    <span class="chip"><b>Flask</b> · host service</span>
     <span class="chip"><b>YOLO-World</b> · open-vocab detection</span>
     <span class="chip"><b>OpenCV</b> · camera</span>
     <span class="chip"><b>Manual mill</b> · aluminum fins</span>
